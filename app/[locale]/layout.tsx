@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/lib/i18n/routing";
 import { fontVariables } from "@/lib/fonts";
 import { DirectionProvider } from "@/components/providers/direction-provider";
+import { LenisProvider } from "@/components/motion/LenisProvider";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -46,10 +47,15 @@ export default async function LocaleLayout({
         </noscript>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <DirectionProvider dir={dir}>
-            <SkipLink />
-            <Header />
-            <main id="main">{children}</main>
-            <Footer />
+            {/* LenisProvider is the client leaf; it renders children unchanged
+                and no-ops under reduced motion, so the layout stays a server
+                component and the sticky Header keeps working. */}
+            <LenisProvider>
+              <SkipLink />
+              <Header />
+              <main id="main">{children}</main>
+              <Footer />
+            </LenisProvider>
           </DirectionProvider>
         </NextIntlClientProvider>
       </body>
