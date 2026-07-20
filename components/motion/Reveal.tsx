@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { usePrefersReducedMotion } from "@/components/motion/use-reduced-motion";
 import type { ElementType } from "react";
 import { cn } from "@/lib/utils";
 
@@ -31,7 +32,7 @@ export function Reveal({
   amount = 0.2,
   as = "div",
 }: RevealProps) {
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
 
   // Reduced-motion branch: render the final, fully-visible element with no
   // motion wrapper. Content is never offset or hidden, so nothing is trapped.

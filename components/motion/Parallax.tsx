@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { usePrefersReducedMotion } from "@/components/motion/use-reduced-motion";
 import { useRef } from "react";
 
 type ParallaxProps = {
@@ -20,7 +21,7 @@ export function Parallax({
   distance = 40,
 }: ParallaxProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
 
   // Hooks run unconditionally to satisfy the rules of hooks; the resulting
   // MotionValue is simply left unused in the reduced-motion branch below.

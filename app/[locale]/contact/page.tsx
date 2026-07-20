@@ -50,7 +50,9 @@ export default async function ContactPage({
           locale,
         )}
       />
-      <ContactSection />
+      {/* Standalone page: this section's title is the page's only top-level
+          heading, so it renders as the h1. */}
+      <ContactSection as="h1" />
     </div>
   );
 }

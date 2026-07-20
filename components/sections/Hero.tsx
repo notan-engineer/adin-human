@@ -1,7 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { usePrefersReducedMotion } from "@/components/motion/use-reduced-motion";
 
 import { Button } from "@/components/ui/button";
 
@@ -15,7 +16,7 @@ const POUCH_MASK =
 
 export function Hero() {
   const t = useTranslations("hero");
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
 
   return (
     <section

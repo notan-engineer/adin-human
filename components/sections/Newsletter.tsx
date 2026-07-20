@@ -130,10 +130,10 @@ export function Newsletter({ className }: { className?: string }) {
             aria-live="polite"
             className={cn(
               "mt-3 min-h-5 text-sm",
-              // red-400 rather than the `destructive` token: the token is tuned
-              // for solid fills and only reaches ~3.5:1 as text on this
-              // near-black background.
-              status === "error" ? "text-red-400" : "text-gold",
+              // `destructive` is now tuned for text on the dark surfaces
+              // (≥4.5:1), so the old text-red-400 workaround is gone and error
+              // styling comes from the design token like everywhere else.
+              status === "error" ? "text-destructive" : "text-gold",
             )}
           >
             {message}

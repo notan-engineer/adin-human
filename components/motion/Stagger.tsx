@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { usePrefersReducedMotion } from "@/components/motion/use-reduced-motion";
 import type { Variants } from "motion/react";
 import type { ElementType } from "react";
 import { cn } from "@/lib/utils";
@@ -23,7 +24,7 @@ export function Stagger({
   as = "div",
   stagger = 0.08,
 }: CommonProps & { stagger?: number }) {
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
 
   // Reduced-motion branch: plain wrapper, children render fully visible with no
   // stagger and no delay.
@@ -64,7 +65,7 @@ export function StaggerItem({
   as = "div",
   y = 20,
 }: CommonProps & { y?: number }) {
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
 
   // Reduced-motion branch: plain wrapper, fully visible, no transform.
   if (reduced) {

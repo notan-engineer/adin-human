@@ -66,6 +66,13 @@ export default async function OrderConfirmationPage({
     ? (order.status as "paid" | "pending" | "fulfilled" | "failed")
     : "pending";
 
+  // `OrderStatus` is a single lifecycle enum, so a settled order immediately
+  // moves paid → fulfilled and the status chip starts reading "In progress".
+  // On the one screen whose entire job is to confirm a payment, that left the
+  // shopper with no confirmation the money went through. Payment is therefore
+  // surfaced as its own fact: fulfilment implies payment, so both states count.
+  const isPaid = order.status === "paid" || order.status === "fulfilled";
+
   return (
     <div className="container max-w-3xl py-14 sm:py-20">
       {/* Peak-end: gold check + clears the cart on mount */}
@@ -84,9 +91,17 @@ export default async function OrderConfirmationPage({
             </dd>
           </div>
           <div className="flex items-center gap-2">
-            <dt className="text-muted-foreground">{t("statusHeading")}</dt>
+            <dt className="text-muted-foreground">{t("paymentHeading")}</dt>
             <dd>
               <span className="rounded-full border border-gold/40 bg-gold/10 px-3 py-0.5 text-xs font-semibold text-gold">
+                {t(isPaid ? "status.paid" : "status.pending")}
+              </span>
+            </dd>
+          </div>
+          <div className="flex items-center gap-2">
+            <dt className="text-muted-foreground">{t("statusHeading")}</dt>
+            <dd>
+              <span className="rounded-full border border-border bg-secondary/40 px-3 py-0.5 text-xs font-semibold text-foreground">
                 {t(`status.${statusKey}`)}
               </span>
             </dd>

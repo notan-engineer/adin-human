@@ -40,6 +40,7 @@ export function CartButton({ className }: { className?: string }) {
       {hasItems && (
         <span
           aria-hidden
+          data-testid="cart-count"
           className="absolute -top-0.5 -end-0.5 inline-flex min-w-[1.15rem] items-center justify-center rounded-full bg-gold px-1.5 text-[0.625rem] font-bold leading-tight text-primary-foreground"
         >
           {shown > 99 ? "99+" : shown}

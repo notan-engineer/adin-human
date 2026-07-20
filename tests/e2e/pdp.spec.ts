@@ -1,0 +1,87 @@
+import { expect, test } from "@playwright/test";
+
+import { LOCALES, PRICE_AGOROT, path, stripBidi } from "./helpers";
+
+const SLUG = "bbq";
+
+/**
+ * Product detail page: the commerce facts render, and add-to-cart actually
+ * moves the header badge.
+ */
+for (const locale of LOCALES) {
+  test.describe(`pdp (${locale.code})`, () => {
+    test("navigates from the grid and renders title, price, heat and nutrition", async ({
+      page,
+    }) => {
+      await page.goto(path("/", locale));
+
+      // Arrive the way a shopper does, rather than deep-linking.
+      const card = page.locator("#products article").first();
+      const title = card.getByRole("link").first();
+      const name = (await title.innerText()).trim();
+      await title.click();
+
+      await expect(page).toHaveURL(/\/product\//);
+
+      const h1 = page.getByRole("heading", { level: 1 });
+      await expect(h1).toHaveText(name);
+
+      // Price. Hebrew embeds bidi marks AND puts the symbol after the number
+      // ("42 ₪") where English puts it before ("₪42"), so accept either order.
+      const priceText = await page
+        .locator("main")
+        .getByText(/₪/)
+        .first()
+        .innerText();
+      expect(stripBidi(priceText)).toMatch(/(₪\s?\d|\d\s?₪)/);
+
+      // Heat meter exposes itself as a single labelled image.
+      await expect(
+        page.getByRole("img", { name: /(רמת חריפות|Heat level)/ }).first(),
+      ).toBeVisible();
+
+      // Nutrition table: caption + all five per-100g rows.
+      const table = page.locator("table");
+      await expect(table).toBeVisible();
+      await expect(table.locator("tbody tr")).toHaveCount(5);
+      await expect(table.locator("th[scope=row]").first()).not.toBeEmpty();
+    });
+
+    test("add to cart increments the header cart badge", async ({ page }) => {
+      await page.goto(path(`/product/${SLUG}`, locale));
+
+      const badge = page.getByRole("banner").getByTestId("cart-count");
+      await expect(badge).toHaveCount(0);
+
+      const addToCart = page
+        .locator("main")
+        .getByRole("button", { name: /(הוספה לעגלה|Add to cart)/ })
+        .first();
+      await addToCart.click();
+
+      await expect(badge).toHaveText("1");
+
+      // Bump the quantity to 3 and add again → 4 units total.
+      await page
+        .getByRole("button", { name: /(הוספת יחידה|Increase quantity)/ })
+        .click();
+      await page
+        .getByRole("button", { name: /(הוספת יחידה|Increase quantity)/ })
+        .click();
+      await page
+        .locator("main")
+        .getByRole("button", { name: /(הוספה לעגלה|נוסף לעגלה|Add to cart|Added)/ })
+        .first()
+        .click();
+
+      await expect(badge).toHaveText("4");
+
+      // And the cart page agrees on the money.
+      await page.goto(path("/cart", locale));
+      const total = stripBidi(
+        await page.getByText(/₪/).last().innerText(),
+      );
+      expect(total).toContain(String((PRICE_AGOROT[SLUG] * 4) / 100));
+    });
+  });
+}

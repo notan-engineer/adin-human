@@ -1,0 +1,55 @@
+# Build context hygiene. Everything here either gets rebuilt inside the image,
+# is enormous, or must never reach a production layer.
+
+# Dependencies — reinstalled from the lockfile in the deps stage.
+node_modules
+.pnp
+.pnp.*
+.yarn
+
+# Build output — the builder stage produces its own.
+.next
+out
+build
+dist
+*.tsbuildinfo
+
+# VCS + tooling
+.git
+.gitignore
+.github
+.vscode
+.idea
+.claude
+
+# Tests and their artifacts — not shipped, and test-results can be large.
+tests
+playwright.config.ts
+playwright-report
+test-results
+blob-report
+playwright/.cache
+.playwright-mcp
+vitest.config.ts
+coverage
+
+# Raw brand masters (~0.7GB of PSD/AI + 4000x5000 PNGs). The web-optimized
+# derivatives in /public are what actually ship.
+design-resources
+
+# Secrets — env is injected at runtime via docker-compose, never baked in.
+.env
+.env.local
+.env*.local
+*.pem
+
+# Docs and misc
+docs
+README.md
+*.md
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.vercel

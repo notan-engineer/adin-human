@@ -202,6 +202,7 @@
     "thankYou": "Thank you, {name}!",
     "subtitle": "Your order is in — we're already packing it.",
     "orderNumber": "Order number",
+    "paymentHeading": "Payment",
     "statusHeading": "Status",
     "status": {
       "paid": "Paid",

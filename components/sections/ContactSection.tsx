@@ -24,7 +24,22 @@ type FieldErrors = Partial<Record<"name" | "email" | "message", string>>;
  * user isn't scolded mid-word; per-field errors are wired with
  * `aria-describedby` and the overall result goes to a persistent live region.
  */
-export function ContactSection({ className }: { className?: string }) {
+export function ContactSection({
+  className,
+  /**
+   * Heading level for this section's title. Defaults to `h2` so the component
+   * can sit inside a page that already owns an `h1`; `/contact` renders it
+   * standalone and passes `h1`, which is what gives that page its top-level
+   * heading (axe `page-has-heading-one`).
+   */
+  as: Heading = "h2",
+}: {
+  className?: string;
+  as?: "h1" | "h2";
+}) {
+  // Sub-headings track the section title so levels never skip (axe
+  // `heading-order`): h1 → h2 on /contact, h2 → h3 when nested in a page.
+  const SubHeading = Heading === "h1" ? "h2" : "h3";
   const t = useTranslations("contact");
 
   const [name, setName] = React.useState("");
@@ -114,9 +129,9 @@ export function ContactSection({ className }: { className?: string }) {
           <p className="font-sans text-xs uppercase tracking-[0.35em] text-bronze">
             {t("kicker")}
           </p>
-          <h2 className="mt-3 font-display text-3xl font-black text-gold sm:text-4xl">
+          <Heading className="mt-3 font-display text-3xl font-black text-gold sm:text-4xl">
             {t("heading")}
-          </h2>
+          </Heading>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             {t("body")}
           </p>
@@ -142,7 +157,7 @@ export function ContactSection({ className }: { className?: string }) {
                 aria-describedby={errors.name ? "contact-name-error" : undefined}
               />
               {errors.name && (
-                <p id="contact-name-error" className="text-sm text-red-400">
+                <p id="contact-name-error" className="text-sm text-destructive">
                   {errors.name}
                 </p>
               )}
@@ -170,7 +185,7 @@ export function ContactSection({ className }: { className?: string }) {
                 className="text-start"
               />
               {errors.email && (
-                <p id="contact-email-error" className="text-sm text-red-400">
+                <p id="contact-email-error" className="text-sm text-destructive">
                   {errors.email}
                 </p>
               )}
@@ -198,7 +213,7 @@ export function ContactSection({ className }: { className?: string }) {
                 className="flex w-full resize-y rounded-md border border-input bg-background/40 px-3 py-2 text-sm ring-offset-background transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               />
               {errors.message && (
-                <p id="contact-message-error" className="text-sm text-red-400">
+                <p id="contact-message-error" className="text-sm text-destructive">
                   {errors.message}
                 </p>
               )}
@@ -223,7 +238,7 @@ export function ContactSection({ className }: { className?: string }) {
               aria-live="polite"
               className={cn(
                 "min-h-5 text-sm",
-                status === "error" ? "text-red-400" : "text-gold",
+                status === "error" ? "text-destructive" : "text-gold",
               )}
             >
               {result}
@@ -232,9 +247,9 @@ export function ContactSection({ className }: { className?: string }) {
 
           {/* Direct contact details — must match the footer (both read content/site.ts). */}
           <aside className="flex flex-col gap-6">
-            <h3 className="font-display text-lg font-bold text-foreground">
+            <SubHeading className="font-display text-lg font-bold text-foreground">
               {t("detailsHeading")}
-            </h3>
+            </SubHeading>
 
             <div className="flex flex-col gap-4 text-sm">
               <div className="flex items-start gap-3">

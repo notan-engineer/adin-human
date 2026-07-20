@@ -202,6 +202,7 @@
     "thankYou": "תודה, {name}!",
     "subtitle": "ההזמנה התקבלה ואנחנו כבר מתחילים לארוז.",
     "orderNumber": "מספר הזמנה",
+    "paymentHeading": "תשלום",
     "statusHeading": "סטטוס",
     "status": {
       "paid": "שולם",
