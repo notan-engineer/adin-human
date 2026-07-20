@@ -70,7 +70,20 @@
     "bestseller": "Bestseller"
   },
   "cart": {
-    "itemCount": "{count} items in cart"
+    "itemCount": "{count} items in cart",
+    "title": "Cart",
+    "itemsHeading": "{count, plural, one {# item} other {# items}}",
+    "empty": "Your cart is empty",
+    "emptyCta": "Browse the flavors",
+    "subtotal": "Subtotal",
+    "vatIncluded": "incl. VAT (18%)",
+    "shipping": "Shipping",
+    "shippingAtCheckout": "Calculated at checkout",
+    "total": "Total",
+    "checkout": "Proceed to checkout",
+    "remove": "Remove from cart",
+    "quantity": "Quantity",
+    "each": "each"
   },
   "a11y": {
     "skipToContent": "Skip to content"

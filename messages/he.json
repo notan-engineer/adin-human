@@ -70,7 +70,20 @@
     "bestseller": "רב מכר"
   },
   "cart": {
-    "itemCount": "{count} פריטים בעגלה"
+    "itemCount": "{count} פריטים בעגלה",
+    "title": "עגלת קניות",
+    "itemsHeading": "{count, plural, one {פריט אחד} other {# פריטים}}",
+    "empty": "העגלה שלך ריקה",
+    "emptyCta": "גלו את הטעמים",
+    "subtotal": "סכום ביניים",
+    "vatIncluded": "כולל מע״מ (18%)",
+    "shipping": "משלוח",
+    "shippingAtCheckout": "מחושב בקופה",
+    "total": "סה״כ",
+    "checkout": "מעבר לתשלום",
+    "remove": "הסרה מהעגלה",
+    "quantity": "כמות",
+    "each": "ליחידה"
   },
   "a11y": {
     "skipToContent": "דילוג לתוכן הראשי"
