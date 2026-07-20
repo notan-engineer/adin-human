@@ -2,10 +2,7 @@ import { Music2 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
-
-const EMAIL = "hello@heumanchef.com";
-const PHONE_DISPLAY = "+972 50-000-0000";
-const PHONE_HREF = "+97250000000";
+import { site } from "@/content/site";
 
 // Brand glyphs aren't shipped in this lucide build, so they're inlined in the
 // same 24px line style (currentColor stroke) to sit flush with the Music2 mark.
@@ -61,9 +58,11 @@ export async function Footer() {
     {
       heading: t("companyHeading"),
       links: [
-        { label: t("story"), href: "#story" },
-        { label: t("process"), href: "#process" },
-        { label: t("contact"), href: "#contact" },
+        // Absolute targets, not bare hashes: the footer renders on every page,
+        // and both sections exist on /about as well as the home page.
+        { label: t("story"), href: "/about#story" },
+        { label: t("process"), href: "/about#process" },
+        { label: t("contact"), href: "/contact" },
       ],
     },
     {
@@ -77,9 +76,9 @@ export async function Footer() {
   ];
 
   const socials = [
-    { label: "Instagram", Icon: InstagramIcon },
-    { label: "Facebook", Icon: FacebookIcon },
-    { label: "TikTok", Icon: Music2 },
+    { label: "Instagram", href: site.social.instagram, Icon: InstagramIcon },
+    { label: "Facebook", href: site.social.facebook, Icon: FacebookIcon },
+    { label: "TikTok", href: site.social.tiktok, Icon: Music2 },
   ];
 
   return (
@@ -109,10 +108,10 @@ export async function Footer() {
                   {t("emailLabel")}
                 </span>
                 <a
-                  href={`mailto:${EMAIL}`}
+                  href={`mailto:${site.email}`}
                   className="text-foreground/90 transition-colors hover:text-gold"
                 >
-                  {EMAIL}
+                  {site.email}
                 </a>
               </div>
               <div className="flex flex-col gap-0.5">
@@ -120,11 +119,11 @@ export async function Footer() {
                   {t("phoneLabel")}
                 </span>
                 <a
-                  href={`tel:${PHONE_HREF}`}
+                  href={`tel:${site.phoneHref}`}
                   dir="ltr"
                   className="text-start text-foreground/90 transition-colors hover:text-gold"
                 >
-                  {PHONE_DISPLAY}
+                  {site.phoneDisplay}
                 </a>
               </div>
             </div>
@@ -134,10 +133,12 @@ export async function Footer() {
                 {t("followUs")}
               </span>
               <div className="flex items-center gap-2">
-                {socials.map(({ label, Icon }) => (
+                {socials.map(({ label, href, Icon }) => (
                   <a
                     key={label}
-                    href="#"
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={label}
                     className="inline-flex size-10 items-center justify-center rounded-md border border-border text-foreground/80 transition-colors hover:border-gold hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >

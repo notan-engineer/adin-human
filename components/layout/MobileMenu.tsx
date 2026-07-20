@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sheet";
 import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 import { navLinks } from "@/components/layout/Nav";
+import { Link } from "@/lib/i18n/navigation";
 
 /**
  * Below-md navigation. A top Sheet holds the same section anchors, stacked
@@ -41,14 +42,14 @@ export function MobileMenu({ className }: { className?: string }) {
           className="flex flex-col items-center gap-6 py-6"
         >
           {navLinks.map(({ key, href }) => (
-            <a
+            <Link
               key={key}
               href={href}
               onClick={() => setOpen(false)}
               className="font-display text-2xl font-semibold uppercase tracking-wide text-foreground transition-colors hover:text-gold"
             >
               {t(key)}
-            </a>
+            </Link>
           ))}
 
           <span className="my-2 h-px w-24 bg-ember-line" aria-hidden />

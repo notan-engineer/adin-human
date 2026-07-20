@@ -229,5 +229,116 @@
       "title": "Your order is processing",
       "body": "We couldn't find that order right now. If you completed payment, a confirmation is on its way to your email."
     }
+  },
+  "story": {
+    "kicker": "Behind the smoke",
+    "heading": "The chef who fell for fire",
+    "p1": "It started with one backyard smoker and the patience of someone who refuses to rush. Adin Human, a chef by trade, found that smoke isn't a seasoning — it's time. Hours in which meat, wood and heat learn to talk to each other.",
+    "p2": "He worked through a lot of woods before settling on cherry: sweet enough to soften, clean enough never to take over. From there came the hand-cut strips, a spice build laid down layer over layer, and a flat refusal to use preservatives.",
+    "p3": "Every 65 g pouch still leaves that same smoker and that same stubbornness — small batches, no shortcuts, no factory line.",
+    "quote": "Smoke isn't a flavor you add. It's time you give.",
+    "quoteAttribution": "Adin Human, founder",
+    "imageAlt": "Five pouches of The Heuman Chef smoked beef jerky, each on its flavor's color"
+  },
+  "stats": {
+    "kicker": "Why it works",
+    "heading": "The numbers behind the pouch",
+    "items": {
+      "protein": "protein in every pouch",
+      "hours": "in the smoker, every batch",
+      "natural": "natural ingredients",
+      "flavors": "smoked flavors"
+    },
+    "badges": {
+      "highProtein": "High protein",
+      "noPreservatives": "No preservatives",
+      "glutenFree": "Gluten-free"
+    }
+  },
+  "process": {
+    "kicker": "The process",
+    "heading": "How it's smoked",
+    "intro": "Four steps. Not one of them is in a hurry.",
+    "steps": {
+      "select": {
+        "title": "Choose the cut",
+        "body": "Lean Israeli beef, hand-cut along the grain. Anything that doesn't meet the standard simply never reaches the smoker."
+      },
+      "cure": {
+        "title": "Cure and spice",
+        "body": "A slow cure in the house spice blend, layer over layer and without preservatives — until the flavor sits inside the meat rather than on it."
+      },
+      "smoke": {
+        "title": "Cherry-wood smoke",
+        "body": "Long hours at low heat over cherry wood. This is the step you can't hurry: the smoke works in slowly, and the meat dries to exactly the right point."
+      },
+      "pack": {
+        "title": "Hand-pack",
+        "body": "Every batch is checked, weighed and packed by hand into 65 g pouches. It leaves fresh — no preservatives, no gluten."
+      }
+    }
+  },
+  "testimonials": {
+    "kicker": "What people say",
+    "heading": "From the ones who've tasted it",
+    "ratingLabel": "Rated {rating} out of 5",
+    "items": {
+      "yael": {
+        "name": "Yael G.",
+        "quote": "I took a pouch on a trip up north and it was gone before we even got there. The smoke tastes real — nothing like an artificial flavoring."
+      },
+      "noam": {
+        "name": "Noam S.",
+        "quote": "It's replaced my post-workout protein bar. Finally something that does the job and actually tastes good."
+      },
+      "tamar": {
+        "name": "Tamar L.",
+        "quote": "The za'atar one is the house favorite. I order two at a time, because one never survives the week."
+      }
+    }
+  },
+  "newsletter": {
+    "kicker": "Newsletter",
+    "heading": "Get the first smoke",
+    "body": "New flavors, limited batches and offers that reach the list first. No spam, unsubscribe anytime.",
+    "emailLabel": "Email address",
+    "placeholder": "you@example.com",
+    "submit": "Sign up",
+    "submitting": "Signing up…",
+    "success": "You're on the list. We'll be in touch when the smoker's running.",
+    "errorInvalid": "Enter a valid email address",
+    "errorGeneric": "Something went wrong. Please try again in a moment."
+  },
+  "contact": {
+    "kicker": "Talk to us",
+    "heading": "Get in touch",
+    "body": "A question about a flavor, a large order, or a partnership — write to us and we'll get back to you.",
+    "nameLabel": "Full name",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "messageLabel": "Message",
+    "messagePlaceholder": "How can we help?",
+    "submit": "Send",
+    "submitting": "Sending…",
+    "success": "Message sent. We'll get back to you shortly.",
+    "detailsHeading": "Contact details",
+    "responseNote": "We usually reply within one business day.",
+    "errors": {
+      "nameRequired": "Please enter your name",
+      "emailInvalid": "Enter a valid email address",
+      "messageRequired": "Please write a message",
+      "messageTooLong": "That message is too long (2000 characters max)",
+      "checkFields": "Please check the highlighted fields",
+      "generic": "Something went wrong. Please try again in a moment."
+    },
+    "metaTitle": "Contact — The Heuman Chef",
+    "metaDescription": "Get in touch with The Heuman Chef — questions, large orders and partnerships."
+  },
+  "about": {
+    "kicker": "The brand",
+    "heading": "Born of fire, not a factory line",
+    "intro": "The Heuman Chef began with one smoker, one chef, and more patience than anyone thought reasonable. Here's the story, the numbers and the process behind every pouch.",
+    "metaTitle": "Our story — The Heuman Chef",
+    "metaDescription": "The story, the numbers and the cherry-wood smoking process behind The Heuman Chef beef jerky."
   }
 }
