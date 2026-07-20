@@ -9,9 +9,12 @@ import { ProductCard } from "@/components/product/ProductCard";
 import { PurchasePanel } from "@/components/product/PurchasePanel";
 import { TrustBadges } from "@/components/product/TrustBadges";
 import { Reveal } from "@/components/motion/Reveal";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllProducts, getProduct, getRelated } from "@/lib/catalog";
 import { Link } from "@/lib/i18n/navigation";
+import { productJsonLd } from "@/lib/jsonld";
 import { formatAgorot } from "@/lib/money";
+import { pageMetadata, toLocale } from "@/lib/seo";
 
 type Params = { locale: string; slug: string };
 
@@ -25,24 +28,25 @@ export async function generateMetadata({
 }: {
   params: Promise<Params>;
 }): Promise<Metadata> {
-  const { locale, slug } = await params;
+  const { locale: raw, slug } = await params;
+  const locale = toLocale(raw);
   const product = getProduct(slug);
   if (!product) return {};
 
-  const loc = locale as "he" | "en";
-  const name = product.name[loc];
-  const description = product.description[loc];
-  const ogImage = `/products/${product.image}/pouch.jpg`;
-
-  return {
-    title: `${name} — The Heuman Chef`,
-    description,
-    openGraph: {
-      title: name,
-      description,
-      images: [{ url: ogImage, width: 900, height: 1125, alt: name }],
-    },
-  };
+  // Bare title — the layout template appends " — The Heuman Chef".
+  // No `images` override: the sibling opengraph-image.tsx renders a proper
+  // 1200x630 card (pouch + name + price), which beats the portrait 900x1125
+  // pouch render that social platforms would letterbox.
+  //
+  // `openGraph.type` stays "website" (set by pageMetadata) rather than
+  // "product" — the OG product vertical needs og:product:* namespace fields to
+  // validate, and the commerce facts live in the Product JSON-LD below instead.
+  return pageMetadata({
+    locale,
+    path: `/product/${slug}`,
+    title: product.name[locale],
+    description: product.description[locale],
+  });
 }
 
 export default async function ProductPage({
@@ -50,19 +54,24 @@ export default async function ProductPage({
 }: {
   params: Promise<Params>;
 }) {
-  const { locale, slug } = await params;
+  const { locale: raw, slug } = await params;
+  const locale = toLocale(raw);
   setRequestLocale(locale);
 
   const product = getProduct(slug);
   if (!product) notFound();
 
-  const loc = locale as "he" | "en";
+  const loc = locale;
   const t = await getTranslations("product");
   const related = getRelated(slug, 3);
   const isBestseller = product.badges.includes("bestseller");
 
   return (
     <div className="bg-background">
+      {/* Offer price/availability come straight from the catalog, so the
+          structured data can never drift from what the page renders. No
+          rating/review nodes — the on-site testimonials are placeholder copy. */}
+      <JsonLd data={productJsonLd(product, locale)} />
       <div className="container py-10 sm:py-16">
         {/* Back to shop */}
         <Link

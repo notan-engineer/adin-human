@@ -331,14 +331,34 @@
       "checkFields": "Please check the highlighted fields",
       "generic": "Something went wrong. Please try again in a moment."
     },
-    "metaTitle": "Contact — The Heuman Chef",
+    "metaTitle": "Contact",
     "metaDescription": "Get in touch with The Heuman Chef — questions, large orders and partnerships."
   },
   "about": {
     "kicker": "The brand",
     "heading": "Born of fire, not a factory line",
     "intro": "The Heuman Chef began with one smoker, one chef, and more patience than anyone thought reasonable. Here's the story, the numbers and the process behind every pouch.",
-    "metaTitle": "Our story — The Heuman Chef",
+    "metaTitle": "Our story",
     "metaDescription": "The story, the numbers and the cherry-wood smoking process behind The Heuman Chef beef jerky."
+  },
+  "meta": {
+    "siteName": "The Heuman Chef",
+    "titleDefault": "The Heuman Chef — Smoked Beef Jerky, Born of Fire",
+    "titleTemplate": "%s — The Heuman Chef",
+    "description": "Small-batch beef jerky, smoked over cherry wood — born of fire, not a factory line. Six flavors, delivered across Israel.",
+    "tagline": "Born of fire, not a factory line",
+    "ogAlt": "The Heuman Chef — small-batch smoked beef jerky",
+    "home": {
+      "title": "The Heuman Chef — Small-Batch Smoked Beef Jerky",
+      "description": "Six flavors of hand-made beef jerky, smoked over cherry wood. Order online with delivery across Israel."
+    },
+    "notFound": {
+      "title": "Page not found",
+      "heading": "Page not found",
+      "body": "The page you were looking for doesn't exist, or it has moved.",
+      "cta": "Back to home",
+      "shopCta": "Browse the flavors"
+    },
+    "breadcrumbHome": "Home"
   }
 }

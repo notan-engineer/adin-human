@@ -331,14 +331,34 @@
       "checkFields": "בדקו את השדות המסומנים",
       "generic": "משהו השתבש. נסו שוב בעוד רגע."
     },
-    "metaTitle": "צור קשר — The Heuman Chef",
+    "metaTitle": "צור קשר",
     "metaDescription": "יצירת קשר עם The Heuman Chef — שאלות, הזמנות גדולות ושיתופי פעולה."
   },
   "about": {
     "kicker": "המותג",
     "heading": "מאש, לא מפס ייצור",
     "intro": "The Heuman Chef נולד ממעשנה אחת, שף אחד וסבלנות ארוכה מהרגיל. זה הסיפור, המספרים והתהליך שמאחורי כל שקית.",
-    "metaTitle": "הסיפור שלנו — The Heuman Chef",
+    "metaTitle": "הסיפור שלנו",
     "metaDescription": "הסיפור, המספרים ותהליך העישון בעצי דובדבן שמאחורי נתחי הבקר המעושנים של The Heuman Chef."
+  },
+  "meta": {
+    "siteName": "The Heuman Chef",
+    "titleDefault": "The Heuman Chef — נתחי בקר מעושנים, נולדים באש",
+    "titleTemplate": "%s — The Heuman Chef",
+    "description": "נתחי בקר מיובשים ומעושנים בעצי דובדבן, במנות קטנות — נולדים באש, לא בפס ייצור. שישה טעמים, משלוח בישראל.",
+    "tagline": "נולדים באש, לא בפס ייצור",
+    "ogAlt": "The Heuman Chef — נתחי בקר מעושנים במנות קטנות",
+    "home": {
+      "title": "The Heuman Chef — נתחי בקר מעושנים במנות קטנות",
+      "description": "שישה טעמים של נתחי בקר מיובשים ומעושנים בעצי דובדבן, בעבודת יד. הזמינו אונליין עם משלוח בישראל."
+    },
+    "notFound": {
+      "title": "הדף לא נמצא",
+      "heading": "הדף לא נמצא",
+      "body": "הדף שחיפשתם לא קיים, או שהוא עבר לכתובת אחרת.",
+      "cta": "חזרה לדף הבית",
+      "shopCta": "לכל הטעמים"
+    },
+    "breadcrumbHome": "בית"
   }
 }

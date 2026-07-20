@@ -5,6 +5,9 @@ import { BrandStory } from "@/components/sections/BrandStory";
 import { ProcessSmoke } from "@/components/sections/ProcessSmoke";
 import { TrustStats } from "@/components/sections/TrustStats";
 import { Reveal } from "@/components/motion/Reveal";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/jsonld";
+import { pageMetadata, toLocale } from "@/lib/seo";
 
 type Params = { locale: string };
 
@@ -13,20 +16,21 @@ export async function generateMetadata({
 }: {
   params: Promise<Params>;
 }): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale: raw } = await params;
+  const locale = toLocale(raw);
   const t = await getTranslations({ locale, namespace: "about" });
 
-  return {
+  return pageMetadata({
+    locale,
+    path: "/about",
     title: t("metaTitle"),
     description: t("metaDescription"),
-    openGraph: {
-      title: t("metaTitle"),
-      description: t("metaDescription"),
-      images: [
-        { url: "/products/group.png", width: 1600, height: 832, alt: t("heading") },
-      ],
-    },
-  };
+    // The full range shot says more about the brand than the generic emblem
+    // card, so override the generated image here.
+    images: [
+      { url: "/products/group.png", width: 1600, height: 832, alt: t("heading") },
+    ],
+  });
 }
 
 export default async function AboutPage({
@@ -34,13 +38,24 @@ export default async function AboutPage({
 }: {
   params: Promise<Params>;
 }) {
-  const { locale } = await params;
+  const { locale: raw } = await params;
+  const locale = toLocale(raw);
   setRequestLocale(locale);
 
   const t = await getTranslations("about");
+  const tm = await getTranslations("meta");
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd(
+          [
+            { name: tm("breadcrumbHome"), path: "/" },
+            { name: t("heading"), path: "/about" },
+          ],
+          locale,
+        )}
+      />
       {/* Page header — the sections below carry their own headings. */}
       <section className="relative bg-char bg-smoke-radial pb-16 pt-32 sm:pb-20 sm:pt-40">
         <div className="container">
