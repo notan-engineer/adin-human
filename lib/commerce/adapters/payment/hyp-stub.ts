@@ -74,13 +74,22 @@ export class HypStubPaymentProvider implements PaymentProvider {
   };
 
   async createHostedCheckout(
-    i: CreateHostedCheckoutInput,
+    input: CreateHostedCheckoutInput,
   ): Promise<{ providerRef: string; redirectUrl: string }> {
-    // Real life: sign via What=SIGN and redirect to https://pay.hyp.co.il/p/ .
-    // Stub: skip the hosted page entirely and bounce straight back to successUrl
-    // with a mock reference so the rest of the flow can be exercised end-to-end.
-    const providerRef = `hyp_${i.orderId}`;
-    const redirectUrl = `${i.successUrl}?ref=${providerRef}&status=mock_paid`;
+    // Real life: sign via What=SIGN and redirect to https://pay.hyp.co.il/p/ ; the
+    // hosted page then bounces the browser to callbackUrl (which VERIFYs and
+    // marks the order paid) before landing the shopper on successUrl.
+    //
+    // Stub: MIRROR that hop — instead of skipping straight to successUrl (which
+    // would never mark the order paid), route the browser through our own
+    // callbackUrl carrying a mock-paid ref and the intended successUrl as
+    // `return`, so the callback runs markPaid + fulfilment exactly like real HYP.
+    const providerRef = `hyp_${input.orderId}`;
+    const redirectUrl =
+      `${input.callbackUrl}?ref=${providerRef}` +
+      `&orderId=${input.orderId}` +
+      `&status=mock_paid` +
+      `&return=${encodeURIComponent(input.successUrl)}`;
     return { providerRef, redirectUrl };
   }
 

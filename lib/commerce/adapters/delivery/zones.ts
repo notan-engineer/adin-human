@@ -54,7 +54,7 @@ export const ZONES: Record<ZoneId, Zone> = {
       { method: "locker", priceAgorot: 1200, etaMinDays: 1, etaMaxDays: 3 },
       { method: "pickup_point", priceAgorot: 1500, etaMinDays: 1, etaMaxDays: 3 },
       { method: "same_day", priceAgorot: 4500, etaMinDays: 0, etaMaxDays: 1 },
-      { method: "courier", priceAgorot: 2500, etaMinDays: 1, etaMaxDays: 2 },
+      { method: "courier", priceAgorot: 3500, etaMinDays: 1, etaMaxDays: 2 },
     ],
   },
   jerusalem: {
@@ -63,7 +63,7 @@ export const ZONES: Record<ZoneId, Zone> = {
     methods: [
       { method: "self_pickup", priceAgorot: 0, etaMinDays: 0, etaMaxDays: 1 },
       { method: "pickup_point", priceAgorot: 1800, etaMinDays: 2, etaMaxDays: 4 },
-      { method: "courier", priceAgorot: 3000, etaMinDays: 2, etaMaxDays: 3 },
+      { method: "courier", priceAgorot: 3500, etaMinDays: 2, etaMaxDays: 3 },
     ],
   },
   north: {
@@ -80,14 +80,14 @@ export const ZONES: Record<ZoneId, Zone> = {
     label: { he: "דרום", en: "South" },
     methods: [
       { method: "pickup_point", priceAgorot: 2200, etaMinDays: 4, etaMaxDays: 6 },
-      { method: "courier", priceAgorot: 4000, etaMinDays: 3, etaMaxDays: 5 },
+      { method: "courier", priceAgorot: 3500, etaMinDays: 3, etaMaxDays: 5 },
     ],
   },
   eilat: {
     id: "eilat",
     label: { he: "אילת", en: "Eilat" },
     methods: [
-      { method: "courier", priceAgorot: 5500, etaMinDays: 4, etaMaxDays: 6 },
+      { method: "courier", priceAgorot: 3500, etaMinDays: 4, etaMaxDays: 6 },
     ],
   },
   other: {
@@ -96,7 +96,7 @@ export const ZONES: Record<ZoneId, Zone> = {
     methods: [
       { method: "self_pickup", priceAgorot: 0, etaMinDays: 0, etaMaxDays: 1 },
       { method: "pickup_point", priceAgorot: 2000, etaMinDays: 4, etaMaxDays: 6 },
-      { method: "courier", priceAgorot: 3900, etaMinDays: 3, etaMaxDays: 5 },
+      { method: "courier", priceAgorot: 3500, etaMinDays: 3, etaMaxDays: 5 },
     ],
   },
 };

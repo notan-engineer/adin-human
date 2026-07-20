@@ -71,8 +71,26 @@ export function getInvoiceProvider(): InvoiceProvider {
   return invoiceSingleton;
 }
 
-/** The configured order repository (singleton). Only in-memory exists today. */
+/**
+ * The configured order repository (singleton).
+ *
+ * Cached on `globalThis` rather than in a plain module variable: Next.js gives
+ * each route handler its own module instance (and HMR re-evaluates modules in
+ * dev), so a module-level singleton would hand `/api/order/create` and
+ * `/api/payment/create` two *different* in-memory stores — the order would be
+ * written to one Map and looked up in another, 404-ing every payment. A global
+ * cache keeps one store per server process. (A real DB-backed repository makes
+ * this moot; the in-memory stub still resets on restart.)
+ */
+const globalForRepo = globalThis as typeof globalThis & {
+  __heumanChefOrderRepo?: OrderRepository;
+};
+
 export function getOrderRepository(): OrderRepository {
-  if (!repositorySingleton) repositorySingleton = new MemoryOrderRepository();
+  if (!globalForRepo.__heumanChefOrderRepo) {
+    globalForRepo.__heumanChefOrderRepo =
+      repositorySingleton ?? new MemoryOrderRepository();
+  }
+  repositorySingleton = globalForRepo.__heumanChefOrderRepo;
   return repositorySingleton;
 }

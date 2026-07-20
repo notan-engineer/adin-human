@@ -91,5 +91,143 @@
   "locale": {
     "switchToEnglish": "החלפה לאנגלית",
     "switchToHebrew": "החלפה לעברית"
+  },
+  "checkout": {
+    "title": "תשלום",
+    "subtitle": "כמה פרטים ואנחנו שולחים את העישון אליך.",
+    "sections": {
+      "toggle": "הרחבה/כיווץ"
+    },
+    "actions": {
+      "pay": "לתשלום {amount}",
+      "submitting": "מעבד…"
+    },
+    "delivery": {
+      "heading": "משלוח וכתובת",
+      "methodLabel": "אופן משלוח"
+    },
+    "methods": {
+      "courier": {
+        "title": "משלוח רגיל",
+        "desc": "מגיע לכתובת שלך תוך 1–2 ימי עסקים"
+      },
+      "same_day": {
+        "title": "משלוח באותו יום",
+        "desc": "מגיע היום באזורים נבחרים"
+      },
+      "pickup_point": {
+        "title": "נקודת איסוף",
+        "desc": "איסוף מחנות שותפה קרובה"
+      },
+      "locker": {
+        "title": "לוקר",
+        "desc": "איסוף מלוקר בכל שעה"
+      },
+      "self_pickup": {
+        "title": "איסוף עצמי",
+        "desc": "אספו מאיתנו, בלי דמי משלוח"
+      }
+    },
+    "address": {
+      "recipientName": "שם המקבל",
+      "phone": "טלפון",
+      "city": "יישוב",
+      "cityPlaceholder": "לדוגמה: תל אביב-יפו",
+      "street": "רחוב",
+      "streetPlaceholder": "לדוגמה: דיזנגוף",
+      "streetDisabled": "בחרו יישוב תחילה",
+      "houseNumber": "מספר בית",
+      "apartment": "דירה",
+      "entrance": "כניסה",
+      "floor": "קומה",
+      "postalCode": "מיקוד",
+      "notes": "הערות לשליח",
+      "notesPlaceholder": "קוד לשער, השאירו ליד הדלת…"
+    },
+    "contact": {
+      "heading": "פרטי קשר",
+      "name": "שם מלא",
+      "email": "אימייל",
+      "phone": "טלפון"
+    },
+    "payment": {
+      "heading": "אמצעי תשלום",
+      "card": "כרטיס אשראי",
+      "bit": "ביט",
+      "applePay": "Apple Pay",
+      "googlePay": "Google Pay",
+      "redirectNote": "התשלום מתבצע בעמוד מאובטח חיצוני. פרטי ההזמנה שמילאתם נשמרים אצלנו."
+    },
+    "pickup": {
+      "cityLabel": "יישוב",
+      "cityPlaceholder": "חפשו יישוב",
+      "loading": "מחפש נקודות איסוף…",
+      "noPoints": "לא נמצאו נקודות איסוף ביישוב הזה.",
+      "selectPoint": "בחרו נקודת איסוף"
+    },
+    "selfPickup": {
+      "storeName": "המטבח של The Heuman Chef",
+      "storeAddress": "תל אביב-יפו (הכתובת המלאה תישלח באימייל)",
+      "note": "נעדכן אתכם באימייל ברגע שההזמנה מוכנה לאיסוף."
+    },
+    "summary": {
+      "heading": "סיכום הזמנה",
+      "itemsHeading": "ההזמנה שלכם",
+      "subtotal": "סכום ביניים",
+      "shipping": "משלוח",
+      "shippingPending": "יחושב לפי היישוב",
+      "free": "חינם",
+      "vatIncluded": "כולל מע״מ (18%)",
+      "total": "סה״כ לתשלום",
+      "eta": "זמן אספקה משוער",
+      "etaDays": "{min}–{max} ימי עסקים"
+    },
+    "validation": {
+      "required": "שדה חובה",
+      "invalidEmail": "כתובת אימייל לא תקינה",
+      "invalidPhone": "מספר טלפון לא תקין",
+      "invalidPostal": "מיקוד חייב להכיל 7 ספרות",
+      "notAvailableCity": "האפשרות הזו אינה זמינה ל{city}. בחרו אפשרות אחרת.",
+      "selectPoint": "בחרו נקודת איסוף כדי להמשיך",
+      "orderFailed": "לא הצלחנו ליצור את ההזמנה. בדקו את הפרטים ונסו שוב.",
+      "networkError": "משהו השתבש בתקשורת. נסו שוב."
+    },
+    "empty": {
+      "title": "העגלה ריקה",
+      "cta": "לגלות את הטעמים"
+    }
+  },
+  "order": {
+    "title": "אישור הזמנה",
+    "thankYou": "תודה, {name}!",
+    "subtitle": "ההזמנה התקבלה ואנחנו כבר מתחילים לארוז.",
+    "orderNumber": "מספר הזמנה",
+    "statusHeading": "סטטוס",
+    "status": {
+      "paid": "שולם",
+      "pending": "ממתין לתשלום",
+      "fulfilled": "בטיפול",
+      "failed": "נכשל"
+    },
+    "itemsHeading": "מה הזמנתם",
+    "qty": "כמות",
+    "subtotal": "סכום ביניים",
+    "shipping": "משלוח",
+    "free": "חינם",
+    "vatIncluded": "כולל מע״מ (18%)",
+    "total": "סה״כ",
+    "deliveryHeading": "אופן קבלה",
+    "deliverTo": "נשלח אל",
+    "eta": "זמן אספקה משוער",
+    "etaDays": "{min}–{max} ימי עסקים",
+    "trackingLink": "מעקב אחר המשלוח",
+    "invoiceHeading": "חשבונית",
+    "invoiceLink": "צפייה בחשבונית",
+    "emailNote": "אישור ההזמנה והחשבונית נשלחו לאימייל שלכם.",
+    "continueShopping": "חזרה לחנות",
+    "processing": {
+      "title": "ההזמנה בעיבוד",
+      "body": "לא הצלחנו למצוא את ההזמנה הזו כרגע. אם ביצעתם תשלום, אישור יישלח לאימייל שלכם."
+    }
   }
 }

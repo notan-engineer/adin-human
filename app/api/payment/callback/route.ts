@@ -39,6 +39,10 @@ export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
   const ref = params.get("ref") ?? undefined;
   const orderIdParam = params.get("orderId") ?? undefined;
+  // Optional landing URL the hosted page wants us to return the shopper to after
+  // a successful VERIFY (mirrors real HYP's successUrl hop). UNTRUSTED — guarded
+  // below so it can only ever point back at our own site (no open redirect).
+  const returnParam = params.get("return") ?? undefined;
   // Order has no persisted locale; honor an explicit hint, else default Hebrew.
   const locale: "he" | "en" = params.get("locale") === "en" ? "en" : "he";
 
@@ -60,7 +64,15 @@ export async function GET(request: NextRequest) {
       if (status.status === "paid" || status.status === "authorized") {
         const paid = await repo.markPaid(order.id, providerRef);
         await fulfillPaidOrder(paid);
-        return NextResponse.redirect(localePath(`/order/${order.id}`, locale));
+
+        // Honor the requested `return` URL ONLY if it points back at this site
+        // (open-redirect guard); otherwise fall back to the order page.
+        const fallback = localePath(`/order/${order.id}`, locale);
+        const target =
+          returnParam && returnParam.startsWith(getSiteUrl())
+            ? returnParam
+            : fallback;
+        return NextResponse.redirect(target);
       }
     }
 

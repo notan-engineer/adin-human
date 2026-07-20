@@ -22,11 +22,19 @@ function checkoutInput(): CreateHostedCheckoutInput {
 describe("HypStubPaymentProvider", () => {
   const provider = new HypStubPaymentProvider();
 
-  it("createHostedCheckout returns a providerRef and a redirectUrl", async () => {
-    const result = await provider.createHostedCheckout(checkoutInput());
+  it("createHostedCheckout routes the redirect through the callback (not straight to successUrl)", async () => {
+    const input = checkoutInput();
+    const result = await provider.createHostedCheckout(input);
     expect(result.providerRef).toBe("hyp_ord_1");
+    // The browser must land on the callback so the order gets marked paid; the
+    // real successUrl travels along as an open-redirect-guarded `return` param.
+    expect(result.redirectUrl.startsWith(input.callbackUrl)).toBe(true);
     expect(result.redirectUrl).toContain("ref=hyp_ord_1");
+    expect(result.redirectUrl).toContain("orderId=ord_1");
     expect(result.redirectUrl).toContain("status=mock_paid");
+    expect(result.redirectUrl).toContain(
+      `return=${encodeURIComponent(input.successUrl)}`,
+    );
   });
 
   it("getStatus reports paid", async () => {

@@ -91,5 +91,143 @@
   "locale": {
     "switchToEnglish": "Switch to English",
     "switchToHebrew": "Switch to Hebrew"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "subtitle": "A few details and we'll send the smoke your way.",
+    "sections": {
+      "toggle": "Expand/collapse"
+    },
+    "actions": {
+      "pay": "Pay {amount}",
+      "submitting": "Processing…"
+    },
+    "delivery": {
+      "heading": "Delivery & address",
+      "methodLabel": "Delivery method"
+    },
+    "methods": {
+      "courier": {
+        "title": "Regular delivery",
+        "desc": "Arrives at your door in 1–2 business days"
+      },
+      "same_day": {
+        "title": "Same-day delivery",
+        "desc": "Arrives today in selected areas"
+      },
+      "pickup_point": {
+        "title": "Pickup point",
+        "desc": "Collect from a nearby partner store"
+      },
+      "locker": {
+        "title": "Locker",
+        "desc": "Collect from a locker anytime"
+      },
+      "self_pickup": {
+        "title": "Self pickup",
+        "desc": "Collect from us — no delivery fee"
+      }
+    },
+    "address": {
+      "recipientName": "Recipient name",
+      "phone": "Phone",
+      "city": "City",
+      "cityPlaceholder": "e.g. Tel Aviv-Yafo",
+      "street": "Street",
+      "streetPlaceholder": "e.g. Dizengoff",
+      "streetDisabled": "Choose a city first",
+      "houseNumber": "House number",
+      "apartment": "Apartment",
+      "entrance": "Entrance",
+      "floor": "Floor",
+      "postalCode": "Postal code",
+      "notes": "Notes for the courier",
+      "notesPlaceholder": "Gate code, leave by the door…"
+    },
+    "contact": {
+      "heading": "Contact details",
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone"
+    },
+    "payment": {
+      "heading": "Payment method",
+      "card": "Credit card",
+      "bit": "Bit",
+      "applePay": "Apple Pay",
+      "googlePay": "Google Pay",
+      "redirectNote": "Payment happens on a secure external page. The order details you entered stay with us."
+    },
+    "pickup": {
+      "cityLabel": "City",
+      "cityPlaceholder": "Search for a city",
+      "loading": "Finding pickup points…",
+      "noPoints": "No pickup points found in this city.",
+      "selectPoint": "Choose a pickup point"
+    },
+    "selfPickup": {
+      "storeName": "The Heuman Chef kitchen",
+      "storeAddress": "Tel Aviv-Yafo (full address sent by email)",
+      "note": "We'll email you the moment your order is ready for pickup."
+    },
+    "summary": {
+      "heading": "Order summary",
+      "itemsHeading": "Your order",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "shippingPending": "Calculated from your city",
+      "free": "Free",
+      "vatIncluded": "incl. VAT (18%)",
+      "total": "Total",
+      "eta": "Estimated delivery",
+      "etaDays": "{min}–{max} business days"
+    },
+    "validation": {
+      "required": "This field is required",
+      "invalidEmail": "Enter a valid email address",
+      "invalidPhone": "Enter a valid phone number",
+      "invalidPostal": "Postal code must be 7 digits",
+      "notAvailableCity": "This option isn't available to {city}. Please choose another.",
+      "selectPoint": "Choose a pickup point to continue",
+      "orderFailed": "We couldn't create your order. Check the details and try again.",
+      "networkError": "Something went wrong. Please try again."
+    },
+    "empty": {
+      "title": "Your cart is empty",
+      "cta": "Browse the flavors"
+    }
+  },
+  "order": {
+    "title": "Order confirmation",
+    "thankYou": "Thank you, {name}!",
+    "subtitle": "Your order is in — we're already packing it.",
+    "orderNumber": "Order number",
+    "statusHeading": "Status",
+    "status": {
+      "paid": "Paid",
+      "pending": "Awaiting payment",
+      "fulfilled": "In progress",
+      "failed": "Failed"
+    },
+    "itemsHeading": "What you ordered",
+    "qty": "Qty",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "free": "Free",
+    "vatIncluded": "incl. VAT (18%)",
+    "total": "Total",
+    "deliveryHeading": "How you'll get it",
+    "deliverTo": "Delivering to",
+    "eta": "Estimated delivery",
+    "etaDays": "{min}–{max} business days",
+    "trackingLink": "Track your shipment",
+    "invoiceHeading": "Invoice",
+    "invoiceLink": "View invoice",
+    "emailNote": "A confirmation and your invoice have been sent to your email.",
+    "continueShopping": "Back to the shop",
+    "processing": {
+      "title": "Your order is processing",
+      "body": "We couldn't find that order right now. If you completed payment, a confirmation is on its way to your email."
+    }
   }
 }
