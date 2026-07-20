@@ -5,6 +5,9 @@ export const routing = defineRouting({
   defaultLocale: "he",
   // Hebrew is served unprefixed (`/`); English is prefixed (`/en`).
   localePrefix: "as-needed",
+  // Hebrew-first brand: `/` always serves Hebrew. Do NOT redirect based on the
+  // browser's Accept-Language; users opt into English via the locale switcher.
+  localeDetection: false,
 });
 
 export type Locale = (typeof routing.locales)[number];
