@@ -2,15 +2,104 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: dark;
+@layer base {
+  :root {
+    /* Dark-first smoky theme. Authored in HSL; never pure #000/#fff.
+       Brand gold #ECC595 ≈ hsl(33 70% 75%), bronze #C28E5A ≈ hsl(30 46% 56%). */
+    --background: 24 10% 6%;
+    --foreground: 36 30% 92%;
+
+    --card: 24 9% 9%;
+    --card-foreground: 36 30% 92%;
+
+    --popover: 24 10% 8%;
+    --popover-foreground: 36 30% 92%;
+
+    --primary: 33 70% 75%;
+    --primary-foreground: 24 30% 10%;
+
+    --secondary: 30 18% 16%;
+    --secondary-foreground: 36 25% 88%;
+
+    --muted: 24 8% 14%;
+    --muted-foreground: 33 12% 64%;
+
+    --accent: 30 46% 56%;
+    --accent-foreground: 24 35% 10%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 36 30% 95%;
+
+    --border: 30 12% 18%;
+    --input: 30 12% 20%;
+    --ring: 33 70% 75%;
+
+    /* Brand-direct tokens */
+    --gold: 33 70% 75%;
+    --gold-bright: 38 82% 82%;
+    --bronze: 30 46% 56%;
+    --smoke: 30 6% 12%;
+    --char: 24 10% 6%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display), system-ui, sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: hsl(var(--gold) / 0.3);
+    color: hsl(var(--foreground));
+  }
+
+  /* Accessible, visible focus ring everywhere. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
 }
 
-html {
-  -webkit-text-size-adjust: 100%;
+@layer utilities {
+  /* Scroll-reveal fallback: elements are visible by default. Motion primitives
+     (Batch 5) apply the hidden→shown transition only when JS + motion allow it,
+     so no content is ever trapped behind an animation. */
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-body {
-  background: #0b0b0d;
-  color: #f5efe6;
+/* No-JS: guarantee revealed content shows (mirrors the <noscript> style too). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
