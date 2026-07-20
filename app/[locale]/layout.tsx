@@ -4,6 +4,7 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/lib/i18n/routing";
 import { fontVariables } from "@/lib/fonts";
+import { DirectionProvider } from "@/components/providers/direction-provider";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -41,7 +42,7 @@ export default async function LocaleLayout({
           <style>{`.reveal-item{opacity:1 !important;transform:none !important}`}</style>
         </noscript>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
+          <DirectionProvider dir={dir}>{children}</DirectionProvider>
         </NextIntlClientProvider>
       </body>
     </html>

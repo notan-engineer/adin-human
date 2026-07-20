@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Button } from "@/components/ui/button";
 
 export default async function HomePage({
   params,
@@ -19,6 +20,9 @@ export default async function HomePage({
       </h1>
       <p className="max-w-md text-lg text-muted-foreground">{t("tagline")}</p>
       <div className="h-px w-40 bg-ember-line" aria-hidden />
+      <Button variant="gold" size="lg">
+        {t("cta")}
+      </Button>
     </main>
   );
 }
