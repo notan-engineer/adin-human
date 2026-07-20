@@ -1,0 +1,48 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+
+# testing
+/coverage
+/test-results
+/playwright-report
+/blob-report
+/playwright/.cache
+
+# next.js
+/.next/
+/out/
+/build
+next-env.d.ts
+
+# production
+/dist
+
+# misc
+.DS_Store
+*.pem
+*.tsbuildinfo
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local env files
+.env
+.env*.local
+.env.local
+
+# vercel
+.vercel
+
+# Claude Code local settings (personal, not team)
+.claude/settings.local.json
+
+# Raw brand design masters — heavy source assets (PSD/AI + 4000x5000 PNGs, ~0.7GB).
+# Web-optimized derivatives live in /public and ARE committed. Keep the source drop
+# out of git to keep the repo lean; back it up separately.
+/design-resources/
