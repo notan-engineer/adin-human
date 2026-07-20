@@ -4,6 +4,13 @@
     "tagline": "Smoked, small-batch beef jerky — born of fire, not a factory line",
     "cta": "Explore the flavors"
   },
+  "hero": {
+    "eyebrow": "Adin Human",
+    "title": "The Heuman Chef",
+    "tagline": "Smoked, small-batch beef jerky — born of fire, not a factory line",
+    "cta": "Explore the flavors",
+    "scrollCue": "Scroll to open"
+  },
   "nav": {
     "flavors": "Flavors",
     "story": "Story",

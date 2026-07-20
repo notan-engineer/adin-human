@@ -1,0 +1,47 @@
+{
+  "/smoker/interior": {
+    "w": 1600,
+    "h": 1600,
+    "fallback": "jpg"
+  },
+  "/brand/emblem": {
+    "w": 512,
+    "h": 392,
+    "fallback": "png"
+  },
+  "/products/garlic/pouch": {
+    "w": 900,
+    "h": 1125,
+    "fallback": "jpg"
+  },
+  "/products/bbq/pouch": {
+    "w": 900,
+    "h": 1125,
+    "fallback": "jpg"
+  },
+  "/products/honey/pouch": {
+    "w": 900,
+    "h": 1125,
+    "fallback": "jpg"
+  },
+  "/products/maple/pouch": {
+    "w": 900,
+    "h": 1125,
+    "fallback": "jpg"
+  },
+  "/products/zaatar/pouch": {
+    "w": 900,
+    "h": 1125,
+    "fallback": "jpg"
+  },
+  "/products/skewers/pouch": {
+    "w": 1200,
+    "h": 800,
+    "fallback": "jpg"
+  },
+  "/products/group": {
+    "w": 1600,
+    "h": 832,
+    "fallback": "png"
+  }
+}

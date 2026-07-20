@@ -103,3 +103,62 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ── Smoker hero: drifting smoke columns ─────────────────────────────────────
+   Physical left/right positioning (not logical start/end) is intentional here:
+   the smoke is symmetric decoration and the fade masks below are physical-
+   direction gradients, so both must stay pinned to the physical edges in LTR
+   *and* RTL. `mix-blend-mode: screen` makes the dark video read as luminous
+   smoke against the near-black stage. The columns live behind the cabinet
+   (z-index 1) so smoke shows on the left and right of the scene on load. */
+.smoke-col {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 38vw;
+  max-width: 620px;
+  object-fit: cover;
+  mix-blend-mode: screen;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
+  /* Two masks, intersected: (1) melt the inner edge toward the stage centre,
+     (2) fade the top and bottom so the column has no hard ends. */
+  -webkit-mask-image:
+    linear-gradient(to right, #000, #000 45%, transparent),
+    linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  mask-image:
+    linear-gradient(to right, #000, #000 45%, transparent),
+    linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.smoke-col--left {
+  left: 0;
+}
+
+.smoke-col--right {
+  right: 0;
+  /* Mirror so the melt-toward-centre mask reads correctly on the right edge. */
+  transform: scaleX(-1);
+}
+
+@media (max-width: 768px) {
+  /* One softened, widened column is enough on small screens. */
+  .smoke-col--right {
+    display: none;
+  }
+  .smoke-col--left {
+    width: 72vw;
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* No moving video for reduced-motion users; the static composition and its
+     warm interior glow carry the scene on their own. */
+  .smoke-col {
+    display: none;
+  }
+}
