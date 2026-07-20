@@ -26,28 +26,11 @@ import {
 import { getProduct } from "@/lib/catalog";
 import { splitGross } from "@/lib/vat";
 
-/** Error codes surfaced to the HTTP layer, each with a matching status. */
-export type CommerceErrorCode =
-  | "empty_cart"
-  | "unknown_slug"
-  | "delivery_unavailable";
-
-/**
- * A typed, catchable error carrying the HTTP `status` a route should map it to.
- * Routes do `if (err instanceof CommerceError) return NextResponse.json({ error:
- * err.code }, { status: err.status })`; anything else bubbles to a 500.
- */
-export class CommerceError extends Error {
-  readonly code: CommerceErrorCode;
-  readonly status: number;
-
-  constructor(code: CommerceErrorCode, message: string, status: number) {
-    super(message);
-    this.name = "CommerceError";
-    this.code = code;
-    this.status = status;
-  }
-}
+// The typed error lives in `./errors` so adapters can throw it without closing
+// an import cycle through the registry. Re-exported here for existing callers.
+import { CommerceError } from "./errors";
+export { CommerceError } from "./errors";
+export type { CommerceErrorCode } from "./errors";
 
 /**
  * A placeholder destination used only to price a delivery method when the caller

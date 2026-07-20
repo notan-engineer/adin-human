@@ -7,7 +7,19 @@
  * DB-backed repository in production.
  *
  * `markPaid` is idempotent: replaying a webhook / VERIFY never double-mutates.
+ *
+ * 🔒 ORDER IDS ARE UNGUESSABLE (`ord_` + a v4 UUID), not sequential.
+ * This is a security requirement, not cosmetics. Our payment provider
+ * (YeshInvoice) posts an UNSIGNED webhook: anyone who can reach
+ * `/api/payment/callback` can POST `UniqueID=<order id>`. With sequential ids
+ * (`ord_1`, `ord_2`, …) an attacker could enumerate and forge "order N is paid"
+ * for every order on the site. A 122-bit random id makes the order id itself an
+ * unguessable capability, so a forged notify has nothing to aim at. Keep this
+ * property in any real DB-backed repository that replaces this stub — do NOT use
+ * an auto-increment primary key as the public order id.
  */
+
+import { randomUUID } from "node:crypto";
 
 import type { OrderRepository } from "../../ports/repository";
 import type { NewOrder, Order } from "../../types";
@@ -15,11 +27,10 @@ import type { NewOrder, Order } from "../../types";
 export class MemoryOrderRepository implements OrderRepository {
   private readonly orders = new Map<string, Order>();
   private readonly refIndex = new Map<string, string>();
-  private counter = 0;
 
   async create(o: NewOrder): Promise<Order> {
-    this.counter += 1;
-    const id = `ord_${this.counter}`;
+    // Node-only (`node:crypto`) — repositories run server-side only.
+    const id = `ord_${randomUUID()}`;
     const order: Order = {
       ...o,
       id,

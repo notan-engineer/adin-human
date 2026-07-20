@@ -6,10 +6,21 @@
  *        truth, mark paid + fulfil on success, then REDIRECT the browser to the
  *        order page (or back to the cart with `?payment=failed`).
  *
- * POST = the server-to-server webhook / IPN (e.g. HYP, SNS). We read the RAW body
- *        first, verify it via `parseAndVerifyCallback`, mark paid + fulfil, and
- *        ALWAYS answer 200 `{received:true}` so the gateway stops retrying — even
- *        for an already-processed event. We never throw back at the gateway.
+ * POST = the server-to-server webhook / IPN. We read the RAW body first (as TEXT,
+ *        never `request.json()` — YeshInvoice's notify is
+ *        `application/x-www-form-urlencoded`, not JSON), hand it to
+ *        `parseAndVerifyCallback`, mark paid + fulfil, and ALWAYS answer 200
+ *        `{received:true}` so the gateway stops retrying — even for an
+ *        already-processed event. We never throw back at the gateway.
+ *
+ * ⚠️ NEVER FULFIL ON THE SuccessUrl REDIRECT ALONE.
+ * The GET here is the shopper's browser coming back from the hosted page. It is
+ * user-controllable (anyone can type that URL with any params) and it RACES the
+ * server-to-server notify — the browser frequently arrives first. Both branches
+ * below therefore re-confirm with the provider before touching order state, and
+ * neither derives "paid" from the query string. YeshInvoice compounds this: its
+ * notify carries NO signature either, so the webhook is only a wake-up hint and
+ * `parseAndVerifyCallback` deliberately never reports a trusted amount.
  */
 
 import { NextResponse } from "next/server";
@@ -37,8 +48,11 @@ function localePath(path: string, locale: "he" | "en"): string {
  */
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
-  const ref = params.get("ref") ?? undefined;
-  const orderIdParam = params.get("orderId") ?? undefined;
+  // Accept both vocabularies: our generic `ref`/`orderId` and YeshInvoice's
+  // `transaction_id`/`UniqueID` (the hosted page bounces those back verbatim).
+  const ref = params.get("ref") ?? params.get("transaction_id") ?? undefined;
+  const orderIdParam =
+    params.get("orderId") ?? params.get("UniqueID") ?? undefined;
   // Optional landing URL the hosted page wants us to return the shopper to after
   // a successful VERIFY (mirrors real HYP's successUrl hop). UNTRUSTED — guarded
   // below so it can only ever point back at our own site (no open redirect).
@@ -89,6 +103,10 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
+    // RAW TEXT, deliberately. YeshInvoice's NotifyUrl POST is
+    // `application/x-www-form-urlencoded`, so `request.json()` would throw on
+    // every real notify. Adapters own the decoding (the YeshInvoice one feeds
+    // this straight into `new URLSearchParams`); the route stays format-agnostic.
     const rawBody = await request.text();
     const headers = Object.fromEntries(request.headers);
     const query = Object.fromEntries(request.nextUrl.searchParams);

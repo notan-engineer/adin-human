@@ -6,7 +6,8 @@
  * Providers are module-level singletons (lazy). The in-memory repository is a
  * singleton on purpose so all callers share the same store within a process.
  *
- *   PAYMENT_PROVIDER   hyp | payplus | cardcom   (default: hyp stub; "stub" ⇒ hyp)
+ *   PAYMENT_PROVIDER   yeshinvoice | hyp | payplus | cardcom
+ *                      (default: yeshinvoice; "stub" ⇒ yeshinvoice)
  *   DELIVERY_PROVIDER  stub                       (default: stub)
  *   INVOICE_PROVIDER   stub | hyp                 (default: stub)
  *   ORDER_REPOSITORY   memory                     (default: memory)
@@ -17,6 +18,7 @@ import type { DeliveryProvider } from "./ports/delivery";
 import type { InvoiceProvider } from "./ports/invoice";
 import type { OrderRepository } from "./ports/repository";
 
+import { YeshInvoicePaymentProvider } from "./adapters/payment/yeshinvoice-stub";
 import { HypStubPaymentProvider } from "./adapters/payment/hyp-stub";
 import { PayplusStubPaymentProvider } from "./adapters/payment/payplus-stub";
 import { CardcomStubPaymentProvider } from "./adapters/payment/cardcom-stub";
@@ -30,16 +32,20 @@ let invoiceSingleton: InvoiceProvider | undefined;
 let repositorySingleton: OrderRepository | undefined;
 
 function createPaymentProvider(): PaymentProvider {
-  // "stub" and undefined both fall through to the HYP stub (the client's choice).
+  // YeshInvoice is the client's chosen provider, so it is the DEFAULT: unset and
+  // the legacy "stub" value both resolve to it. HYP/PayPlus/Cardcom stay
+  // selectable for comparison and for a fallback if the clearing setup changes.
   switch (process.env.PAYMENT_PROVIDER) {
+    case "hyp":
+      return new HypStubPaymentProvider();
     case "payplus":
       return new PayplusStubPaymentProvider();
     case "cardcom":
       return new CardcomStubPaymentProvider();
-    case "hyp":
+    case "yeshinvoice":
     case "stub":
     default:
-      return new HypStubPaymentProvider();
+      return new YeshInvoicePaymentProvider();
   }
 }
 
