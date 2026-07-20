@@ -11,7 +11,7 @@ export default async function HomePage({
   const t = await getTranslations("home");
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center gap-6 overflow-hidden bg-smoke-radial p-8 text-center">
+    <section className="relative flex min-h-screen flex-col items-center justify-center gap-6 overflow-hidden bg-smoke-radial p-8 text-center">
       <p className="font-sans text-xs uppercase tracking-[0.3em] text-bronze">
         Adin Human
       </p>
@@ -23,6 +23,6 @@ export default async function HomePage({
       <Button variant="gold" size="lg">
         {t("cta")}
       </Button>
-    </main>
+    </section>
   );
 }

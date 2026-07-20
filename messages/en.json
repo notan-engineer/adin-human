@@ -3,5 +3,40 @@
     "title": "The Heuman Chef",
     "tagline": "Smoked, small-batch beef jerky — born of fire, not a factory line",
     "cta": "Explore the flavors"
+  },
+  "nav": {
+    "flavors": "Flavors",
+    "story": "Story",
+    "process": "Process",
+    "contact": "Contact",
+    "cart": "Cart",
+    "openMenu": "Open menu"
+  },
+  "footer": {
+    "tagline": "Hand-cut, small-batch smoked beef jerky — born of fire, not a factory line.",
+    "shopHeading": "Shop",
+    "companyHeading": "Company",
+    "legalHeading": "Legal",
+    "flavors": "Flavors",
+    "bundles": "Bundles",
+    "gifts": "Gift boxes",
+    "story": "Story",
+    "process": "Process",
+    "contact": "Contact",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "shipping": "Shipping & Returns",
+    "followUs": "Follow us",
+    "rights": "All rights reserved",
+    "madeInIsrael": "Made in Israel",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content"
+  },
+  "locale": {
+    "switchToEnglish": "Switch to English",
+    "switchToHebrew": "Switch to Hebrew"
   }
 }

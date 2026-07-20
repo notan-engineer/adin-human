@@ -3,5 +3,40 @@
     "title": "The Heuman Chef",
     "tagline": "נתחי בקר מיובשים ומעושנים — נולדים באש, לא בפס ייצור",
     "cta": "גלו את הטעמים"
+  },
+  "nav": {
+    "flavors": "טעמים",
+    "story": "הסיפור",
+    "process": "התהליך",
+    "contact": "צור קשר",
+    "cart": "עגלת קניות",
+    "openMenu": "פתיחת תפריט"
+  },
+  "footer": {
+    "tagline": "נתחי בקר מיובשים ומעושנים בעבודת יד — נולדים באש, לא בפס ייצור.",
+    "shopHeading": "חנות",
+    "companyHeading": "המותג",
+    "legalHeading": "תקנון ומידע",
+    "flavors": "טעמים",
+    "bundles": "מארזים",
+    "gifts": "מארזי מתנה",
+    "story": "הסיפור",
+    "process": "התהליך",
+    "contact": "צור קשר",
+    "terms": "תנאי שימוש",
+    "privacy": "מדיניות פרטיות",
+    "shipping": "משלוחים והחזרות",
+    "followUs": "עקבו אחרינו",
+    "rights": "כל הזכויות שמורות",
+    "madeInIsrael": "מיוצר בישראל",
+    "emailLabel": "אימייל",
+    "phoneLabel": "טלפון"
+  },
+  "a11y": {
+    "skipToContent": "דילוג לתוכן הראשי"
+  },
+  "locale": {
+    "switchToEnglish": "החלפה לאנגלית",
+    "switchToHebrew": "החלפה לעברית"
   }
 }

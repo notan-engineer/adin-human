@@ -5,6 +5,9 @@ import { notFound } from "next/navigation";
 import { routing } from "@/lib/i18n/routing";
 import { fontVariables } from "@/lib/fonts";
 import { DirectionProvider } from "@/components/providers/direction-provider";
+import { SkipLink } from "@/components/layout/SkipLink";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -42,7 +45,12 @@ export default async function LocaleLayout({
           <style>{`.reveal-item{opacity:1 !important;transform:none !important}`}</style>
         </noscript>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <DirectionProvider dir={dir}>{children}</DirectionProvider>
+          <DirectionProvider dir={dir}>
+            <SkipLink />
+            <Header />
+            <main id="main">{children}</main>
+            <Footer />
+          </DirectionProvider>
         </NextIntlClientProvider>
       </body>
     </html>
