@@ -39,6 +39,39 @@
     "emailLabel": "אימייל",
     "phoneLabel": "טלפון"
   },
+  "grid": {
+    "heading": "הטעמים שלנו",
+    "kicker": "שישה נתחים מעושנים, לכל אחד אופי משלו"
+  },
+  "product": {
+    "addToCart": "הוספה לעגלה",
+    "added": "נוסף לעגלה",
+    "heatLevel": "רמת חריפות {level} מתוך 3",
+    "mild": "עדין",
+    "highProtein": "עשיר בחלבון",
+    "protein": "חלבון",
+    "noPreservatives": "ללא חומרים משמרים",
+    "glutenFree": "ללא גלוטן",
+    "nutrition": "ערכים תזונתיים",
+    "per100g": "ל-100 גרם",
+    "energy": "אנרגיה",
+    "fat": "שומן",
+    "carbs": "פחמימות",
+    "salt": "מלח",
+    "kcal": "קק״ל",
+    "g": "גרם",
+    "weight": "משקל",
+    "cherryWood": "מעושן בעצי דובדבן",
+    "relatedHeading": "אולי תאהבו גם",
+    "quantity": "כמות",
+    "increase": "הוספת יחידה",
+    "decrease": "הפחתת יחידה",
+    "backToShop": "חזרה לחנות",
+    "bestseller": "רב מכר"
+  },
+  "cart": {
+    "itemCount": "{count} פריטים בעגלה"
+  },
   "a11y": {
     "skipToContent": "דילוג לתוכן הראשי"
   },

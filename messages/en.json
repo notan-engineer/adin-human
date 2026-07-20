@@ -39,6 +39,39 @@
     "emailLabel": "Email",
     "phoneLabel": "Phone"
   },
+  "grid": {
+    "heading": "Our Flavors",
+    "kicker": "Six smoked cuts, each with a character of its own"
+  },
+  "product": {
+    "addToCart": "Add to cart",
+    "added": "Added",
+    "heatLevel": "Heat level {level} of 3",
+    "mild": "Mild",
+    "highProtein": "High Protein",
+    "protein": "Protein",
+    "noPreservatives": "No Preservatives",
+    "glutenFree": "Gluten-Free",
+    "nutrition": "Nutrition",
+    "per100g": "Per 100g",
+    "energy": "Energy",
+    "fat": "Fat",
+    "carbs": "Carbs",
+    "salt": "Salt",
+    "kcal": "kcal",
+    "g": "g",
+    "weight": "Weight",
+    "cherryWood": "Cherry-wood smoked",
+    "relatedHeading": "You may also like",
+    "quantity": "Quantity",
+    "increase": "Increase quantity",
+    "decrease": "Decrease quantity",
+    "backToShop": "Back to shop",
+    "bestseller": "Bestseller"
+  },
+  "cart": {
+    "itemCount": "{count} items in cart"
+  },
   "a11y": {
     "skipToContent": "Skip to content"
   },

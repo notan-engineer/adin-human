@@ -1,5 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { Hero } from "@/components/sections/Hero";
+import { ProductGrid } from "@/components/sections/ProductGrid";
 
 export default async function HomePage({
   params,
@@ -12,8 +13,7 @@ export default async function HomePage({
   return (
     <>
       <Hero />
-      {/* CTA scroll target + room below the pinned hero (filled in a later batch). */}
-      <section id="products" className="min-h-[40vh]" />
+      <ProductGrid />
     </>
   );
 }
