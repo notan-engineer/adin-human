@@ -9,11 +9,11 @@
 export const site = {
   name: "The Heuman Chef",
   founder: "Adin Human",
-  email: "hello@heumanchef.com",
+  email: "theheumanchef@gmail.com",
   /** Display form — always render inside dir="ltr" so RTL pages don't flip it. */
-  phoneDisplay: "+972 50-000-0000",
+  phoneDisplay: "054-541-9191",
   /** tel: href form — digits and leading + only. */
-  phoneHref: "+97250000000",
+  phoneHref: "+972545419191",
   social: {
     instagram: "https://instagram.com/theheumanchef",
     facebook: "https://facebook.com/theheumanchef",

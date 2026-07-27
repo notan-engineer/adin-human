@@ -7,7 +7,7 @@
   "hero": {
     "eyebrow": "Adin Human",
     "title": "The Heuman Chef",
-    "tagline": "Smoked, small-batch beef jerky — born of fire, not a factory line",
+    "tagline": "Hand-crafted beef jerky, smoked rubs and more — quality speaks for itself.",
     "cta": "Explore the flavors",
     "scrollCue": "Scroll to open"
   },
@@ -20,13 +20,13 @@
     "openMenu": "Open menu"
   },
   "footer": {
-    "tagline": "Hand-cut, small-batch smoked beef jerky — born of fire, not a factory line.",
+    "tagline": "Hand-crafted beef jerky, smoked rubs and more — quality speaks for itself.",
     "shopHeading": "Shop",
     "companyHeading": "Company",
     "legalHeading": "Legal",
     "flavors": "Flavors",
     "bundles": "Bundles",
-    "gifts": "Gift boxes",
+    "gifts": "Special sales",
     "story": "Story",
     "process": "Process",
     "contact": "Contact",
@@ -81,7 +81,7 @@
     "shippingAtCheckout": "Calculated at checkout",
     "total": "Total",
     "checkout": "Proceed to checkout",
-    "remove": "Remove from cart",
+    "remove": "Return to smoker",
     "quantity": "Quantity",
     "each": "each"
   },
@@ -94,7 +94,7 @@
   },
   "checkout": {
     "title": "Checkout",
-    "subtitle": "A few details and we'll send the smoke your way.",
+    "subtitle": "A few details and we'll be on our way to you.",
     "sections": {
       "toggle": "Expand/collapse"
     },
@@ -113,7 +113,7 @@
       },
       "same_day": {
         "title": "Same-day delivery",
-        "desc": "Arrives today in selected areas"
+        "desc": "Cross-country delivery"
       },
       "pickup_point": {
         "title": "Pickup point",
@@ -167,7 +167,7 @@
     },
     "selfPickup": {
       "storeName": "The Heuman Chef kitchen",
-      "storeAddress": "Tel Aviv-Yafo (full address sent by email)",
+      "storeAddress": "HaRimon 86, Neve Yamin",
       "note": "We'll email you the moment your order is ready for pickup."
     },
     "summary": {
@@ -233,7 +233,7 @@
   },
   "story": {
     "kicker": "Behind the smoke",
-    "heading": "The chef who fell for fire",
+    "heading": "Where there's smoke, there's fire — the story",
     "p1": "It started with one backyard smoker and the patience of someone who refuses to rush. Adin Human, a chef by trade, found that smoke isn't a seasoning — it's time. Hours in which meat, wood and heat learn to talk to each other.",
     "p2": "He worked through a lot of woods before settling on cherry: sweet enough to soften, clean enough never to take over. From there came the hand-cut strips, a spice build laid down layer over layer, and a flat refusal to use preservatives.",
     "p3": "Every 65 g pouch still leaves that same smoker and that same stubbornness — small batches, no shortcuts, no factory line.",
@@ -243,10 +243,10 @@
   },
   "stats": {
     "kicker": "Why it works",
-    "heading": "The numbers behind the pouch",
+    "heading": "For those who care",
     "items": {
       "protein": "protein in every pouch",
-      "hours": "in the smoker, every batch",
+      "hours": "Smoke time",
       "natural": "natural ingredients",
       "flavors": "smoked flavors"
     },
@@ -258,24 +258,24 @@
   },
   "process": {
     "kicker": "The process",
-    "heading": "How it's smoked",
-    "intro": "Four steps. Not one of them is in a hurry.",
+    "heading": "Behind the scenes",
+    "intro": "Four steps to perfection.",
     "steps": {
       "select": {
-        "title": "Choose the cut",
-        "body": "Lean Israeli beef, hand-cut along the grain. Anything that doesn't meet the standard simply never reaches the smoker."
+        "title": "Choosing the cut",
+        "body": "Lean sirloin, hand-cut against the grain for an ideal texture and cleaned of all fat and tendons. Anything that doesn't meet the standard simply never reaches the smoker."
       },
       "cure": {
-        "title": "Cure and spice",
-        "body": "A slow cure in the house spice blend, layer over layer and without preservatives — until the flavor sits inside the meat rather than on it."
+        "title": "Building the flavor",
+        "body": "A 24-hour marinade in unique, precise house spice blends, layer over layer and without preservatives — until the flavor sits inside the meat rather than on it."
       },
       "smoke": {
-        "title": "Cherry-wood smoke",
-        "body": "Long hours at low heat over cherry wood. This is the step you can't hurry: the smoke works in slowly, and the meat dries to exactly the right point."
+        "title": "Choosing the wood",
+        "body": "Cherry-wood smoke adds a distinctive, subtly fruity aroma during the slow smoke, letting the beef develop a unique depth of flavor throughout drying — without overpowering the natural taste of the meat or the seasoning."
       },
       "pack": {
-        "title": "Hand-pack",
-        "body": "Every batch is checked, weighed and packed by hand into 65 g pouches. It leaves fresh — no preservatives, no gluten."
+        "title": "Packaging",
+        "body": "Every batch is carefully inspected, weighed, and hand-packed with meticulous attention to detail. Each package includes a wet wipe and a dental pick, because your experience matters just as much as the flavor."
       }
     }
   },
@@ -300,7 +300,7 @@
   },
   "newsletter": {
     "kicker": "Newsletter",
-    "heading": "Get the first smoke",
+    "heading": "Hot out of the smoker",
     "body": "New flavors, limited batches and offers that reach the list first. No spam, unsubscribe anytime.",
     "emailLabel": "Email address",
     "placeholder": "you@example.com",
@@ -313,7 +313,7 @@
   "contact": {
     "kicker": "Talk to us",
     "heading": "Get in touch",
-    "body": "A question about a flavor, a large order, or a partnership — write to us and we'll get back to you.",
+    "body": "Questions about flavors, large orders, or partnerships — write to us and we'll get back to you.",
     "nameLabel": "Full name",
     "emailLabel": "Email",
     "phoneLabel": "Phone",
@@ -338,19 +338,19 @@
   "about": {
     "kicker": "The brand",
     "heading": "Born of fire, not a factory line",
-    "intro": "The Heuman Chef began with one smoker, one chef, and more patience than anyone thought reasonable. Here's the story, the numbers and the process behind every pouch.",
+    "intro": "The Heuman Chef — handcrafted beef jerky. Bold flavor. No preservatives. No compromises. Here's the story, the numbers and the process behind every pouch.",
     "metaTitle": "Our story",
     "metaDescription": "The story, the numbers and the cherry-wood smoking process behind The Heuman Chef beef jerky."
   },
   "meta": {
     "siteName": "The Heuman Chef",
-    "titleDefault": "The Heuman Chef — Smoked Beef Jerky, Born of Fire",
+    "titleDefault": "The Heuman Chef — Hand-crafted Smoked Beef Jerky",
     "titleTemplate": "%s — The Heuman Chef",
     "description": "Small-batch beef jerky, smoked over cherry wood — born of fire, not a factory line. Six flavors, delivered across Israel.",
-    "tagline": "Born of fire, not a factory line",
-    "ogAlt": "The Heuman Chef — small-batch smoked beef jerky",
+    "tagline": "Not all snacks are created equal",
+    "ogAlt": "The Heuman Chef — hand-crafted smoked beef jerky",
     "home": {
-      "title": "The Heuman Chef — Small-Batch Smoked Beef Jerky",
+      "title": "The Heuman Chef — Hand-crafted Smoked Beef Jerky",
       "description": "Six flavors of hand-made beef jerky, smoked over cherry wood. Order online with delivery across Israel."
     },
     "notFound": {
