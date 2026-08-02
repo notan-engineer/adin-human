@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Truck } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { HeatMeter } from "@/components/product/HeatMeter";
@@ -11,6 +11,7 @@ import { TrustBadges } from "@/components/product/TrustBadges";
 import { Reveal } from "@/components/motion/Reveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllProducts, getProduct, getRelated } from "@/lib/catalog";
+import { FREE_SHIPPING_THRESHOLD_AGOROT } from "@/lib/commerce/shipping";
 import { Link } from "@/lib/i18n/navigation";
 import { productJsonLd } from "@/lib/jsonld";
 import { formatAgorot } from "@/lib/money";
@@ -152,6 +153,13 @@ export default async function ProductPage({
             </p>
 
             <PurchasePanel slug={product.slug} className="mt-1" />
+
+            <p className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Truck aria-hidden className="size-4 shrink-0 text-gold" />
+              {t("freeShippingOver", {
+                threshold: formatAgorot(FREE_SHIPPING_THRESHOLD_AGOROT, loc),
+              })}
+            </p>
 
             {/* Key facts */}
             <dl className="flex flex-wrap gap-x-8 gap-y-2 border-t border-border/60 pt-5 text-sm">

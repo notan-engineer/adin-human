@@ -65,7 +65,7 @@ for (const locale of LOCALES) {
       } else {
         const nav = header.getByRole("navigation", { name: "Primary" });
         await expect(nav).toBeVisible();
-        await expect(nav.getByRole("link")).toHaveCount(4);
+        await expect(nav.getByRole("link")).toHaveCount(5);
       }
 
       const footer = page.getByRole("contentinfo");

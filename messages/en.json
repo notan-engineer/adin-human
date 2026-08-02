@@ -13,6 +13,7 @@
   },
   "nav": {
     "flavors": "Flavors",
+    "bundles": "Bundles",
     "story": "Story",
     "process": "Process",
     "contact": "Contact",
@@ -42,6 +43,17 @@
     "heading": "Our Flavors",
     "kicker": "Five unique flavors, each with a character of its own"
   },
+  "bundles": {
+    "kicker": "Bundles",
+    "heading": "Mix flavors, save more",
+    "intro": "Pick any combination of flavors — the best discount applies itself in the cart.",
+    "bags": "{count, plural, one {One bag} other {# bags}}",
+    "bestValue": "Best value",
+    "save": "Save {amount}",
+    "mixNote": "Mix any bundle — BBQ, Maple Chili, Honey Peppercorn, Garlic or Za'atar.",
+    "shippingNote": "{fee} shipping nationwide · free over {threshold} · free self-pickup",
+    "cta": "Pick your flavors"
+  },
   "product": {
     "kosher": "Kosher",
     "addToCart": "Add to cart",
@@ -66,7 +78,8 @@
     "increase": "Increase quantity",
     "decrease": "Decrease quantity",
     "backToShop": "Back to shop",
-    "bestseller": "Bestseller"
+    "bestseller": "Bestseller",
+    "freeShippingOver": "Free shipping on orders over {threshold}"
   },
   "cart": {
     "itemCount": "{count} items in cart",

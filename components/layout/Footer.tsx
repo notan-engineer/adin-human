@@ -53,8 +53,7 @@ export async function Footer() {
       heading: t("shopHeading"),
       links: [
         { label: t("flavors"), href: "/#products" },
-        // TODO(bundles batch): repoint to /#bundles once the section lands.
-        { label: t("bundles"), href: "#" },
+        { label: t("bundles"), href: "/#bundles" },
       ],
     },
     {

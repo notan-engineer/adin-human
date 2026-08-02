@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
  */
 export const navLinks = [
   { key: "flavors", href: "/#products" },
+  { key: "bundles", href: "/#bundles" },
   { key: "story", href: "/#story" },
   { key: "process", href: "/#process" },
   { key: "contact", href: "/contact" },

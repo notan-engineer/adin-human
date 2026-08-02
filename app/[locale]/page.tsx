@@ -7,6 +7,7 @@ import { pageMetadata, toLocale } from "@/lib/seo";
 import { Hero } from "@/components/sections/Hero";
 import { BrandStory } from "@/components/sections/BrandStory";
 import { ProductGrid } from "@/components/sections/ProductGrid";
+import { Bundles } from "@/components/sections/Bundles";
 import { TrustStats } from "@/components/sections/TrustStats";
 import { ProcessSmoke } from "@/components/sections/ProcessSmoke";
 import { Testimonials } from "@/components/sections/Testimonials";
@@ -44,8 +45,9 @@ export default async function HomePage({
   const t = await getTranslations({ locale, namespace: "meta" });
 
   // Narrative order: hook (Hero) → who made it (#story) → what you can buy
-  // (#products) → why trust it (stats) → how it's made (#process) → social
-  // proof → capture. #contact lives on /contact and in the footer.
+  // (#products) → the deal (#bundles) → why trust it (stats) → how it's made
+  // (#process) → social proof → capture. #contact lives on /contact and in
+  // the footer.
   return (
     <>
       {/* Brand + site identity for the knowledge graph. Both nodes carry stable
@@ -56,6 +58,7 @@ export default async function HomePage({
       <Hero />
       <BrandStory />
       <ProductGrid />
+      <Bundles />
       <TrustStats />
       <ProcessSmoke />
       <Testimonials />
