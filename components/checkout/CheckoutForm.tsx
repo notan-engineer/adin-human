@@ -5,6 +5,7 @@ import { AlertCircle, Loader2, Store } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 
 import { CheckoutSection } from "@/components/checkout/CheckoutSection";
+import { CheckoutSummaryBar } from "@/components/checkout/CheckoutSummaryBar";
 import { DeliveryMethodPicker } from "@/components/checkout/DeliveryMethodPicker";
 import { IsraeliAddressForm } from "@/components/checkout/IsraeliAddressForm";
 import type { AddressErrors } from "@/components/checkout/IsraeliAddressForm";
@@ -61,20 +62,22 @@ type ContactErrors = Partial<Record<keyof Contact, string>>;
 type SectionKey = "contact" | "delivery" | "payment";
 
 /**
- * Single-page guest checkout (client island).
+ * Single-page guest checkout (client island), rendered by CartView in its
+ * `?checkout=1` phase.
  *
- * Everything is visible at once: an anchored order summary (products + totals)
- * on top, then three collapsible sections — contact, delivery & address,
- * payment — and one submit. No steps, no next/back. Delivery is two flat-fee
- * radio cards (courier, default, or free self-pickup); shipping is knowable
- * INSTANTLY from the shared constants — no quote round-trip — with the server
- * quote at order-create remaining the authority.
+ * Everything is visible at once: the contracted sticky summary bar on top
+ * (2–3 lines — the forms are the focus), then three collapsible sections —
+ * contact, delivery & address, payment — and one submit. No steps, no
+ * next/back. Delivery is two flat-fee radio cards (courier, default, or free
+ * self-pickup); shipping is knowable INSTANTLY from the shared constants — no
+ * quote round-trip — with the server quote at order-create remaining the
+ * authority. `onEditCart` expands the cart back (pops the ?checkout phase).
  *
  * Money shown here is display-only (integer agorot, formatted at render); the
  * server recomputes every figure on `order/create`. RTL-safe via logical
  * utilities.
  */
-export function CheckoutForm() {
+export function CheckoutForm({ onEditCart }: { onEditCart: () => void }) {
   const t = useTranslations("checkout");
   const locale = useLocale() as "he" | "en";
 
@@ -313,76 +316,16 @@ export function CheckoutForm() {
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-4">
-      {/* ── Anchored order summary ───────────────────────────────────────── */}
-      <div className="lg:sticky lg:top-20 lg:z-20">
-        <div className="rounded-xl border border-border bg-card p-5 shadow-ember sm:p-6">
-          <h2 className="font-display text-base font-bold text-foreground">
-            {t("summary.heading")}
-          </h2>
-
-          <ul
-            aria-label={t("summary.itemsHeading")}
-            className="mt-3 max-h-44 divide-y divide-border/60 overflow-y-auto"
-          >
-            {lines.map((l) => (
-              <li key={l.product.slug} className="flex items-center gap-3 py-2">
-                <PouchThumb product={l.product} />
-                <span className="min-w-0 flex-1 text-sm text-foreground">
-                  <span className="font-medium">{l.product.name[locale]}</span>
-                  <span className="text-muted-foreground"> × {l.qty}</span>
-                </span>
-                <span className="shrink-0 text-sm tabular-nums text-foreground">
-                  {formatAgorot(l.product.priceAgorot * l.qty, locale)}
-                </span>
-              </li>
-            ))}
-          </ul>
-
-          <dl className="mt-3 flex flex-col gap-2 border-t border-border/60 pt-3 text-sm">
-            <div className="flex items-center justify-between gap-4">
-              <dt className="text-muted-foreground">{t("summary.subtotal")}</dt>
-              <dd className="font-medium tabular-nums text-foreground">
-                {formatAgorot(subtotal, locale)}
-              </dd>
-            </div>
-
-            {discount > 0 && (
-              <div className="flex items-center justify-between gap-4">
-                <dt className="text-gold">{t("summary.bundleDiscount")}</dt>
-                <dd className="tabular-nums text-gold">
-                  {formatAgorot(-discount, locale)}
-                </dd>
-              </div>
-            )}
-
-            <div className="flex items-center justify-between gap-4">
-              <dt className="text-muted-foreground">{t("summary.shipping")}</dt>
-              <dd
-                aria-live="polite"
-                className="text-end tabular-nums text-foreground"
-              >
-                {shipping === 0
-                  ? t("summary.free")
-                  : formatAgorot(shipping, locale)}
-              </dd>
-            </div>
-
-            <div className="flex items-center justify-between gap-4 text-muted-foreground">
-              <dt>{t("summary.vatIncluded")}</dt>
-              <dd className="tabular-nums">{formatAgorot(vat, locale)}</dd>
-            </div>
-
-            <div className="mt-1 flex items-center justify-between gap-4 border-t border-border/60 pt-3">
-              <dt className="font-display text-base font-bold text-foreground">
-                {t("summary.total")}
-              </dt>
-              <dd className="font-display text-lg font-bold tabular-nums text-gold">
-                {formatAgorot(total, locale)}
-              </dd>
-            </div>
-          </dl>
-        </div>
-      </div>
+      {/* ── Contracted, sticky order summary (2–3 lines) ─────────────────── */}
+      <CheckoutSummaryBar
+        count={bagCount}
+        merchandiseAgorot={merchandise}
+        discountAgorot={discount}
+        shippingAgorot={shipping}
+        totalAgorot={total}
+        vatAgorot={vat}
+        onEdit={onEditCart}
+      />
 
       {banner ? (
         <div
@@ -547,46 +490,6 @@ export function CheckoutForm() {
 }
 
 // ── Local pieces ─────────────────────────────────────────────────────────────
-
-// Same soft radial mask the cart/cards use: melts the pouch render's flat
-// background into the dark thumbnail so it reads as floating on its glow.
-const POUCH_MASK =
-  "radial-gradient(closest-side at 50% 44%, #000 52%, transparent 86%)";
-
-/** Fixed-size (no CLS) pouch thumbnail for the anchored summary. */
-function PouchThumb({ product }: { product: Product }) {
-  return (
-    <span className="relative flex aspect-[4/5] w-9 shrink-0 items-center justify-center overflow-hidden rounded-md border border-border bg-background/40">
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-60"
-        style={{
-          background: `radial-gradient(58% 55% at 50% 52%, ${product.glow}, transparent 72%)`,
-        }}
-      />
-      <picture className="relative">
-        <source
-          srcSet={`/products/${product.image}/pouch.avif`}
-          type="image/avif"
-        />
-        <source
-          srcSet={`/products/${product.image}/pouch.webp`}
-          type="image/webp"
-        />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`/products/${product.image}/pouch.jpg`}
-          alt=""
-          width={900}
-          height={1125}
-          loading="lazy"
-          className="h-full w-auto object-contain"
-          style={{ WebkitMaskImage: POUCH_MASK, maskImage: POUCH_MASK }}
-        />
-      </picture>
-    </span>
-  );
-}
 
 function ContactField({
   id,

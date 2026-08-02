@@ -20,7 +20,8 @@ const PAGES = [
   },
   {
     name: "checkout",
-    url: (l: (typeof LOCALES)[number]) => path("/checkout", l),
+    // /cart in its ?checkout=1 phase — /checkout is now just a redirect here.
+    url: (l: (typeof LOCALES)[number]) => path("/cart?checkout=1", l),
     needsCart: true,
   },
 ];

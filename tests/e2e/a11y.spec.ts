@@ -24,7 +24,9 @@ const PAGES: PageCase[] = [
   { name: "home", url: (l) => path("/", l) },
   { name: "pdp", url: (l) => path("/product/bbq", l) },
   { name: "cart", url: (l) => path("/cart", l), needsCart: true },
-  { name: "checkout", url: (l) => path("/checkout", l), needsCart: true },
+  // The real checkout URL — /cart in its ?checkout=1 phase (the /checkout
+  // route is now just a redirect here).
+  { name: "checkout", url: (l) => path("/cart?checkout=1", l), needsCart: true },
   { name: "contact", url: (l) => path("/contact", l) },
 ];
 

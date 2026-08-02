@@ -1,24 +1,15 @@
-import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 
-import { CheckoutForm } from "@/components/checkout/CheckoutForm";
+import { redirect } from "@/lib/i18n/navigation";
 
 type Params = { locale: string };
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<Params>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "checkout" });
-  return {
-    title: t("title"),
-    // Per-visitor, stateful checkout — never index it.
-    robots: { index: false, follow: false },
-  };
-}
-
+/**
+ * Checkout now happens ON the cart page (`/cart?checkout=1` — the cart
+ * contracts into a sticky summary bar and the forms appear below, same URL).
+ * This route survives only as a redirect for old links and muscle memory.
+ * No metadata: it never renders. robots.ts already disallows both paths.
+ */
 export default async function CheckoutPage({
   params,
 }: {
@@ -26,23 +17,5 @@ export default async function CheckoutPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("checkout");
-
-  return (
-    <div className="bg-background">
-      {/* Top padding clears the sticky header; the form is a client island
-          rendered inside this Server Component shell. */}
-      <div className="container py-10 sm:py-16">
-        <div className="mx-auto max-w-3xl">
-          <h1 className="font-display text-3xl font-black leading-tight text-foreground sm:text-4xl">
-            {t("title")}
-          </h1>
-          <p className="mt-2 text-muted-foreground">{t("subtitle")}</p>
-        </div>
-        <div className="mt-8 sm:mt-10">
-          <CheckoutForm />
-        </div>
-      </div>
-    </div>
-  );
+  redirect({ href: { pathname: "/cart", query: { checkout: "1" } }, locale });
 }

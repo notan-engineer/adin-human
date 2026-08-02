@@ -9,7 +9,6 @@ import {
   FREE_SHIPPING_THRESHOLD_AGOROT,
   courierFeeAgorot,
 } from "@/lib/commerce/shipping";
-import { Link } from "@/lib/i18n/navigation";
 import { formatAgorot } from "@/lib/money";
 import { splitGross } from "@/lib/vat";
 
@@ -27,9 +26,12 @@ import { splitGross } from "@/lib/vat";
 export function OrderSummary({
   subtotalAgorot,
   bagCount,
+  onCheckout,
 }: {
   subtotalAgorot: number;
   bagCount: number;
+  /** Enters the same-page checkout phase (no navigation — see CartView). */
+  onCheckout: () => void;
 }) {
   const locale = useLocale() as "he" | "en";
   const t = useTranslations("cart");
@@ -105,8 +107,14 @@ export function OrderSummary({
         </div>
       </dl>
 
-      <Button asChild variant="gold" size="lg" className="mt-5 w-full">
-        <Link href="/checkout">{t("checkout")}</Link>
+      <Button
+        type="button"
+        variant="gold"
+        size="lg"
+        className="mt-5 w-full"
+        onClick={onCheckout}
+      >
+        {t("checkout")}
       </Button>
     </div>
   );

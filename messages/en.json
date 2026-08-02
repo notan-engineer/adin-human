@@ -175,6 +175,10 @@
       "storeAddress": "HaRimon 86, Neve Yamin",
       "note": "We'll email you the moment your order is ready for pickup."
     },
+    "bar": {
+      "items": "{count, plural, one {# item} other {# items}}",
+      "edit": "Edit cart"
+    },
     "summary": {
       "heading": "Order summary",
       "itemsHeading": "Your order",
