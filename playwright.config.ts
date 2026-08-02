@@ -4,15 +4,18 @@ import { defineConfig, devices } from "@playwright/test";
  * E2E config for The Heuman Chef.
  *
  * The server is OURS: `next dev` and `next build` share `.next`, so running the
- * suite against a dev server on :3000 would race whatever the developer has
+ * suite against the dev server on :4000 would race whatever the developer has
  * running. We build and `next start` on a dedicated port instead, with
  * `reuseExistingServer: false` so a stale process is never silently reused.
  *
  * `NEXT_PUBLIC_SITE_URL` MUST match the test origin: the payment callback builds
  * absolute redirect URLs from it (`getSiteUrl()`), so a mismatch would bounce the
- * checkout test off to :3000 mid-flow.
+ * checkout test off to :4000 mid-flow.
  */
-const PORT = Number(process.env.E2E_PORT ?? 3100);
+// This project lives in the 4000 family: dev/start on :4000, E2E here on
+// :4100. Other local projects own the 3000 range — never bind (or kill!)
+// anything there.
+const PORT = Number(process.env.E2E_PORT ?? 4100);
 const BASE_URL = `http://127.0.0.1:${PORT}`;
 
 export default defineConfig({
@@ -47,7 +50,9 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: `npm run build && npm run start -- -p ${PORT}`,
+    // `next start` directly, NOT `npm run start` — the start script pins the
+    // dev-facing :4000, and stacking a second -p on top of it is undefined.
+    command: `npm run build && npx next start -p ${PORT}`,
     url: BASE_URL,
     reuseExistingServer: false,
     timeout: 300_000,

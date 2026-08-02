@@ -13,7 +13,7 @@ Premium Israeli beef-jerky brand site by **Adin Human**. Dark, smoky, cinematic;
 ```bash
 npm install
 cp .env.example .env.local     # all integrations default to working stubs
-npm run dev                    # http://localhost:3000  (Hebrew) · /en (English)
+npm run dev                    # http://localhost:4000  (Hebrew) · /en (English)
 ```
 
 ## Scripts
@@ -49,7 +49,7 @@ npm run generate:icons     # favicons + PWA icons from the brand emblem
 ### Build and run
 ```bash
 docker build -t heuman-chef --build-arg NEXT_PUBLIC_SITE_URL=https://theheumanchef.co.il .
-docker run -d -p 3000:3000 --env-file .env.local heuman-chef
+docker run -d -p 4000:4000 --env-file .env.local heuman-chef
 ```
 
 Or with Compose (reads `.env.local` if present):
@@ -70,7 +70,7 @@ just restart) whenever the public URL changes.
 ### Environment variables
 | Variable | Default | Purpose |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` | Public base URL. Canonicals, OG images, and **all payment redirect/callback URLs**. Build-time — see above. |
+| `NEXT_PUBLIC_SITE_URL` | `http://localhost:4000` | Public base URL. Canonicals, OG images, and **all payment redirect/callback URLs**. Build-time — see above. |
 | `PAYMENT_PROVIDER` | `yeshinvoice` | `yeshinvoice` \| `hyp` \| `payplus` \| `cardcom` |
 | `DELIVERY_PROVIDER` | `stub` | Only the zone-table stub exists today |
 | `INVOICE_PROVIDER` | `stub` | `stub` \| `hyp` |
@@ -81,7 +81,7 @@ just restart) whenever the public URL changes.
 | `YESHINVOICE_LANG_ID_HE` / `_EN` | `359` / `139` | Invoice language |
 | `NEXT_PUBLIC_VAT_RATE` | `0.18` | VAT rate used for the inclusive-price split |
 
-The container runs as a non-root `nextjs` user, exposes **3000**, and carries a
+The container runs as a non-root `nextjs` user, exposes **4000**, and carries a
 `HEALTHCHECK` that fetches `/` through the real Next router (so a process that is up
 but failing to render is reported unhealthy).
 

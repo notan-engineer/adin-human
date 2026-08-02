@@ -19,7 +19,7 @@ export type { Locale };
  * nothing in the app ever hardcodes a host.
  */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:4000"
 ).replace(/\/+$/, "");
 
 /** hreflang tag per locale. Hebrew is region-qualified; English is generic. */
