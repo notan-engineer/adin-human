@@ -167,7 +167,7 @@ export const termsDoc: LegalDoc = {
           en: "These terms and the use of the Site are governed exclusively by the laws of the State of Israel, and exclusive jurisdiction is vested in the competent courts of [City].",
         },
         {
-          he: `לשאלות בנוגע לתנאים אלה ניתן לפנות אלינו בדוא"ל ${site.email} או בטלפון ${site.phoneDisplay}.`,
+          he: `לשאלות בנוגע לתנאים אלה ניתן לפנות אלינו בדוא"ל ${site.email} או בטלפון \u2066${site.phoneDisplay}\u2069.`,
           en: `For questions about these terms, contact us at ${site.email} or by phone at ${site.phoneDisplay}.`,
         },
       ],

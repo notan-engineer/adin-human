@@ -28,6 +28,9 @@ const PAGES: PageCase[] = [
   // route is now just a redirect here).
   { name: "checkout", url: (l) => path("/cart?checkout=1", l), needsCart: true },
   { name: "contact", url: (l) => path("/contact", l) },
+  { name: "terms", url: (l) => path("/terms", l) },
+  { name: "privacy", url: (l) => path("/privacy", l) },
+  { name: "shipping", url: (l) => path("/shipping", l) },
 ];
 
 function summarize(violations: Result[]): string {

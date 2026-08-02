@@ -137,7 +137,7 @@ export const privacyDoc: LegalDoc = {
           en: "The Business may update this policy from time to time; the version published on the Site is the binding version.",
         },
         {
-          he: `בכל שאלה או בקשה בענייני פרטיות ניתן לפנות אל [שם העסק הרשמי], [כתובת העסק], בדוא"ל ${site.email} או בטלפון ${site.phoneDisplay}.`,
+          he: `בכל שאלה או בקשה בענייני פרטיות ניתן לפנות אל [שם העסק הרשמי], [כתובת העסק], בדוא"ל ${site.email} או בטלפון \u2066${site.phoneDisplay}\u2069.`,
           en: `For any privacy question or request, contact [Business legal name], [Business address], at ${site.email} or by phone at ${site.phoneDisplay}.`,
         },
       ],

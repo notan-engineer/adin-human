@@ -360,6 +360,27 @@
     "metaTitle": "צור קשר",
     "metaDescription": "יצירת קשר עם The Heuman Chef — שאלות, הזמנות גדולות ושיתופי פעולה."
   },
+  "legal": {
+    "lastUpdatedLabel": "עודכן לאחרונה: {date}",
+    "terms": {
+      "kicker": "תקנון ומידע",
+      "heading": "תנאי שימוש",
+      "metaTitle": "תנאי שימוש",
+      "metaDescription": "תנאי השימוש באתר The Heuman Chef — הזמנות, תשלום, ביטול עסקה, אחריות וקניין רוחני."
+    },
+    "privacy": {
+      "kicker": "תקנון ומידע",
+      "heading": "מדיניות פרטיות",
+      "metaTitle": "מדיניות פרטיות",
+      "metaDescription": "מדיניות הפרטיות של The Heuman Chef — איזה מידע נאסף, לאילו מטרות, ואילו זכויות עומדות לכם."
+    },
+    "shipping": {
+      "kicker": "תקנון ומידע",
+      "heading": "משלוחים והחזרות",
+      "metaTitle": "משלוחים והחזרות",
+      "metaDescription": "מדיניות המשלוחים וההחזרות של The Heuman Chef — עלויות, זמני אספקה, ביטול הזמנה ומוצרים פגומים."
+    }
+  },
   "meta": {
     "siteName": "The Heuman Chef",
     "titleDefault": "The Heuman Chef — נתחי בקר מעושנים בעבודת יד",

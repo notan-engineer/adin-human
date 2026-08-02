@@ -89,7 +89,7 @@ export const shippingDoc: LegalDoc = {
       },
       body: [
         {
-          he: `ניתן לבטל הזמנה בכל עת כל עוד לא נשלחה, בפנייה בדוא"ל ${site.email} או בטלפון ${site.phoneDisplay}. במקרה כזה יוחזר מלוא הסכום ששולם לאמצעי התשלום המקורי בתוך 14 ימים.`,
+          he: `ניתן לבטל הזמנה בכל עת כל עוד לא נשלחה, בפנייה בדוא"ל ${site.email} או בטלפון \u2066${site.phoneDisplay}\u2069. במקרה כזה יוחזר מלוא הסכום ששולם לאמצעי התשלום המקורי בתוך 14 ימים.`,
           en: `You may cancel an order at any time before it has shipped by contacting us at ${site.email} or by phone at ${site.phoneDisplay}. In that case the full amount paid will be refunded to the original payment method within 14 days.`,
         },
       ],
@@ -119,7 +119,7 @@ export const shippingDoc: LegalDoc = {
       title: { he: "יצירת קשר", en: "Contact" },
       body: [
         {
-          he: `לשאלות בענייני משלוחים והחזרות: דוא"ל ${site.email}, טלפון ${site.phoneDisplay}.`,
+          he: `לשאלות בענייני משלוחים והחזרות: דוא"ל ${site.email}, טלפון \u2066${site.phoneDisplay}\u2069.`,
           en: `For shipping and returns questions: email ${site.email}, phone ${site.phoneDisplay}.`,
         },
       ],

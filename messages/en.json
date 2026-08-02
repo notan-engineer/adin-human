@@ -360,6 +360,27 @@
     "metaTitle": "Contact",
     "metaDescription": "Get in touch with The Heuman Chef — questions, large orders and partnerships."
   },
+  "legal": {
+    "lastUpdatedLabel": "Last updated: {date}",
+    "terms": {
+      "kicker": "Legal",
+      "heading": "Terms of Use",
+      "metaTitle": "Terms of Use",
+      "metaDescription": "The Heuman Chef terms of use — orders, payment, cancellations, liability and intellectual property."
+    },
+    "privacy": {
+      "kicker": "Legal",
+      "heading": "Privacy Policy",
+      "metaTitle": "Privacy Policy",
+      "metaDescription": "The Heuman Chef privacy policy — what information is collected, for which purposes, and your rights."
+    },
+    "shipping": {
+      "kicker": "Legal",
+      "heading": "Shipping & Returns",
+      "metaTitle": "Shipping & Returns",
+      "metaDescription": "The Heuman Chef shipping and returns policy — costs, delivery times, cancellations and defective items."
+    }
+  },
   "meta": {
     "siteName": "The Heuman Chef",
     "titleDefault": "The Heuman Chef — Hand-crafted Smoked Beef Jerky",
