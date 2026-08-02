@@ -72,6 +72,11 @@ for (const locale of LOCALES) {
 
       await expect(badge).toHaveText("1");
 
+      // The confirmation toast announces the add in the global status region.
+      await expect(page.getByRole("status")).toContainText(
+        /(נוסף לעגלה|added to cart)/,
+      );
+
       // Bump the quantity to 3 and add again → 4 units total.
       await page
         .getByRole("button", { name: /(הוספת יחידה|Increase quantity)/ })

@@ -16,6 +16,7 @@ import { LenisProvider } from "@/components/motion/LenisProvider";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { CartToaster } from "@/components/product/CartToaster";
 import "../globals.css";
 
 export async function generateMetadata({
@@ -124,6 +125,7 @@ export default async function LocaleLayout({
               <Header />
               <main id="main">{children}</main>
               <Footer />
+              <CartToaster />
             </LenisProvider>
           </DirectionProvider>
         </NextIntlClientProvider>

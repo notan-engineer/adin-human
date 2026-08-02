@@ -82,7 +82,10 @@
     "checkout": "Proceed to checkout",
     "remove": "Return to smoker",
     "quantity": "Quantity",
-    "each": "each"
+    "each": "each",
+    "toastAdded": "{name} added to cart",
+    "viewCart": "View cart",
+    "toastDismiss": "Dismiss notification"
   },
   "a11y": {
     "skipToContent": "Skip to content"

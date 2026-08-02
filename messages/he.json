@@ -82,7 +82,10 @@
     "checkout": "מעבר לתשלום",
     "remove": "להחזיר למעשנה",
     "quantity": "כמות",
-    "each": "ליחידה"
+    "each": "ליחידה",
+    "toastAdded": "{name} נוסף לעגלה",
+    "viewCart": "לצפייה בעגלה",
+    "toastDismiss": "סגירת ההודעה"
   },
   "a11y": {
     "skipToContent": "דילוג לתוכן הראשי"
