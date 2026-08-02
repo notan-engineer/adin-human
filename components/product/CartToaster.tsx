@@ -69,7 +69,10 @@ export function CartToaster() {
     <div
       role="status"
       aria-live="polite"
-      className="pointer-events-none fixed inset-x-4 bottom-4 z-50 flex justify-center sm:inset-x-auto sm:bottom-6 sm:start-6 sm:block sm:w-96"
+      // A GRID with every card in the same cell: during a keyed remount
+      // (repeat add) the exiting and entering cards OVERLAP instead of
+      // rendering side-by-side at half width for the exit's 350ms.
+      className="pointer-events-none fixed inset-x-4 bottom-4 z-50 grid sm:inset-x-auto sm:bottom-6 sm:start-6 sm:w-96"
     >
       <AnimatePresence>
         {toast && (
@@ -85,7 +88,7 @@ export function CartToaster() {
             onPointerLeave={resume}
             onFocusCapture={pause}
             onBlurCapture={resume}
-            className="pointer-events-auto flex w-full items-start gap-3 rounded-xl border border-border border-s-2 border-s-gold bg-card p-4 shadow-ember"
+            className="pointer-events-auto flex w-full items-start gap-3 rounded-xl border border-border border-s-2 border-s-gold bg-card p-4 shadow-ember [grid-area:1/1]"
           >
             <Check aria-hidden className="mt-0.5 size-4 shrink-0 text-gold" />
             <div className="flex-1 text-sm">

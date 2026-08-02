@@ -37,14 +37,18 @@ const addressSchema = z.object({
 });
 
 const bodySchema = z.object({
+  // qty/line caps are a DoS guard, not commerce policy: unbounded quantities
+  // feed an O(n) pricing DP (see lib/commerce/bundle-pricing.ts) and integer
+  // money math. 50 lines × 200 bags is far beyond any legitimate order.
   items: z
     .array(
       z.object({
         slug: z.string().min(1),
-        qty: z.number().int().min(1),
+        qty: z.number().int().min(1).max(200),
       }),
     )
-    .min(1),
+    .min(1)
+    .max(50),
   contact: z.object({
     name: z.string().min(1),
     email: z.email(),

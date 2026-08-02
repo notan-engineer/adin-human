@@ -21,14 +21,16 @@ export const runtime = "nodejs";
 const deliveryMethodSchema = z.enum(["self_pickup", "courier"]);
 
 const bodySchema = z.object({
+  // Same DoS caps as order/create — the quote path reaches the same DP.
   items: z
     .array(
       z.object({
         slug: z.string().min(1),
-        qty: z.number().int().min(1),
+        qty: z.number().int().min(1).max(200),
       }),
     )
-    .min(1),
+    .min(1)
+    .max(50),
   destination: z.object({
     // City is the only field the zone table needs; the rest are optional here.
     city: z.string().min(1),

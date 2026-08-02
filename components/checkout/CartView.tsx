@@ -38,6 +38,7 @@ const H1_CLASS =
 export function CartView() {
   const t = useTranslations("cart");
   const tCheckout = useTranslations("checkout");
+  const tMeta = useTranslations("meta");
   const items = useCart((s) => s.items);
   const searchParams = useSearchParams();
 
@@ -65,27 +66,41 @@ export function CartView() {
   const phase =
     lines.length > 0 && searchParams.has("checkout") ? "checkout" : "cart";
 
-  const enterCheckout = () => {
-    window.history.pushState(null, "", "?checkout=1");
-    pendingFocus.current = true;
+  const scrollTop = () => {
     const reduced = window.matchMedia?.(
       "(prefers-reduced-motion: reduce)",
     ).matches;
     window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
   };
 
-  const exitCheckout = () => {
-    window.history.pushState(null, "", window.location.pathname);
+  const enterCheckout = () => {
+    window.history.pushState(null, "", "?checkout=1");
+    pendingFocus.current = true;
+    scrollTop();
   };
 
-  // Focus the swapped-in checkout heading, but only after a user-initiated
-  // transition — not on a direct ?checkout=1 load.
+  const exitCheckout = () => {
+    window.history.pushState(null, "", window.location.pathname);
+    pendingFocus.current = true;
+    scrollTop();
+  };
+
+  // Focus the swapped heading after a user-initiated transition — BOTH
+  // directions (the exit button unmounts from under the keyboard user
+  // otherwise) — but not on a direct ?checkout=1 load.
   useEffect(() => {
-    if (phase === "checkout" && pendingFocus.current) {
+    if (pendingFocus.current) {
       pendingFocus.current = false;
       headingRef.current?.focus({ preventScroll: true });
     }
   }, [phase]);
+
+  // The phase never re-resolves route metadata (same URL), so reflect it in
+  // the tab title manually — matching the layout's `%s — siteName` template.
+  useEffect(() => {
+    const title = phase === "checkout" ? tCheckout("title") : t("title");
+    document.title = `${title} — ${tMeta("siteName")}`;
+  }, [phase, t, tCheckout, tMeta]);
 
   if (lines.length === 0) {
     return (
@@ -107,47 +122,57 @@ export function CartView() {
     );
   }
 
-  if (phase === "checkout") {
-    return (
-      <>
-        <div className="mx-auto max-w-3xl">
-          <h1 ref={headingRef} tabIndex={-1} className={H1_CLASS}>
-            {tCheckout("title")}
-          </h1>
+  return (
+    <>
+      <div className={phase === "checkout" ? "mx-auto max-w-3xl" : undefined}>
+        <h1 ref={headingRef} tabIndex={-1} className={H1_CLASS}>
+          {phase === "checkout" ? tCheckout("title") : t("title")}
+        </h1>
+        {phase === "checkout" && (
           <p className="mt-2 text-muted-foreground">{tCheckout("subtitle")}</p>
+        )}
+      </div>
+
+      {/* BOTH phase trees stay mounted; `hidden` swaps them. Unmounting the
+          checkout tree would wipe every typed field on an Edit-cart / Back
+          round-trip — CheckoutSection keeps collapsed sections mounted for
+          exactly the same reason. The `hidden` attribute sits on a wrapper
+          with NO display utility (a Tailwind `grid` class would override
+          [hidden]'s display:none). */}
+      <div hidden={phase !== "cart"}>
+        <div className="mt-8 grid gap-8 sm:mt-10 lg:grid-cols-[1fr_22rem] lg:gap-12">
+          <section aria-labelledby="cart-items-heading">
+            <h2
+              id="cart-items-heading"
+              className="mb-1 font-display text-lg font-bold text-foreground"
+            >
+              {t("itemsHeading", { count })}
+            </h2>
+            <ul className="divide-y divide-border/60 border-t border-border/60">
+              {lines.map((l) => (
+                <CartLineItem
+                  key={l.product.slug}
+                  product={l.product}
+                  qty={l.qty}
+                />
+              ))}
+            </ul>
+          </section>
+
+          <aside className="lg:sticky lg:top-24 lg:self-start">
+            <OrderSummary
+              subtotalAgorot={subtotal}
+              bagCount={count}
+              onCheckout={enterCheckout}
+            />
+          </aside>
         </div>
+      </div>
+
+      <div hidden={phase !== "checkout"}>
         <div className="mt-8 sm:mt-10">
           <CheckoutForm onEditCart={exitCheckout} />
         </div>
-      </>
-    );
-  }
-
-  return (
-    <>
-      <h1 className={H1_CLASS}>{t("title")}</h1>
-      <div className="mt-8 grid gap-8 sm:mt-10 lg:grid-cols-[1fr_22rem] lg:gap-12">
-        <section aria-labelledby="cart-items-heading">
-          <h2
-            id="cart-items-heading"
-            className="mb-1 font-display text-lg font-bold text-foreground"
-          >
-            {t("itemsHeading", { count })}
-          </h2>
-          <ul className="divide-y divide-border/60 border-t border-border/60">
-            {lines.map((l) => (
-              <CartLineItem key={l.product.slug} product={l.product} qty={l.qty} />
-            ))}
-          </ul>
-        </section>
-
-        <aside className="lg:sticky lg:top-24 lg:self-start">
-          <OrderSummary
-            subtotalAgorot={subtotal}
-            bagCount={count}
-            onCheckout={enterCheckout}
-          />
-        </aside>
       </div>
     </>
   );

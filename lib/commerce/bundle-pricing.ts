@@ -25,11 +25,39 @@ export const BUNDLE_TIERS = [
 ] as const;
 
 /**
+ * DP ceiling. The array the DP allocates is sized by bagCount, which
+ * ultimately comes from CLIENT-supplied quantities — unbounded, that's a
+ * one-request OOM on the order/quote APIs (a fatal V8 abort no try/catch can
+ * intercept). The API schemas cap qty/lines as the first line of defense;
+ * this bound makes the function itself safe for ANY input. Counts above it
+ * are priced exactly via periodic extension (see below), in O(MAX) time and
+ * memory regardless of input size.
+ */
+const MAX_DP_BAGS = 10_000;
+
+/** The tier with the best per-bag rate — the tail of any large optimum. */
+const CHEAPEST_PER_BAG = BUNDLE_TIERS.reduce((best, t) =>
+  t.priceAgorot * best.bags < best.priceAgorot * t.bags ? t : best,
+);
+
+/**
  * The cheapest achievable total for `bagCount` bags using any combination of
  * tiers. Non-positive or non-integer counts price at 0.
+ *
+ * Above MAX_DP_BAGS the optimum is periodic: past a small threshold, adding
+ * one more copy of the cheapest-per-bag tier (the 3-pack here) is always
+ * optimal, so best(n) = best(n − k·3) + k·11000. The unit tests assert this
+ * periodicity against the DP, so a future tier change that breaks the
+ * assumption fails loudly.
  */
 export function bestBundleTotalAgorot(bagCount: number): number {
   if (!Number.isInteger(bagCount) || bagCount <= 0) return 0;
+
+  let tailCopies = 0;
+  if (bagCount > MAX_DP_BAGS) {
+    tailCopies = Math.ceil((bagCount - MAX_DP_BAGS) / CHEAPEST_PER_BAG.bags);
+    bagCount -= tailCopies * CHEAPEST_PER_BAG.bags;
+  }
 
   // minCost[n] = cheapest price for exactly n bags.
   const minCost = new Array<number>(bagCount + 1).fill(Number.POSITIVE_INFINITY);
@@ -41,7 +69,7 @@ export function bestBundleTotalAgorot(bagCount: number): number {
       }
     }
   }
-  return minCost[bagCount];
+  return minCost[bagCount] + tailCopies * CHEAPEST_PER_BAG.priceAgorot;
 }
 
 /**

@@ -55,6 +55,32 @@ describe("bestBundleTotalAgorot", () => {
     expect(bestBundleTotalAgorot(2.5)).toBe(0);
     expect(bestBundleTotalAgorot(Number.NaN)).toBe(0);
   });
+
+  it("is periodic in the cheapest-per-bag tier (the huge-count fast path's assumption)", () => {
+    // Above the DP ceiling, counts are priced as best(n − k·3) + k·₪110.
+    // That's exact only if adding a 3-pack is always optimal past a small
+    // threshold — assert it directly so a future tier change that breaks the
+    // assumption fails here, not in production pricing.
+    for (let n = 6; n <= 60; n++) {
+      expect(
+        bestBundleTotalAgorot(n + 3) - bestBundleTotalAgorot(n),
+        `best(${n + 3}) - best(${n})`,
+      ).toBe(11_000);
+    }
+  });
+
+  it("prices absurd client-supplied counts in bounded time and memory", () => {
+    // One anonymous POST used to be able to OOM the process via the DP array.
+    // The fast path must return the exact periodic value instantly.
+    // 600M bags: 599_999_999 ≡ 2 (mod 3) → (n−5)/3 × 11000 + 18500... assert
+    // via the periodicity identity against a small equivalent instead of a
+    // hand-computed literal.
+    const n = 600_000_000;
+    const k = (n - 30) / 3; // peel down to 30 bags, a DP-range count
+    expect(bestBundleTotalAgorot(n)).toBe(
+      bestBundleTotalAgorot(30) + k * 11_000,
+    );
+  });
 });
 
 describe("bundleDiscountAgorot", () => {

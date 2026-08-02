@@ -24,10 +24,16 @@ export interface IssueInvoiceInput {
   lines: OrderItem[];
   /**
    * Mix&match bundle discount, integer agorot (0/omitted = none). A real
-   * adapter MUST render this as a negative document line ("הנחת מארזים") so
-   * the line items reconcile to `amountAgorot` — the stub ignores it.
+   * adapter MUST render this as a negative document line ("הנחת מארזים") —
+   * the stub ignores it.
    */
   discountAgorot?: number;
+  /**
+   * Shipping charged, integer agorot (0/omitted = none). A real adapter MUST
+   * render this as a shipping line, so the document reconciles:
+   * Σ(lines) − discountAgorot + shippingAgorot === amountAgorot.
+   */
+  shippingAgorot?: number;
   /** Gross (VAT-inclusive) total, integer agorot. */
   amountAgorot: number;
   /** VAT portion contained in `amountAgorot`, integer agorot. */

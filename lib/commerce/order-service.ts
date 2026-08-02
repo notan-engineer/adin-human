@@ -172,6 +172,7 @@ export async function fulfillPaidOrder(order: Order): Promise<Order> {
     customer: current.contact,
     lines: current.items,
     discountAgorot: current.discountAgorot,
+    shippingAgorot: current.shippingAgorot,
     amountAgorot: current.totalAgorot,
     vatAgorot: current.vatAgorot,
   });

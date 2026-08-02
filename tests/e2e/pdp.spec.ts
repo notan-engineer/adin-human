@@ -96,10 +96,12 @@ for (const locale of LOCALES) {
       await expect(badge).toHaveText("4");
 
       // And the cart page agrees on the money: 4 bags bundle-price as
-      // 3-pack + single (₪110 + ₪40 = ₪150), not 4 × list.
+      // 3-pack + single (₪110 + ₪40 = ₪150), not 4 × list. Target the
+      // summary total directly — "last ₪ on the page" would now read the
+      // HIDDEN checkout tree (both phase trees stay mounted).
       await page.goto(path("/cart", locale));
       const total = stripBidi(
-        await page.getByText(/₪/).last().innerText(),
+        await page.getByTestId("cart-total").innerText(),
       );
       expect(total).toContain(String(bestBundleTotalAgorot(4) / 100));
     });

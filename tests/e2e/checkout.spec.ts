@@ -122,7 +122,7 @@ for (const locale of LOCALES) {
       expect(stripBidi(await main.innerText())).toContain(String(TOTAL / 100));
     });
 
-    test("browser Back pops the checkout phase back to the cart view", async ({
+    test("browser Back pops the checkout phase and typed input survives the round-trip", async ({
       page,
     }) => {
       await seedCart(page, [{ slug: SLUG, qty: 1 }]);
@@ -132,13 +132,45 @@ for (const locale of LOCALES) {
       await expect(page).toHaveURL(/\/cart\?checkout=1$/);
       await expect(page.getByTestId("checkout-summary-bar")).toBeVisible();
 
+      // Type something, leave, come back — the form must NOT be wiped (the
+      // checkout tree stays mounted and hidden, like collapsed sections).
+      await page.locator("#contact-name").fill("שם לשימור");
+
       await page.goBack();
       await expect(page).not.toHaveURL(/checkout=1/);
       // The full cart view is back: the line-item list and the checkout CTA.
       await expect(
         page.getByRole("button", { name: copy.checkout }),
       ).toBeVisible();
-      await expect(page.getByTestId("checkout-summary-bar")).toHaveCount(0);
+      await expect(page.getByTestId("checkout-summary-bar")).not.toBeVisible();
+
+      await page.getByRole("button", { name: copy.checkout }).click();
+      await expect(page.getByTestId("checkout-summary-bar")).toBeVisible();
+      await expect(page.locator("#contact-name")).toHaveValue("שם לשימור");
+    });
+
+    test("locale switch mid-checkout keeps the checkout phase", async ({
+      page,
+    }) => {
+      await seedCart(page, [{ slug: SLUG, qty: 1 }]);
+      await page.goto(path("/cart", locale));
+
+      await page.getByRole("button", { name: copy.checkout }).click();
+      await expect(page).toHaveURL(/\/cart\?checkout=1$/);
+
+      // The header switcher is labeled with the TARGET language.
+      await page
+        .getByRole("banner")
+        .getByRole("button", {
+          name: /(החלפה לאנגלית|Switch to Hebrew)/,
+        })
+        .click();
+
+      // Still in the checkout phase, other locale.
+      await expect(page).toHaveURL(/\/cart\?checkout=1$/);
+      await expect(page.getByTestId("checkout-summary-bar")).toBeVisible();
+      const otherLang = locale.code === "he" ? "en" : "he";
+      await expect(page.locator("html")).toHaveAttribute("lang", otherLang);
     });
 
     test("bundle discount + free shipping flow end to end (11 bags)", async ({

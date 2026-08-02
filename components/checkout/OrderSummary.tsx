@@ -101,7 +101,10 @@ export function OrderSummary({
           <dt className="font-display text-base font-bold text-foreground">
             {t("total")}
           </dt>
-          <dd className="font-display text-lg font-bold tabular-nums text-gold">
+          <dd
+            data-testid="cart-total"
+            className="font-display text-lg font-bold tabular-nums text-gold"
+          >
             {formatAgorot(total, locale)}
           </dd>
         </div>
