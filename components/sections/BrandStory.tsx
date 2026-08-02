@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
  */
 export function BrandStory({ className }: { className?: string }) {
   const t = useTranslations("story");
+  const quoteAttribution = t("quoteAttribution");
 
   return (
     <section
@@ -78,9 +79,11 @@ export function BrandStory({ className }: { className?: string }) {
                 <blockquote className="font-display text-xl leading-snug text-foreground sm:text-2xl">
                   {t("quote")}
                 </blockquote>
-                <figcaption className="mt-3 text-xs uppercase tracking-[0.25em] text-bronze">
-                  {t("quoteAttribution")}
-                </figcaption>
+                {quoteAttribution && (
+                  <figcaption className="mt-3 text-xs uppercase tracking-[0.25em] text-bronze">
+                    {quoteAttribution}
+                  </figcaption>
+                )}
               </figure>
             </Reveal>
           </div>

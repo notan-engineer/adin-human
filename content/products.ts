@@ -19,7 +19,7 @@ const PLACEHOLDER_PER_100G = {
   saltG: 3.1,
 } as const;
 
-const TRUST_BADGES = ["high-protein", "no-preservatives", "gluten-free"];
+const TRUST_BADGES = ["kosher", "high-protein", "no-preservatives", "gluten-free"];
 
 export const products: Product[] = [
   {
@@ -132,26 +132,5 @@ export const products: Product[] = [
     glow: "#4E5B2E",
     inStock: true,
   },
-  {
-    slug: "skewers",
-    name: { he: "קיסמי בקר מיובש", en: "Beef Jerky Skewers" },
-    tagline: {
-      he: "בקר מעושן, על מקל.",
-      en: "Smoked beef, on a stick.",
-    },
-    description: {
-      he: "הבקר המעושן החתום שלנו, נדחס ומיובש על קיסמים דקים לנשנוש קליל וזקוף. אותו עומק של עשן דובדבן ואותו חלבון גבוה, בפורמט שובב שנוצר לחלוק.",
-      en: "Our signature smoked beef, pressed and dried onto slender skewers for an easy, upright snack. The same cherry-wood depth and high protein, in a playful grab-and-go form built for sharing.",
-    },
-    flavor: "skewers",
-    heatLevel: 1,
-    priceAgorot: 3400,
-    weightGrams: 40,
-    image: "skewers",
-    badges: [...TRUST_BADGES],
-    proteinGrams: 34,
-    nutrition: { per100g: { ...PLACEHOLDER_PER_100G } },
-    glow: "#8A6D3B",
-    inStock: true,
-  },
+  // "skewers" launching later — re-enable when ready.
 ];

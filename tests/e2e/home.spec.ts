@@ -4,7 +4,7 @@ import { LOCALES, collectConsoleErrors, path } from "./helpers";
 
 /**
  * Home page: it loads, it's in the right language and direction, the hero and
- * the six-flavor grid render, and the console is clean.
+ * the five-flavor grid render, and the console is clean.
  */
 for (const locale of LOCALES) {
   test.describe(`home (${locale.code})`, () => {
@@ -34,15 +34,15 @@ for (const locale of LOCALES) {
       await expect(h1).not.toBeEmpty();
     });
 
-    test("renders six product cards in the flavor grid", async ({ page }) => {
+    test("renders five product cards in the flavor grid", async ({ page }) => {
       await page.goto(path("/", locale));
 
       const cards = page.locator("#products article");
-      await expect(cards).toHaveCount(6);
+      await expect(cards).toHaveCount(5);
 
       // Each card must carry a real, navigable product link — an empty grid of
-      // six skeletons would otherwise satisfy the count above.
-      for (let i = 0; i < 6; i += 1) {
+      // five skeletons would otherwise satisfy the count above.
+      for (let i = 0; i < 5; i += 1) {
         const link = cards.nth(i).getByRole("link").first();
         await expect(link).toHaveAttribute("href", /\/product\//);
         await expect(link).not.toBeEmpty();

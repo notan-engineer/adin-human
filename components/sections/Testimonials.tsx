@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils";
  */
 export function Testimonials({ className }: { className?: string }) {
   const t = useTranslations("testimonials");
+  const kicker = t("kicker");
 
   return (
     <section
@@ -24,9 +25,11 @@ export function Testimonials({ className }: { className?: string }) {
     >
       <div className="container">
         <Reveal className="mx-auto mb-14 max-w-2xl text-center">
-          <p className="font-sans text-xs uppercase tracking-[0.35em] text-bronze">
-            {t("kicker")}
-          </p>
+          {kicker && (
+            <p className="font-sans text-xs uppercase tracking-[0.35em] text-bronze">
+              {kicker}
+            </p>
+          )}
           <h2 className="mt-3 font-display text-3xl font-black text-gold sm:text-4xl">
             {t("heading")}
           </h2>

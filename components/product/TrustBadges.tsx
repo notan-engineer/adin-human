@@ -1,4 +1,4 @@
-import { Dumbbell, ShieldCheck, WheatOff } from "lucide-react";
+import { BadgeCheck, Dumbbell, ShieldCheck, WheatOff } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -6,13 +6,15 @@ import { cn } from "@/lib/utils";
 
 /**
  * Small tinted pill badges for the brand's product claims. Driven by the
- * product's `badges` array — only the three known trust claims are rendered
- * here (other tags like "bestseller" are surfaced elsewhere), preserving this
- * fixed display order.
+ * product's `badges` array — only the known trust claims are rendered here
+ * (other tags like "bestseller" are surfaced elsewhere), preserving this fixed
+ * display order. "kosher" leads (generic Kosher claim; certifying body/teudah
+ * still TBD).
  *
  * Server-safe (uses next-intl `useTranslations`).
  */
 const TRUST: { badge: string; icon: LucideIcon; labelKey: string }[] = [
+  { badge: "kosher", icon: BadgeCheck, labelKey: "kosher" },
   { badge: "high-protein", icon: Dumbbell, labelKey: "highProtein" },
   { badge: "no-preservatives", icon: ShieldCheck, labelKey: "noPreservatives" },
   { badge: "gluten-free", icon: WheatOff, labelKey: "glutenFree" },

@@ -27,7 +27,7 @@ for (const locale of LOCALES) {
 
     // Product grid lives inside <Stagger>/<StaggerItem>, well below the fold.
     const cards = page.locator("#products article");
-    await expect(cards).toHaveCount(6);
+    await expect(cards).toHaveCount(5);
     expect(
       await effectiveOpacity(page, "#products article:last-of-type"),
       "last product card is trapped behind a scroll reveal",

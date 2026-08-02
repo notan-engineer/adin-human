@@ -74,7 +74,7 @@ export function Hero() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         />
         <p className="font-sans text-xs uppercase tracking-[0.35em] text-bronze">
-          Adin Human
+          Eat Like a Chef
         </p>
         <h1 className="font-display text-5xl font-black leading-[0.95] text-gold sm:text-7xl">
           {t("title")}

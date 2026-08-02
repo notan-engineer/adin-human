@@ -32,7 +32,6 @@ export const PRODUCT_SLUGS = [
   "honey",
   "garlic",
   "zaatar",
-  "skewers",
 ] as const;
 
 /** Catalog prices in integer agorot, mirrored for total assertions. */
@@ -42,7 +41,6 @@ export const PRICE_AGOROT: Record<string, number> = {
   honey: 4400,
   garlic: 4200,
   zaatar: 4200,
-  skewers: 3400,
 };
 
 /** Regular ("courier") delivery, in agorot — ₪35. */

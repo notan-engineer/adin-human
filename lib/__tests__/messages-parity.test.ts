@@ -27,6 +27,14 @@ describe("message catalogs", () => {
   });
 
   it("has no empty string values", () => {
+    // Intentionally-empty labels: kickers/attribution the brand chose to hide.
+    // Their render components skip the element entirely when the value is "".
+    const ALLOWED_EMPTY = new Set([
+      "story.quoteAttribution",
+      "stats.kicker",
+      "process.kicker",
+      "testimonials.kicker",
+    ]);
     const empties: string[] = [];
     for (const [locale, catalog] of [
       ["he", he],
@@ -34,7 +42,9 @@ describe("message catalogs", () => {
     ] as const) {
       const walk = (v: unknown, path: string) => {
         if (typeof v === "string") {
-          if (v.trim() === "") empties.push(`${locale}:${path}`);
+          if (v.trim() === "" && !ALLOWED_EMPTY.has(path)) {
+            empties.push(`${locale}:${path}`);
+          }
           return;
         }
         if (v && typeof v === "object") {

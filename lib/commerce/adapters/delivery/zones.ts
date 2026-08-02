@@ -7,7 +7,8 @@
  *
  * Zones:
  *   center    — Gush Dan (תל אביב, רמת גן, גבעתיים, הרצליה, חולון, בת ים,
- *               פתח תקווה, ראשון לציון …). Only zone with same-day + locker.
+ *               פתח תקווה, ראשון לציון …). Only zone with locker. Same-day is
+ *               now offered nationwide (every zone), pending carrier confirmation.
  *   jerusalem — ירושלים.
  *   north     — חיפה + הצפון.
  *   south     — באר שבע + הדרום.
@@ -63,6 +64,7 @@ export const ZONES: Record<ZoneId, Zone> = {
     methods: [
       { method: "self_pickup", priceAgorot: 0, etaMinDays: 0, etaMaxDays: 1 },
       { method: "pickup_point", priceAgorot: 1800, etaMinDays: 2, etaMaxDays: 4 },
+      { method: "same_day", priceAgorot: 4500, etaMinDays: 0, etaMaxDays: 1 },
       { method: "courier", priceAgorot: 3500, etaMinDays: 2, etaMaxDays: 3 },
     ],
   },
@@ -72,6 +74,7 @@ export const ZONES: Record<ZoneId, Zone> = {
     methods: [
       { method: "self_pickup", priceAgorot: 0, etaMinDays: 0, etaMaxDays: 1 },
       { method: "pickup_point", priceAgorot: 2000, etaMinDays: 3, etaMaxDays: 5 },
+      { method: "same_day", priceAgorot: 4500, etaMinDays: 0, etaMaxDays: 1 },
       { method: "courier", priceAgorot: 3500, etaMinDays: 2, etaMaxDays: 4 },
     ],
   },
@@ -80,6 +83,7 @@ export const ZONES: Record<ZoneId, Zone> = {
     label: { he: "דרום", en: "South" },
     methods: [
       { method: "pickup_point", priceAgorot: 2200, etaMinDays: 4, etaMaxDays: 6 },
+      { method: "same_day", priceAgorot: 4500, etaMinDays: 0, etaMaxDays: 1 },
       { method: "courier", priceAgorot: 3500, etaMinDays: 3, etaMaxDays: 5 },
     ],
   },
@@ -87,6 +91,7 @@ export const ZONES: Record<ZoneId, Zone> = {
     id: "eilat",
     label: { he: "אילת", en: "Eilat" },
     methods: [
+      { method: "same_day", priceAgorot: 4500, etaMinDays: 0, etaMaxDays: 1 },
       { method: "courier", priceAgorot: 3500, etaMinDays: 4, etaMaxDays: 6 },
     ],
   },
@@ -96,6 +101,7 @@ export const ZONES: Record<ZoneId, Zone> = {
     methods: [
       { method: "self_pickup", priceAgorot: 0, etaMinDays: 0, etaMaxDays: 1 },
       { method: "pickup_point", priceAgorot: 2000, etaMinDays: 4, etaMaxDays: 6 },
+      { method: "same_day", priceAgorot: 4500, etaMinDays: 0, etaMaxDays: 1 },
       { method: "courier", priceAgorot: 3500, etaMinDays: 3, etaMaxDays: 5 },
     ],
   },

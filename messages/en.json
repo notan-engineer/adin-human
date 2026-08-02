@@ -41,9 +41,10 @@
   },
   "grid": {
     "heading": "Our Flavors",
-    "kicker": "Six smoked cuts, each with a character of its own"
+    "kicker": "Five unique flavors, each with a character of its own"
   },
   "product": {
+    "kosher": "Kosher",
     "addToCart": "Add to cart",
     "added": "Added",
     "heatLevel": "Heat level {level} of 3",
@@ -237,12 +238,12 @@
     "p1": "It started with one backyard smoker and the patience of someone who refuses to rush. Adin Human, a chef by trade, found that smoke isn't a seasoning — it's time. Hours in which meat, wood and heat learn to talk to each other.",
     "p2": "He worked through a lot of woods before settling on cherry: sweet enough to soften, clean enough never to take over. From there came the hand-cut strips, a spice build laid down layer over layer, and a flat refusal to use preservatives.",
     "p3": "Every 65 g pouch still leaves that same smoker and that same stubbornness — small batches, no shortcuts, no factory line.",
-    "quote": "Smoke isn't a flavor you add. It's time you give.",
-    "quoteAttribution": "Adin Human, founder",
+    "quote": "Real beef. Handcrafted. No preservatives. No shortcuts. Just incredible flavor.",
+    "quoteAttribution": "",
     "imageAlt": "Five pouches of The Heuman Chef smoked beef jerky, each on its flavor's color"
   },
   "stats": {
-    "kicker": "Why it works",
+    "kicker": "",
     "heading": "For those who care",
     "items": {
       "protein": "protein in every pouch",
@@ -257,7 +258,7 @@
     }
   },
   "process": {
-    "kicker": "The process",
+    "kicker": "",
     "heading": "Behind the scenes",
     "intro": "Four steps to perfection.",
     "steps": {
@@ -280,21 +281,21 @@
     }
   },
   "testimonials": {
-    "kicker": "What people say",
+    "kicker": "",
     "heading": "From the ones who've tasted it",
     "ratingLabel": "Rated {rating} out of 5",
     "items": {
       "yael": {
-        "name": "Yael G.",
-        "quote": "I took a pouch on a trip up north and it was gone before we even got there. The smoke tastes real — nothing like an artificial flavoring."
+        "name": "Refael M.",
+        "quote": "Bro, your honey-pepper is insane — I saved the rest to eat on reserve duty."
       },
       "noam": {
-        "name": "Noam S.",
-        "quote": "It's replaced my post-workout protein bar. Finally something that does the job and actually tastes good."
+        "name": "Yaniv H.",
+        "quote": "Some of the best I've had. The BBQ and the garlic — a 10 out of 10."
       },
       "tamar": {
-        "name": "Tamar L.",
-        "quote": "The za'atar one is the house favorite. I order two at a time, because one never survives the week."
+        "name": "Michael A.",
+        "quote": "Started with one bag and got hooked. There's always some in the fridge now — the za'atar's my favorite."
       }
     }
   },
@@ -337,7 +338,7 @@
   },
   "about": {
     "kicker": "The brand",
-    "heading": "Born of fire, not a factory line",
+    "heading": "Eat Like a Chef",
     "intro": "The Heuman Chef — handcrafted beef jerky. Bold flavor. No preservatives. No compromises. Here's the story, the numbers and the process behind every pouch.",
     "metaTitle": "Our story",
     "metaDescription": "The story, the numbers and the cherry-wood smoking process behind The Heuman Chef beef jerky."
@@ -346,12 +347,12 @@
     "siteName": "The Heuman Chef",
     "titleDefault": "The Heuman Chef — Hand-crafted Smoked Beef Jerky",
     "titleTemplate": "%s — The Heuman Chef",
-    "description": "Small-batch beef jerky, smoked over cherry wood — born of fire, not a factory line. Six flavors, delivered across Israel.",
+    "description": "Hand-crafted beef jerky, smoked over cherry wood — because not all snacks are created equal. Kosher. Five flavors, delivered across Israel.",
     "tagline": "Not all snacks are created equal",
     "ogAlt": "The Heuman Chef — hand-crafted smoked beef jerky",
     "home": {
       "title": "The Heuman Chef — Hand-crafted Smoked Beef Jerky",
-      "description": "Six flavors of hand-made beef jerky, smoked over cherry wood. Order online with delivery across Israel."
+      "description": "Five flavors of hand-crafted beef jerky, smoked over cherry wood. Order online with delivery across Israel."
     },
     "notFound": {
       "title": "Page not found",
