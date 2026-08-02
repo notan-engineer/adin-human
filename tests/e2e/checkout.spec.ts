@@ -57,18 +57,15 @@ for (const locale of LOCALES) {
         String(SUBTOTAL / 100),
       );
 
-      // ── Delivery defaults to regular delivery at ₪35 ────────────────────
-      const select = page.locator("select#delivery-method");
-      await expect(select).toBeVisible();
-      await expect(select).toHaveValue("courier");
+      // ── Delivery defaults to regular delivery at the flat ₪40 fee ───────
+      const courierRadio = page.locator("#dm-courier");
+      await expect(courierRadio).toBeVisible();
+      await expect(courierRadio).toBeChecked();
 
-      const selectedLabel = stripBidi(
-        await select.evaluate(
-          (el) => (el as HTMLSelectElement).selectedOptions[0]?.textContent ?? "",
-        ),
-      );
-      expect(selectedLabel).toContain(String(COURIER_AGOROT / 100));
-      expect(selectedLabel).toContain("₪");
+      const courierCard = page.locator('label[for="dm-courier"]');
+      const cardText = stripBidi(await courierCard.innerText());
+      expect(cardText).toContain(String(COURIER_AGOROT / 100));
+      expect(cardText).toContain("₪");
 
       // ── Contact ─────────────────────────────────────────────────────────
       await page.locator("#contact-name").fill("אדין יומן");

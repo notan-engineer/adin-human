@@ -5,12 +5,10 @@ import { AlertCircle, Loader2, Store } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 
 import { CheckoutSection } from "@/components/checkout/CheckoutSection";
-import { DeliveryMethodSelect } from "@/components/checkout/DeliveryMethodSelect";
-import type { DeliveryOption } from "@/components/checkout/DeliveryMethodSelect";
+import { DeliveryMethodPicker } from "@/components/checkout/DeliveryMethodPicker";
 import { IsraeliAddressForm } from "@/components/checkout/IsraeliAddressForm";
 import type { AddressErrors } from "@/components/checkout/IsraeliAddressForm";
 import { PaymentMethods } from "@/components/checkout/PaymentMethods";
-import { StepPickup } from "@/components/checkout/StepPickup";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,10 +18,9 @@ import type {
   Address,
   DeliveryMethod,
   PaymentMethod,
-  RateQuote,
 } from "@/lib/commerce/types";
 import { bundleDiscountAgorot } from "@/lib/commerce/bundle-pricing";
-import { COURIER_FEE_AGOROT } from "@/lib/commerce/shipping";
+import { courierFeeAgorot } from "@/lib/commerce/shipping";
 import { Link } from "@/lib/i18n/navigation";
 import { formatAgorot } from "@/lib/money";
 import { useCart } from "@/lib/store/cart";
@@ -59,30 +56,6 @@ const EMPTY_ADDRESS: Address = {
   notes: "",
 };
 
-/**
- * Display order of the delivery dropdown; also the auto-fallback preference.
- * The live offer is courier + self-pickup only — the wider DeliveryMethod
- * union survives in types for legacy orders / future re-expansion.
- */
-const METHOD_ORDER: DeliveryMethod[] = ["courier", "self_pickup"];
-
-/**
- * Indicative list prices used to populate the dropdown BEFORE a city is known.
- * The moment a city is entered, the live `/api/delivery/quote` response
- * replaces these — and the summary shows `summary.shippingPending` until it
- * does, so no unquoted price is ever charged. Courier is the flat nationwide
- * fee from `lib/commerce/shipping.ts`, so fallback and quote can't drift.
- */
-const FALLBACK_PRICES: Record<DeliveryMethod, number> = {
-  courier: COURIER_FEE_AGOROT,
-  same_day: 4500,
-  pickup_point: 2000,
-  locker: 1200,
-  self_pickup: 0,
-};
-
-const QUOTE_DEBOUNCE_MS = 400;
-
 type Contact = { name: string; email: string; phone: string };
 type ContactErrors = Partial<Record<keyof Contact, string>>;
 type SectionKey = "contact" | "delivery" | "payment";
@@ -92,9 +65,10 @@ type SectionKey = "contact" | "delivery" | "payment";
  *
  * Everything is visible at once: an anchored order summary (products + totals)
  * on top, then three collapsible sections — contact, delivery & address,
- * payment — and one submit. No steps, no next/back. Delivery method is a native
- * dropdown defaulting to `courier`, and the address / pickup-point inputs live
- * in the same section right below it, swapping on the chosen method.
+ * payment — and one submit. No steps, no next/back. Delivery is two flat-fee
+ * radio cards (courier, default, or free self-pickup); shipping is knowable
+ * INSTANTLY from the shared constants — no quote round-trip — with the server
+ * quote at order-create remaining the authority.
  *
  * Money shown here is display-only (integer agorot, formatted at render); the
  * server recomputes every figure on `order/create`. RTL-safe via logical
@@ -128,129 +102,24 @@ export function CheckoutForm() {
   });
   const [method, setMethod] = React.useState<DeliveryMethod>("courier");
   const [address, setAddress] = React.useState<Address>(EMPTY_ADDRESS);
-  const [pickupCity, setPickupCity] = React.useState("");
-  const [pickupPointId, setPickupPointId] = React.useState("");
   const [paymentMethod, setPaymentMethod] =
     React.useState<PaymentMethod>("card");
 
   const [contactErrors, setContactErrors] = React.useState<ContactErrors>({});
   const [addrErrors, setAddrErrors] = React.useState<AddressErrors>({});
-  const [pickupErrors, setPickupErrors] = React.useState<{
-    city?: string;
-    point?: string;
-  }>({});
   const [banner, setBanner] = React.useState<string | null>(null);
 
-  const [rates, setRates] = React.useState<RateQuote[] | null>(null);
-  const [quoting, setQuoting] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
 
   const [openSections, setOpenSections] = React.useState<
     Record<SectionKey, boolean>
   >({ contact: true, delivery: true, payment: true });
 
-  const needsAddress = method === "courier" || method === "same_day";
-  const needsPickup = method === "pickup_point" || method === "locker";
-  const destinationCity = needsPickup ? pickupCity : address.city;
-
-  // ── Live, zone-aware quote ───────────────────────────────────────────────
-  // One debounced request per city/cart change, asking for ALL methods (no
-  // `method` field) — the response both prices the dropdown and tells us which
-  // methods that city supports. Switching the dropdown therefore re-prices the
-  // summary instantly from the cached rate list, with no extra round-trip.
-  const itemsKey = lines.map((l) => `${l.product.slug}:${l.qty}`).join(",");
-  const quoteToken = React.useRef(0);
-
-  React.useEffect(() => {
-    const city = destinationCity.trim();
-    if (!city || itemsKey === "") {
-      quoteToken.current += 1;
-      setRates(null);
-      setQuoting(false);
-      return;
-    }
-
-    const token = ++quoteToken.current;
-    setQuoting(true);
-
-    const timer = setTimeout(() => {
-      fetch("/api/delivery/quote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          items: itemsKey.split(",").map((pair) => {
-            const [slug, qty] = pair.split(":");
-            return { slug, qty: Number(qty) };
-          }),
-          destination: { city },
-        }),
-      })
-        .then((res) => (res.ok ? res.json() : { rates: [] }))
-        .then((data: { rates?: RateQuote[] }) => {
-          if (token !== quoteToken.current) return;
-          setRates(data.rates ?? []);
-          setQuoting(false);
-        })
-        .catch(() => {
-          if (token !== quoteToken.current) return;
-          setRates(null);
-          setQuoting(false);
-        });
-    }, QUOTE_DEBOUNCE_MS);
-
-    return () => clearTimeout(timer);
-  }, [destinationCity, itemsKey]);
-
-  /**
-   * Switch method, carrying the destination city with it.
-   *
-   * Address methods and pickup methods read the city from different inputs, so
-   * without this the quote would silently fall back to whatever city the *other*
-   * input still held — pricing one city while the UI talks about another.
-   */
-  const changeMethod = React.useCallback(
-    (next: DeliveryMethod) => {
-      if (next === method) return;
-      const city = destinationCity.trim();
-      if (city) {
-        if (next === "pickup_point" || next === "locker") setPickupCity(city);
-        else setAddress((a) => (a.city === city ? a : { ...a, city }));
-      }
-      setMethod(next);
-    },
-    [method, destinationCity],
-  );
-
-  // If the chosen method isn't offered for this city, say so and fall back to
-  // one that is — never price an unavailable method from stale/default data.
-  React.useEffect(() => {
-    if (!rates || rates.some((r) => r.method === method)) return;
-    const city = destinationCity.trim();
-    if (!city) return;
-    setBanner(t("validation.notAvailableCity", { city }));
-    const fallback = METHOD_ORDER.find((m) => rates.some((r) => r.method === m));
-    if (fallback) changeMethod(fallback);
-  }, [rates, method, destinationCity, changeMethod, t]);
-
-  // ── Dropdown options ─────────────────────────────────────────────────────
-  const options = React.useMemo<DeliveryOption[]>(() => {
-    const priced = rates && rates.length > 0;
-    return METHOD_ORDER.flatMap((m) => {
-      const rate = rates?.find((r) => r.method === m);
-      if (priced && !rate) return [];
-      return [
-        {
-          method: m,
-          label: t(`methods.${m}.title`),
-          priceAgorot: rate?.priceAgorot ?? FALLBACK_PRICES[m],
-          etaMinDays: rate?.etaMinDays,
-          etaMaxDays: rate?.etaMaxDays,
-        },
-      ];
-    });
-  }, [rates, t]);
+  const needsAddress = method === "courier";
 
   // ── Totals (display-only; the server recomputes identically) ─────────────
+  // Shipping is a flat nationwide fee (free over the threshold, judged on the
+  // discounted subtotal), so everything is knowable synchronously — no quote.
   const subtotal = lines.reduce(
     (sum, l) => sum + l.product.priceAgorot * l.qty,
     0,
@@ -258,10 +127,9 @@ export function CheckoutForm() {
   const bagCount = lines.reduce((sum, l) => sum + l.qty, 0);
   const discount = bundleDiscountAgorot(bagCount);
   const merchandise = subtotal - discount;
-  const selectedRate = rates?.find((r) => r.method === method) ?? null;
-  const shippingKnown = method === "self_pickup" || selectedRate !== null;
-  const shipping = method === "self_pickup" ? 0 : selectedRate?.priceAgorot ?? 0;
-  const total = merchandise + (shippingKnown ? shipping : 0);
+  const shipping =
+    method === "self_pickup" ? 0 : courierFeeAgorot(merchandise);
+  const total = merchandise + shipping;
   const { vat } = splitGross(total);
 
   // ── Validation ───────────────────────────────────────────────────────────
@@ -373,19 +241,6 @@ export function CheckoutForm() {
       if (!target && firstBad) {
         target = { section: "delivery", fieldId: `addr-${firstBad}` };
       }
-    } else if (needsPickup) {
-      const pErrs: { city?: string; point?: string } = {};
-      if (!pickupCity.trim()) pErrs.city = t("validation.required");
-      if (!pickupPointId) pErrs.point = t("validation.selectPoint");
-      setPickupErrors(pErrs);
-      if (!target && (pErrs.city || pErrs.point)) {
-        // No city → focus the city field; city fine but no point chosen → put
-        // focus on the section header so the point list is what comes into view.
-        target = {
-          section: "delivery",
-          fieldId: pErrs.city ? "pickup-city" : "section-delivery-header",
-        };
-      }
     }
 
     if (target) {
@@ -393,16 +248,7 @@ export function CheckoutForm() {
       return;
     }
 
-    // 2) Never submit a method the destination doesn't support.
-    if (rates && !rates.some((r) => r.method === method)) {
-      setBanner(
-        t("validation.notAvailableCity", { city: destinationCity.trim() }),
-      );
-      setOpenSections((prev) => ({ ...prev, delivery: true }));
-      return;
-    }
-
-    // 3) Create the order, then the hosted payment session, then leave.
+    // 2) Create the order, then the hosted payment session, then leave.
     setSubmitting(true);
     try {
       const orderRes = await fetch("/api/order/create", {
@@ -418,7 +264,6 @@ export function CheckoutForm() {
           delivery: {
             method,
             address: needsAddress ? cleanAddress(address) : undefined,
-            pickupPointId: needsPickup ? pickupPointId : undefined,
           },
         }),
       });
@@ -516,25 +361,11 @@ export function CheckoutForm() {
                 aria-live="polite"
                 className="text-end tabular-nums text-foreground"
               >
-                {!shippingKnown
-                  ? t("summary.shippingPending")
-                  : shipping === 0
-                    ? t("summary.free")
-                    : formatAgorot(shipping, locale)}
+                {shipping === 0
+                  ? t("summary.free")
+                  : formatAgorot(shipping, locale)}
               </dd>
             </div>
-
-            {selectedRate ? (
-              <div className="flex items-center justify-between gap-4 text-muted-foreground">
-                <dt>{t("summary.eta")}</dt>
-                <dd className="text-end">
-                  {t("summary.etaDays", {
-                    min: selectedRate.etaMinDays,
-                    max: selectedRate.etaMaxDays,
-                  })}
-                </dd>
-              </div>
-            ) : null}
 
             <div className="flex items-center justify-between gap-4 text-muted-foreground">
               <dt>{t("summary.vatIncluded")}</dt>
@@ -640,14 +471,13 @@ export function CheckoutForm() {
           }
         >
           <div className="flex flex-col gap-5">
-            <DeliveryMethodSelect
+            <DeliveryMethodPicker
               value={method}
               onChange={(m) => {
                 setBanner(null);
-                changeMethod(m);
+                setMethod(m);
               }}
-              options={options}
-              loading={quoting}
+              courierFeeAgorot={courierFeeAgorot(merchandise)}
               label={t("delivery.methodLabel")}
               freeLabel={t("summary.free")}
             />
@@ -658,29 +488,6 @@ export function CheckoutForm() {
                 onChange={setAddress}
                 errors={addrErrors}
                 onBlurField={handleAddressBlur}
-              />
-            ) : needsPickup ? (
-              <StepPickup
-                type={method === "locker" ? "locker" : "pickup_point"}
-                city={pickupCity}
-                onCityChange={(c) => {
-                  setPickupCity(c);
-                  setPickupPointId("");
-                  setPickupErrors({});
-                }}
-                onCityBlur={() =>
-                  setPickupErrors((prev) => ({
-                    ...prev,
-                    city: pickupCity.trim() ? undefined : t("validation.required"),
-                  }))
-                }
-                value={pickupPointId}
-                onChange={(id) => {
-                  setPickupPointId(id);
-                  setPickupErrors((prev) => ({ ...prev, point: undefined }));
-                }}
-                cityError={pickupErrors.city}
-                pointError={pickupErrors.point}
               />
             ) : (
               // self_pickup — no address inputs, just where to collect.
