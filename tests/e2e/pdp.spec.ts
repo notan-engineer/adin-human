@@ -10,7 +10,7 @@ const SLUG = "bbq";
  */
 for (const locale of LOCALES) {
   test.describe(`pdp (${locale.code})`, () => {
-    test("navigates from the grid and renders title, price, heat and nutrition", async ({
+    test("navigates from the grid and renders title, price and nutrition", async ({
       page,
     }) => {
       await page.goto(path("/", locale));
@@ -35,16 +35,27 @@ for (const locale of LOCALES) {
         .innerText();
       expect(stripBidi(priceText)).toMatch(/(₪\s?\d|\d\s?₪)/);
 
-      // Heat meter exposes itself as a single labelled image.
-      await expect(
-        page.getByRole("img", { name: /(רמת חריפות|Heat level)/ }).first(),
-      ).toBeVisible();
-
       // Nutrition table: caption + all five per-100g rows.
       const table = page.locator("table");
       await expect(table).toBeVisible();
       await expect(table.locator("tbody tr")).toHaveCount(5);
       await expect(table.locator("th[scope=row]").first()).not.toBeEmpty();
+    });
+
+    test("shows the heat meter only for spicy flavors", async ({ page }) => {
+      // maple is heatLevel 2 — the meter renders beside the price as one
+      // labelled image (a11y contract: "Heat level N of 3").
+      await page.goto(path("/product/maple", locale));
+      const heat = page.getByTestId("pdp-heat");
+      await expect(heat).toBeVisible();
+      await expect(heat).toHaveAttribute(
+        "aria-label",
+        /(רמת חריפות|Heat level)/,
+      );
+
+      // bbq is heatLevel 0 — the meter must be absent entirely, not ghosted.
+      await page.goto(path("/product/bbq", locale));
+      await expect(page.getByTestId("pdp-heat")).toHaveCount(0);
     });
 
     test("add to cart increments the header cart badge", async ({ page }) => {

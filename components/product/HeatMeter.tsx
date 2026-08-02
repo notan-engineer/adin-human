@@ -4,9 +4,10 @@ import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 /**
- * 0–3 flame icons showing a product's heat. Filled flames = heat; empty ones are
- * dim outlines. The whole meter is a single labelled image for screen readers
- * ("Heat level N of 3"); level 0 additionally shows a visible "Mild" tag.
+ * 1–3 flame icons showing a product's heat. Filled flames = heat; empty ones
+ * are dim outlines. The whole meter is a single labelled image for screen
+ * readers ("Heat level N of 3"). Renders nothing at level 0 — absence of the
+ * meter is the "not spicy" signal.
  *
  * Server-safe: uses next-intl's `useTranslations`, which resolves in both
  * Server and Client Components.
@@ -14,16 +15,21 @@ import { cn } from "@/lib/utils";
 export function HeatMeter({
   level,
   className,
+  "data-testid": testId,
 }: {
   level: 0 | 1 | 2 | 3;
   className?: string;
+  "data-testid"?: string;
 }) {
   const t = useTranslations("product");
+
+  if (level === 0) return null;
 
   return (
     <div
       role="img"
       aria-label={t("heatLevel", { level })}
+      data-testid={testId}
       className={cn("inline-flex items-center gap-1", className)}
     >
       {[1, 2, 3].map((i) => (
@@ -38,11 +44,6 @@ export function HeatMeter({
           )}
         />
       ))}
-      {level === 0 && (
-        <span className="ms-1 text-xs font-medium text-muted-foreground">
-          {t("mild")}
-        </span>
-      )}
     </div>
   );
 }

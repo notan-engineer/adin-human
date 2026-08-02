@@ -142,7 +142,7 @@ export default async function ProductPage({
               <span className="font-display text-3xl font-bold text-gold">
                 {formatAgorot(product.priceAgorot, loc)}
               </span>
-              <HeatMeter level={product.heatLevel} />
+              <HeatMeter level={product.heatLevel} data-testid="pdp-heat" />
             </div>
 
             <TrustBadges badges={product.badges} />
