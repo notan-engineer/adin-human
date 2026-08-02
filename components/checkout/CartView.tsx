@@ -84,7 +84,7 @@ export function CartView() {
       </section>
 
       <aside className="lg:sticky lg:top-24 lg:self-start">
-        <OrderSummary subtotalAgorot={subtotal} />
+        <OrderSummary subtotalAgorot={subtotal} bagCount={count} />
       </aside>
     </div>
   );

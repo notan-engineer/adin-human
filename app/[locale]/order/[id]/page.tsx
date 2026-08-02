@@ -172,6 +172,14 @@ export default async function OrderConfirmationPage({
               {formatAgorot(order.subtotalAgorot, loc)}
             </dd>
           </div>
+          {order.discountAgorot > 0 && (
+            <div className="flex items-center justify-between gap-4">
+              <dt className="text-gold">{t("bundleDiscount")}</dt>
+              <dd className="tabular-nums text-gold">
+                {formatAgorot(-order.discountAgorot, loc)}
+              </dd>
+            </div>
+          )}
           <div className="flex items-center justify-between gap-4">
             <dt className="text-muted-foreground">{t("shipping")}</dt>
             <dd className="tabular-nums">

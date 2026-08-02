@@ -3,30 +3,42 @@
 import { useLocale, useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
+import { bundleDiscountAgorot } from "@/lib/commerce/bundle-pricing";
+import {
+  COURIER_FEE_AGOROT,
+  FREE_SHIPPING_THRESHOLD_AGOROT,
+  courierFeeAgorot,
+} from "@/lib/commerce/shipping";
 import { Link } from "@/lib/i18n/navigation";
 import { formatAgorot } from "@/lib/money";
 import { splitGross } from "@/lib/vat";
 
 /**
- * Order totals for the cart. Catalog prices are VAT-inclusive, so the subtotal
- * already contains VAT; we surface the VAT portion (via `splitGross`) as an
- * informational "includes VAT" line rather than adding it on top. Shipping is
- * quoted at checkout, so the total equals the subtotal here.
+ * Order totals for the cart. Catalog prices are VAT-inclusive, so the
+ * (discounted) subtotal already contains VAT; we surface the VAT portion (via
+ * `splitGross`) as an informational "includes VAT" line rather than adding it
+ * on top. Shipping is a flat nationwide courier fee (free over the threshold,
+ * free for self-pickup — chosen at checkout), so the row shows the real fee
+ * but the total here stays merchandise-only.
  *
- * `subtotalAgorot` is integer agorot supplied by the parent; formatting happens
- * only at the render boundary.
+ * `subtotalAgorot` / `bagCount` are supplied by the parent in integer agorot /
+ * units; formatting happens only at the render boundary.
  */
 export function OrderSummary({
   subtotalAgorot,
+  bagCount,
 }: {
   subtotalAgorot: number;
+  bagCount: number;
 }) {
   const locale = useLocale() as "he" | "en";
   const t = useTranslations("cart");
 
-  const { vat } = splitGross(subtotalAgorot);
-  // No shipping/discount applied yet → total is the VAT-inclusive subtotal.
-  const total = subtotalAgorot;
+  const discount = bundleDiscountAgorot(bagCount);
+  const merchandise = subtotalAgorot - discount;
+  const { vat } = splitGross(merchandise);
+  const shippingFree = courierFeeAgorot(merchandise) === 0;
+  const total = merchandise;
 
   return (
     <div className="rounded-xl border border-border bg-card p-5 sm:p-6">
@@ -38,20 +50,50 @@ export function OrderSummary({
           </dd>
         </div>
 
+        {discount > 0 && (
+          <div className="flex items-center justify-between gap-4">
+            <dt className="text-gold">{t("bundleDiscount")}</dt>
+            <dd className="tabular-nums text-gold">
+              {formatAgorot(-discount, locale)}
+            </dd>
+          </div>
+        )}
+
         <div className="flex items-center justify-between gap-4 text-muted-foreground">
           <dt>{t("vatIncluded")}</dt>
           <dd className="tabular-nums">{formatAgorot(vat, locale)}</dd>
         </div>
 
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-start justify-between gap-4">
           <dt className="text-muted-foreground">{t("shipping")}</dt>
+          {/* The progress nudge nests INSIDE the dd: axe's definition-list
+              rule rejects loose text nodes between dt/dd groups, and keeping
+              it above the total row keeps the total the last ₪ figure on the
+              page (pdp.spec's cart assertion reads the last one). */}
           <dd className="text-end text-muted-foreground">
-            {t("shippingAtCheckout")}
+            {shippingFree ? (
+              t("free")
+            ) : (
+              <>
+                {t("shippingFlat", {
+                  fee: formatAgorot(COURIER_FEE_AGOROT, locale),
+                  threshold: formatAgorot(
+                    FREE_SHIPPING_THRESHOLD_AGOROT,
+                    locale,
+                  ),
+                })}
+                <span className="mt-0.5 block text-xs">
+                  {t("freeShippingProgress", {
+                    amount: formatAgorot(
+                      FREE_SHIPPING_THRESHOLD_AGOROT - merchandise,
+                      locale,
+                    ),
+                  })}
+                </span>
+              </>
+            )}
           </dd>
         </div>
-
-        {/* TODO(discount): render a coupon/discount row here once promotions
-            ship (label + negative amount, subtracted from the total). */}
 
         <div className="mt-2 flex items-center justify-between gap-4 border-t border-border/60 pt-4">
           <dt className="font-display text-base font-bold text-foreground">

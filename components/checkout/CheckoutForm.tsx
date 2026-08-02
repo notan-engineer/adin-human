@@ -22,6 +22,7 @@ import type {
   PaymentMethod,
   RateQuote,
 } from "@/lib/commerce/types";
+import { bundleDiscountAgorot } from "@/lib/commerce/bundle-pricing";
 import { COURIER_FEE_AGOROT } from "@/lib/commerce/shipping";
 import { Link } from "@/lib/i18n/navigation";
 import { formatAgorot } from "@/lib/money";
@@ -249,15 +250,18 @@ export function CheckoutForm() {
     });
   }, [rates, t]);
 
-  // ── Totals (display-only) ────────────────────────────────────────────────
+  // ── Totals (display-only; the server recomputes identically) ─────────────
   const subtotal = lines.reduce(
     (sum, l) => sum + l.product.priceAgorot * l.qty,
     0,
   );
+  const bagCount = lines.reduce((sum, l) => sum + l.qty, 0);
+  const discount = bundleDiscountAgorot(bagCount);
+  const merchandise = subtotal - discount;
   const selectedRate = rates?.find((r) => r.method === method) ?? null;
   const shippingKnown = method === "self_pickup" || selectedRate !== null;
   const shipping = method === "self_pickup" ? 0 : selectedRate?.priceAgorot ?? 0;
-  const total = subtotal + (shippingKnown ? shipping : 0);
+  const total = merchandise + (shippingKnown ? shipping : 0);
   const { vat } = splitGross(total);
 
   // ── Validation ───────────────────────────────────────────────────────────
@@ -496,6 +500,15 @@ export function CheckoutForm() {
                 {formatAgorot(subtotal, locale)}
               </dd>
             </div>
+
+            {discount > 0 && (
+              <div className="flex items-center justify-between gap-4">
+                <dt className="text-gold">{t("summary.bundleDiscount")}</dt>
+                <dd className="tabular-nums text-gold">
+                  {formatAgorot(-discount, locale)}
+                </dd>
+              </div>
+            )}
 
             <div className="flex items-center justify-between gap-4">
               <dt className="text-muted-foreground">{t("summary.shipping")}</dt>

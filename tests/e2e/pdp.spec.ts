@@ -1,6 +1,9 @@
 import { expect, test } from "@playwright/test";
 
-import { LOCALES, PRICE_AGOROT, path, stripBidi } from "./helpers";
+// Relative import on purpose: Playwright's TS loader doesn't get the app's
+// `@/*` alias, and this module is dependency-free.
+import { bestBundleTotalAgorot } from "../../lib/commerce/bundle-pricing";
+import { LOCALES, path, stripBidi } from "./helpers";
 
 const SLUG = "bbq";
 
@@ -92,12 +95,13 @@ for (const locale of LOCALES) {
 
       await expect(badge).toHaveText("4");
 
-      // And the cart page agrees on the money.
+      // And the cart page agrees on the money: 4 bags bundle-price as
+      // 3-pack + single (₪110 + ₪40 = ₪150), not 4 × list.
       await page.goto(path("/cart", locale));
       const total = stripBidi(
         await page.getByText(/₪/).last().innerText(),
       );
-      expect(total).toContain(String((PRICE_AGOROT[SLUG] * 4) / 100));
+      expect(total).toContain(String(bestBundleTotalAgorot(4) / 100));
     });
   });
 }
