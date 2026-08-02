@@ -7,6 +7,7 @@ import {
 } from "@/lib/commerce/order-service";
 import { getOrderRepository } from "@/lib/commerce/registry";
 import { getProduct } from "@/lib/catalog";
+import { bundleDiscountAgorot } from "@/lib/commerce/bundle-pricing";
 import { splitGross } from "@/lib/vat";
 import type { Address } from "@/lib/commerce/types";
 
@@ -22,7 +23,7 @@ const centerAddress: Address = {
 };
 
 describe("computeTotals", () => {
-  it("subtotal = Σ unitPrice*qty, self_pickup ships free, total & vat reconcile", async () => {
+  it("subtotal = Σ unitPrice*qty, self_pickup ships free, totals & vat reconcile", async () => {
     const r = await computeTotals(
       [
         { slug: "bbq", qty: 2 },
@@ -33,17 +34,22 @@ describe("computeTotals", () => {
 
     const expectedSubtotal = bbqPrice * 2 + maplePrice * 1;
     expect(r.subtotalAgorot).toBe(expectedSubtotal);
+    // 3 bags → the 3-pack tier kicks in (₪120 list → ₪110).
+    expect(r.discountAgorot).toBe(bundleDiscountAgorot(3));
+    expect(r.discountAgorot).toBe(1_000);
     // self_pickup → no shipping charge, no rate.
     expect(r.shippingAgorot).toBe(0);
     expect(r.rate).toBeUndefined();
-    // total = subtotal + shipping; vat is the portion contained in the total.
-    expect(r.totalAgorot).toBe(r.subtotalAgorot + r.shippingAgorot);
+    // total = subtotal - discount + shipping; vat is contained in the total.
+    expect(r.totalAgorot).toBe(
+      r.subtotalAgorot - r.discountAgorot + r.shippingAgorot,
+    );
     expect(r.vatAgorot).toBe(splitGross(r.totalAgorot).vat);
     // Prices come from the catalog, never the client.
     expect(r.orderItems[0].unitPriceAgorot).toBe(bbqPrice);
   });
 
-  it("adds the chosen delivery rate to shipping and keeps total = subtotal + shipping", async () => {
+  it("adds the chosen delivery rate to shipping and keeps totals reconciled", async () => {
     const r = await computeTotals(
       [{ slug: "bbq", qty: 1 }],
       "courier",
@@ -52,9 +58,32 @@ describe("computeTotals", () => {
 
     expect(r.rate?.method).toBe("courier");
     expect(r.shippingAgorot).toBe(r.rate?.priceAgorot);
+    // 1 bag (₪40) is far below the ₪400 free-shipping threshold.
     expect(r.shippingAgorot).toBeGreaterThan(0);
-    expect(r.totalAgorot).toBe(r.subtotalAgorot + r.shippingAgorot);
+    expect(r.discountAgorot).toBe(0);
+    expect(r.totalAgorot).toBe(
+      r.subtotalAgorot - r.discountAgorot + r.shippingAgorot,
+    );
     expect(r.vatAgorot).toBe(splitGross(r.totalAgorot).vat);
+  });
+
+  it("ships courier free once the DISCOUNTED subtotal reaches the threshold", async () => {
+    // 11 bags: list ₪440; best decomposition 5+3+3 → 185+110+110 = ₪405,
+    // which clears the ₪400 threshold → free courier.
+    const r = await computeTotals([{ slug: "bbq", qty: 11 }], "courier", centerAddress);
+    expect(r.subtotalAgorot).toBe(bbqPrice * 11);
+    expect(r.subtotalAgorot - r.discountAgorot).toBeGreaterThanOrEqual(40_000);
+    expect(r.shippingAgorot).toBe(0);
+    expect(r.totalAgorot).toBe(r.subtotalAgorot - r.discountAgorot);
+
+    // 10 bags: bundled ₪370 < ₪400 → courier still charged.
+    const under = await computeTotals(
+      [{ slug: "bbq", qty: 10 }],
+      "courier",
+      centerAddress,
+    );
+    expect(under.subtotalAgorot - under.discountAgorot).toBeLessThan(40_000);
+    expect(under.shippingAgorot).toBeGreaterThan(0);
   });
 
   it("throws a typed CommerceError for an unknown slug", async () => {
@@ -81,6 +110,7 @@ describe("fulfillPaidOrder", () => {
       },
       deliveryMethod: "self_pickup",
       subtotalAgorot: totals.subtotalAgorot,
+      discountAgorot: totals.discountAgorot,
       vatAgorot: totals.vatAgorot,
       shippingAgorot: totals.shippingAgorot,
       totalAgorot: totals.totalAgorot,

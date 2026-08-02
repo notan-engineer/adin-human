@@ -1,26 +1,19 @@
 /**
  * Israel delivery-zone table + city→zone resolver.
  *
- * ⚠️ PLACEHOLDER DATA — FOR REVIEW. Every price (agorot) and ETA (business days)
- * below is a provisional placeholder and MUST be confirmed with the carrier(s)
- * and the brand before launch. Prices are integer agorot (₪1 = 100 agorot).
+ * The offer is deliberately simple: regular courier at a FLAT nationwide fee
+ * (`COURIER_FEE_AGOROT`, ₪40) plus free self-pickup — every zone carries
+ * exactly those two methods. Zones still exist because ETAs genuinely differ
+ * by region (⚠️ ETA days are PLACEHOLDERS — confirm with the carrier), and so
+ * a future re-expansion (same-day, pickup points, lockers — see git history)
+ * has its structure waiting.
  *
- * Zones:
- *   center    — Gush Dan (תל אביב, רמת גן, גבעתיים, הרצליה, חולון, בת ים,
- *               פתח תקווה, ראשון לציון …). Only zone with locker. Same-day is
- *               now offered nationwide (every zone), pending carrier confirmation.
- *   jerusalem — ירושלים.
- *   north     — חיפה + הצפון.
- *   south     — באר שבע + הדרום.
- *   eilat     — אילת (courier only; remote).
- *   other     — default fallback for anything unmatched.
- *
- * The free-courier-over-threshold rule lives in the stub adapter
- * (`stub.ts` → FREE_COURIER_THRESHOLD_AGOROT), NOT in this table, so the table
- * stays a pure list rate card.
+ * The free-courier-over-threshold rule lives in the stub adapter (`stub.ts`),
+ * NOT in this table, so the table stays a pure list rate card.
  */
 
 import type { DeliveryMethod, Locale } from "../../types";
+import { COURIER_FEE_AGOROT } from "../../shipping";
 
 export type ZoneId =
   | "center"
@@ -45,17 +38,14 @@ export interface Zone {
   methods: ZoneMethod[];
 }
 
-/** The rate card. PLACEHOLDER numbers — confirm before go-live. */
+/** The rate card: flat courier + free self-pickup everywhere; ETAs vary. */
 export const ZONES: Record<ZoneId, Zone> = {
   center: {
     id: "center",
     label: { he: "גוש דן", en: "Gush Dan (Center)" },
     methods: [
       { method: "self_pickup", priceAgorot: 0, etaMinDays: 0, etaMaxDays: 1 },
-      { method: "locker", priceAgorot: 1200, etaMinDays: 1, etaMaxDays: 3 },
-      { method: "pickup_point", priceAgorot: 1500, etaMinDays: 1, etaMaxDays: 3 },
-      { method: "same_day", priceAgorot: 4500, etaMinDays: 0, etaMaxDays: 1 },
-      { method: "courier", priceAgorot: 3500, etaMinDays: 1, etaMaxDays: 2 },
+      { method: "courier", priceAgorot: COURIER_FEE_AGOROT, etaMinDays: 1, etaMaxDays: 2 },
     ],
   },
   jerusalem: {
@@ -63,9 +53,7 @@ export const ZONES: Record<ZoneId, Zone> = {
     label: { he: "ירושלים", en: "Jerusalem" },
     methods: [
       { method: "self_pickup", priceAgorot: 0, etaMinDays: 0, etaMaxDays: 1 },
-      { method: "pickup_point", priceAgorot: 1800, etaMinDays: 2, etaMaxDays: 4 },
-      { method: "same_day", priceAgorot: 4500, etaMinDays: 0, etaMaxDays: 1 },
-      { method: "courier", priceAgorot: 3500, etaMinDays: 2, etaMaxDays: 3 },
+      { method: "courier", priceAgorot: COURIER_FEE_AGOROT, etaMinDays: 2, etaMaxDays: 3 },
     ],
   },
   north: {
@@ -73,26 +61,23 @@ export const ZONES: Record<ZoneId, Zone> = {
     label: { he: "צפון", en: "North" },
     methods: [
       { method: "self_pickup", priceAgorot: 0, etaMinDays: 0, etaMaxDays: 1 },
-      { method: "pickup_point", priceAgorot: 2000, etaMinDays: 3, etaMaxDays: 5 },
-      { method: "same_day", priceAgorot: 4500, etaMinDays: 0, etaMaxDays: 1 },
-      { method: "courier", priceAgorot: 3500, etaMinDays: 2, etaMaxDays: 4 },
+      { method: "courier", priceAgorot: COURIER_FEE_AGOROT, etaMinDays: 2, etaMaxDays: 4 },
     ],
   },
   south: {
     id: "south",
     label: { he: "דרום", en: "South" },
     methods: [
-      { method: "pickup_point", priceAgorot: 2200, etaMinDays: 4, etaMaxDays: 6 },
-      { method: "same_day", priceAgorot: 4500, etaMinDays: 0, etaMaxDays: 1 },
-      { method: "courier", priceAgorot: 3500, etaMinDays: 3, etaMaxDays: 5 },
+      { method: "self_pickup", priceAgorot: 0, etaMinDays: 0, etaMaxDays: 1 },
+      { method: "courier", priceAgorot: COURIER_FEE_AGOROT, etaMinDays: 3, etaMaxDays: 5 },
     ],
   },
   eilat: {
     id: "eilat",
     label: { he: "אילת", en: "Eilat" },
     methods: [
-      { method: "same_day", priceAgorot: 4500, etaMinDays: 0, etaMaxDays: 1 },
-      { method: "courier", priceAgorot: 3500, etaMinDays: 4, etaMaxDays: 6 },
+      { method: "self_pickup", priceAgorot: 0, etaMinDays: 0, etaMaxDays: 1 },
+      { method: "courier", priceAgorot: COURIER_FEE_AGOROT, etaMinDays: 4, etaMaxDays: 6 },
     ],
   },
   other: {
@@ -100,9 +85,7 @@ export const ZONES: Record<ZoneId, Zone> = {
     label: { he: "יתר הארץ", en: "Rest of Israel" },
     methods: [
       { method: "self_pickup", priceAgorot: 0, etaMinDays: 0, etaMaxDays: 1 },
-      { method: "pickup_point", priceAgorot: 2000, etaMinDays: 4, etaMaxDays: 6 },
-      { method: "same_day", priceAgorot: 4500, etaMinDays: 0, etaMaxDays: 1 },
-      { method: "courier", priceAgorot: 3500, etaMinDays: 3, etaMaxDays: 5 },
+      { method: "courier", priceAgorot: COURIER_FEE_AGOROT, etaMinDays: 3, etaMaxDays: 5 },
     ],
   },
 };

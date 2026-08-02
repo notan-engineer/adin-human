@@ -22,6 +22,7 @@ import type {
   PaymentMethod,
   RateQuote,
 } from "@/lib/commerce/types";
+import { COURIER_FEE_AGOROT } from "@/lib/commerce/shipping";
 import { Link } from "@/lib/i18n/navigation";
 import { formatAgorot } from "@/lib/money";
 import { useCart } from "@/lib/store/cart";
@@ -57,23 +58,22 @@ const EMPTY_ADDRESS: Address = {
   notes: "",
 };
 
-/** Display order of the delivery dropdown; also the auto-fallback preference. */
-const METHOD_ORDER: DeliveryMethod[] = [
-  "courier",
-  "same_day",
-  "pickup_point",
-  "locker",
-  "self_pickup",
-];
+/**
+ * Display order of the delivery dropdown; also the auto-fallback preference.
+ * The live offer is courier + self-pickup only — the wider DeliveryMethod
+ * union survives in types for legacy orders / future re-expansion.
+ */
+const METHOD_ORDER: DeliveryMethod[] = ["courier", "self_pickup"];
 
 /**
- * Indicative list prices used to populate the dropdown BEFORE a city is known
- * (mirrors the "rest of Israel" rate card). The moment a city is entered, the
- * live `/api/delivery/quote` response replaces these — and the summary shows
- * `summary.shippingPending` until it does, so no unquoted price is ever charged.
+ * Indicative list prices used to populate the dropdown BEFORE a city is known.
+ * The moment a city is entered, the live `/api/delivery/quote` response
+ * replaces these — and the summary shows `summary.shippingPending` until it
+ * does, so no unquoted price is ever charged. Courier is the flat nationwide
+ * fee from `lib/commerce/shipping.ts`, so fallback and quote can't drift.
  */
 const FALLBACK_PRICES: Record<DeliveryMethod, number> = {
-  courier: 3500,
+  courier: COURIER_FEE_AGOROT,
   same_day: 4500,
   pickup_point: 2000,
   locker: 1200,

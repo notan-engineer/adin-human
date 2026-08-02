@@ -17,6 +17,7 @@ function sampleNewOrder(): NewOrder {
     },
     deliveryMethod: "courier",
     subtotalAgorot: 8400,
+    discountAgorot: 0,
     vatAgorot: 1281,
     shippingAgorot: 2500,
     totalAgorot: 10900,

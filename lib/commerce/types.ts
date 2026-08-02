@@ -83,8 +83,9 @@ export type OrderStatus =
 
 /**
  * A persisted order. All `*Agorot` fields are integer agorot and reconcile as
- * `subtotalAgorot + shippingAgorot === totalAgorot`, with `vatAgorot` being the
- * VAT portion already contained in `totalAgorot` (prices are VAT-inclusive).
+ * `subtotalAgorot - discountAgorot + shippingAgorot === totalAgorot`, with
+ * `vatAgorot` being the VAT portion already contained in `totalAgorot`
+ * (prices are VAT-inclusive).
  */
 export interface Order {
   id: string;
@@ -94,6 +95,8 @@ export interface Order {
   deliveryMethod: DeliveryMethod;
   pickupPointId?: string;
   subtotalAgorot: number;
+  /** Mix&match bundle discount (see `bundle-pricing.ts`). ≥ 0; 0 = none. */
+  discountAgorot: number;
   vatAgorot: number;
   shippingAgorot: number;
   totalAgorot: number;

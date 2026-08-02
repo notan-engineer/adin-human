@@ -12,16 +12,16 @@ import {
 /**
  * The money path.
  *
- * Seed a cart, open checkout, confirm the anchored summary and the ₪35 regular
- * delivery default, fill contact + a Tel Aviv address, watch shipping and the
- * total settle from the live quote, pay, and land on a paid order with an
- * invoice number. The stub payment provider completes offline by bouncing the
- * browser through our own `/api/payment/callback`.
+ * Seed a cart, open checkout, confirm the anchored summary and the flat ₪40
+ * regular delivery default, fill contact + a Tel Aviv address, watch shipping
+ * and the total settle from the live quote, pay, and land on a paid order with
+ * an invoice number. The stub payment provider completes offline by bouncing
+ * the browser through our own `/api/payment/callback`.
  */
 
 const SLUG = "bbq";
 const SUBTOTAL = PRICE_AGOROT[SLUG]; // 4000 agorot = ₪40
-const TOTAL = SUBTOTAL + COURIER_AGOROT; // 7500 agorot = ₪75
+const TOTAL = SUBTOTAL + COURIER_AGOROT; // 8000 agorot = ₪80
 
 const COPY = {
   he: {

@@ -210,6 +210,7 @@ describe("order ids are unguessable", () => {
       },
       deliveryMethod: "self_pickup",
       subtotalAgorot: 4200,
+      discountAgorot: 0,
       vatAgorot: 641,
       shippingAgorot: 0,
       totalAgorot: 4200,

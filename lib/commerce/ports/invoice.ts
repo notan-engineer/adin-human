@@ -22,6 +22,12 @@ export interface IssueInvoiceInput {
   type: "invoice_receipt" | "receipt" | "tax_invoice";
   customer: ContactInfo;
   lines: OrderItem[];
+  /**
+   * Mix&match bundle discount, integer agorot (0/omitted = none). A real
+   * adapter MUST render this as a negative document line ("הנחת מארזים") so
+   * the line items reconcile to `amountAgorot` — the stub ignores it.
+   */
+  discountAgorot?: number;
   /** Gross (VAT-inclusive) total, integer agorot. */
   amountAgorot: number;
   /** VAT portion contained in `amountAgorot`, integer agorot. */

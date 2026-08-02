@@ -43,8 +43,8 @@ export const PRICE_AGOROT: Record<string, number> = {
   zaatar: 4000,
 };
 
-/** Regular ("courier") delivery, in agorot — ₪35. */
-export const COURIER_AGOROT = 3500;
+/** Regular ("courier") delivery, in agorot — flat ₪40 nationwide. */
+export const COURIER_AGOROT = 4000;
 
 /**
  * Seed the persisted cart BEFORE any page script runs.

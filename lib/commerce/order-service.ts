@@ -23,6 +23,7 @@ import {
   getInvoiceProvider,
   getOrderRepository,
 } from "./registry";
+import { bundleDiscountAgorot } from "./bundle-pricing";
 import { getProduct } from "@/lib/catalog";
 import { splitGross } from "@/lib/vat";
 
@@ -82,10 +83,13 @@ export function resolveOrderItems(
 
 /**
  * Price a cart end-to-end, server-side. Resolves each `{ slug, qty }` from the
- * catalog, sums the subtotal, prices the chosen delivery method (0 for
- * `self_pickup`), then derives the VAT contained in the VAT-inclusive total.
+ * catalog, sums the list subtotal, applies the mix&match bundle discount (see
+ * `bundle-pricing.ts`), prices the chosen delivery method (0 for
+ * `self_pickup`; the free-shipping threshold inside the delivery provider is
+ * judged on the DISCOUNTED subtotal), then derives the VAT contained in the
+ * VAT-inclusive total.
  *
- * `total === subtotal + shipping` and `vat === splitGross(total).vat`.
+ * `total === subtotal - discount + shipping` and `vat === splitGross(total).vat`.
  */
 export async function computeTotals(
   items: { slug: string; qty: number }[],
@@ -94,6 +98,7 @@ export async function computeTotals(
 ): Promise<{
   orderItems: OrderItem[];
   subtotalAgorot: number;
+  discountAgorot: number;
   shippingAgorot: number;
   vatAgorot: number;
   totalAgorot: number;
@@ -105,6 +110,8 @@ export async function computeTotals(
     (sum, item) => sum + item.unitPriceAgorot * item.qty,
     0,
   );
+  const bagCount = orderItems.reduce((sum, item) => sum + item.qty, 0);
+  const discountAgorot = bundleDiscountAgorot(bagCount);
 
   let shippingAgorot = 0;
   let rate: RateQuote | undefined;
@@ -126,12 +133,13 @@ export async function computeTotals(
     shippingAgorot = rate.priceAgorot;
   }
 
-  const totalAgorot = subtotalAgorot + shippingAgorot;
+  const totalAgorot = subtotalAgorot - discountAgorot + shippingAgorot;
   const vatAgorot = splitGross(totalAgorot).vat;
 
   return {
     orderItems,
     subtotalAgorot,
+    discountAgorot,
     shippingAgorot,
     vatAgorot,
     totalAgorot,
@@ -163,6 +171,7 @@ export async function fulfillPaidOrder(order: Order): Promise<Order> {
     type: "invoice_receipt", // חשבונית מס/קבלה — the paid B2C document.
     customer: current.contact,
     lines: current.items,
+    discountAgorot: current.discountAgorot,
     amountAgorot: current.totalAgorot,
     vatAgorot: current.vatAgorot,
   });

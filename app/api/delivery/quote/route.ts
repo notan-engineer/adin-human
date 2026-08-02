@@ -17,13 +17,8 @@ import type { Address } from "@/lib/commerce/types";
 
 export const runtime = "nodejs";
 
-const deliveryMethodSchema = z.enum([
-  "self_pickup",
-  "pickup_point",
-  "locker",
-  "courier",
-  "same_day",
-]);
+// Mirrors the live offer (see order/create): courier + self-pickup only.
+const deliveryMethodSchema = z.enum(["self_pickup", "courier"]);
 
 const bodySchema = z.object({
   items: z

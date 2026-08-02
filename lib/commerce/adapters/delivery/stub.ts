@@ -18,14 +18,9 @@ import type {
   PickupPoint,
   RateQuote,
 } from "../../types";
+import { bundleDiscountAgorot } from "../../bundle-pricing";
+import { FREE_SHIPPING_THRESHOLD_AGOROT } from "../../shipping";
 import { ZONES, cityToZone } from "./zones";
-
-/**
- * PLACEHOLDER — free courier shipping when the cart subtotal reaches this
- * threshold (₪199 = 19,900 agorot). Confirm the threshold with the brand before
- * launch. Applies to `courier` (and `same_day`) methods only.
- */
-export const FREE_COURIER_THRESHOLD_AGOROT = 19_900;
 
 /** Bilingual display labels per delivery method. */
 const METHOD_LABELS: Record<DeliveryMethod, Record<Locale, string>> = {
@@ -36,46 +31,37 @@ const METHOD_LABELS: Record<DeliveryMethod, Record<Locale, string>> = {
   same_day: { he: "משלוח באותו יום", en: "Same-day delivery" },
 };
 
-/** Methods that qualify for the free-shipping threshold. */
-const FREE_ELIGIBLE_METHODS: ReadonlySet<DeliveryMethod> = new Set([
-  "courier",
-  "same_day",
-]);
-
 export class StubDeliveryProvider implements DeliveryProvider {
   readonly id = "delivery-stub";
 
-  readonly supportedMethods: DeliveryMethod[] = [
-    "self_pickup",
-    "pickup_point",
-    "locker",
-    "courier",
-    "same_day",
-  ];
+  readonly supportedMethods: DeliveryMethod[] = ["self_pickup", "courier"];
 
   async quoteRates(i: QuoteRatesInput): Promise<RateQuote[]> {
     const zone = cityToZone(i.destination.city);
-    const subtotalAgorot = i.items.reduce(
+    // The free-shipping threshold is judged against what the shopper actually
+    // pays for goods: list subtotal minus the mix&match bundle discount.
+    const listSubtotalAgorot = i.items.reduce(
       (sum, item) => sum + item.unitPriceAgorot * item.qty,
       0,
     );
-    const freeShipping = subtotalAgorot >= FREE_COURIER_THRESHOLD_AGOROT;
+    const bagCount = i.items.reduce((sum, item) => sum + item.qty, 0);
+    const effectiveSubtotalAgorot =
+      listSubtotalAgorot - bundleDiscountAgorot(bagCount);
+    const freeShipping =
+      effectiveSubtotalAgorot >= FREE_SHIPPING_THRESHOLD_AGOROT;
 
     return ZONES[zone].methods
       .filter((m) => !i.method || m.method === i.method)
-      .map((m) => {
-        const qualifiesForFree =
-          freeShipping && FREE_ELIGIBLE_METHODS.has(m.method);
-        return {
-          providerId: this.id,
-          method: m.method,
-          serviceCode: `${zone}_${m.method}`,
-          label: METHOD_LABELS[m.method],
-          priceAgorot: qualifiesForFree ? 0 : m.priceAgorot,
-          etaMinDays: m.etaMinDays,
-          etaMaxDays: m.etaMaxDays,
-        };
-      });
+      .map((m) => ({
+        providerId: this.id,
+        method: m.method,
+        serviceCode: `${zone}_${m.method}`,
+        label: METHOD_LABELS[m.method],
+        priceAgorot:
+          freeShipping && m.method === "courier" ? 0 : m.priceAgorot,
+        etaMinDays: m.etaMinDays,
+        etaMaxDays: m.etaMaxDays,
+      }));
   }
 
   async listPickupPoints(

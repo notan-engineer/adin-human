@@ -16,13 +16,10 @@ import { getOrderRepository } from "@/lib/commerce/registry";
 
 export const runtime = "nodejs";
 
-const deliveryMethodSchema = z.enum([
-  "self_pickup",
-  "pickup_point",
-  "locker",
-  "courier",
-  "same_day",
-]);
+// The live offer is regular courier + self-pickup only. The wider
+// DeliveryMethod union still exists in types (legacy orders / future
+// re-expansion), but the API refuses the retired methods outright.
+const deliveryMethodSchema = z.enum(["self_pickup", "courier"]);
 
 const addressSchema = z.object({
   recipientName: z.string().min(1),
@@ -97,6 +94,7 @@ export async function POST(request: NextRequest) {
       deliveryMethod: delivery.method,
       pickupPointId: delivery.pickupPointId,
       subtotalAgorot: totals.subtotalAgorot,
+      discountAgorot: totals.discountAgorot,
       vatAgorot: totals.vatAgorot,
       shippingAgorot: totals.shippingAgorot,
       totalAgorot: totals.totalAgorot,
@@ -106,6 +104,7 @@ export async function POST(request: NextRequest) {
       {
         orderId: order.id,
         subtotalAgorot: order.subtotalAgorot,
+        discountAgorot: order.discountAgorot,
         shippingAgorot: order.shippingAgorot,
         vatAgorot: order.vatAgorot,
         totalAgorot: order.totalAgorot,
