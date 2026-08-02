@@ -1,13 +1,13 @@
 # Build context hygiene. Everything here either gets rebuilt inside the image,
 # is enormous, or must never reach a production layer.
 
-# Dependencies — reinstalled from the lockfile in the deps stage.
+# Dependencies - reinstalled from the lockfile in the deps stage.
 node_modules
 .pnp
 .pnp.*
 .yarn
 
-# Build output — the builder stage produces its own.
+# Build output - the builder stage produces its own.
 .next
 out
 build
@@ -22,7 +22,7 @@ dist
 .idea
 .claude
 
-# Tests and their artifacts — not shipped, and test-results can be large.
+# Tests and their artifacts - not shipped, and test-results can be large.
 tests
 playwright.config.ts
 playwright-report
@@ -37,7 +37,7 @@ coverage
 # derivatives in /public are what actually ship.
 design-resources
 
-# Secrets — env is injected at runtime via docker-compose, never baked in.
+# Secrets - env is injected at runtime via docker-compose, never baked in.
 .env
 .env.local
 .env*.local

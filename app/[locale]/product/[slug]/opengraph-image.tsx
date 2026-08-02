@@ -33,7 +33,7 @@ export async function generateImageMetadata({ params }: { params: Params }) {
       id: "default",
       size,
       contentType,
-      alt: product ? `${toVisualOrder(product.name[locale])} — The Heuman Chef` : "The Heuman Chef",
+      alt: product ? `${toVisualOrder(product.name[locale])} - The Heuman Chef` : "The Heuman Chef",
     },
   ];
 }
@@ -123,7 +123,7 @@ export default async function ProductOpengraphImage({
         >
           {/* The pouch JPGs carry a baked-in flat colour background. On the
               site a CSS radial mask melts it into the page, but satori
-              supports neither mask-image nor filters — so instead of a hard
+              supports neither mask-image nor filters - so instead of a hard
               rectangle floating on black, present it as a deliberate rounded
               product tile. */}
           <div

@@ -2,10 +2,10 @@
  * Israel delivery-zone table + city→zone resolver.
  *
  * The offer is deliberately simple: regular courier at a FLAT nationwide fee
- * (`COURIER_FEE_AGOROT`, ₪40) plus free self-pickup — every zone carries
+ * (`COURIER_FEE_AGOROT`, ₪40) plus free self-pickup - every zone carries
  * exactly those two methods. Zones still exist because ETAs genuinely differ
- * by region (⚠️ ETA days are PLACEHOLDERS — confirm with the carrier), and so
- * a future re-expansion (same-day, pickup points, lockers — see git history)
+ * by region (⚠️ ETA days are PLACEHOLDERS - confirm with the carrier), and so
+ * a future re-expansion (same-day, pickup points, lockers - see git history)
  * has its structure waiting.
  *
  * The free-courier-over-threshold rule lives in the stub adapter (`stub.ts`),
@@ -108,7 +108,7 @@ function normalizeCity(city: string): string {
 /**
  * Lookup table of normalized city name → zone. Hebrew and English (transliterated)
  * spellings both map to the same zone. Anything not listed falls back to "other"
- * via `cityToZone`. PLACEHOLDER coverage — extend as needed.
+ * via `cityToZone`. PLACEHOLDER coverage - extend as needed.
  */
 const CITY_TO_ZONE: Record<string, ZoneId> = {
   // ── center (Gush Dan) ──

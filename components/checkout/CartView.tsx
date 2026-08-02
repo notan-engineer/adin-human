@@ -19,19 +19,19 @@ const H1_CLASS =
 /**
  * The /cart page's client island, in two phases on the SAME url:
  *
- * - "cart"     — the line-item list + order summary (or the empty state).
- * - "checkout" — clicking "מעבר לתשלום" pushes `?checkout=1` via NATIVE
+ * - "cart"     - the line-item list + order summary (or the empty state).
+ * - "checkout" - clicking "מעבר לתשלום" pushes `?checkout=1` via NATIVE
  *   `history.pushState` (Next syncs it into `useSearchParams`), so the page
  *   never navigates: the cart contracts into the sticky CheckoutSummaryBar
  *   (rendered by CheckoutForm) and the checkout forms appear below. The
  *   browser Back button pops the query and lands back on the cart view;
  *   `/cart?checkout=1` deep-links straight into the forms.
  *
- * The h1 lives here (not the server shell) because it swaps with the phase —
+ * The h1 lives here (not the server shell) because it swaps with the phase -
  * and receives focus on the transition so screen readers hear the change.
  *
- * A mount guard renders the empty state on the server and first client paint —
- * the persisted store only rehydrates on the client — so hydration never
+ * A mount guard renders the empty state on the server and first client paint -
+ * the persisted store only rehydrates on the client - so hydration never
  * mismatches, then the real cart swaps in. An empty cart always falls through
  * to the empty state, whatever the query says.
  */
@@ -85,9 +85,9 @@ export function CartView() {
     scrollTop();
   };
 
-  // Focus the swapped heading after a user-initiated transition — BOTH
+  // Focus the swapped heading after a user-initiated transition - BOTH
   // directions (the exit button unmounts from under the keyboard user
-  // otherwise) — but not on a direct ?checkout=1 load.
+  // otherwise) - but not on a direct ?checkout=1 load.
   useEffect(() => {
     if (pendingFocus.current) {
       pendingFocus.current = false;
@@ -96,10 +96,10 @@ export function CartView() {
   }, [phase]);
 
   // The phase never re-resolves route metadata (same URL), so reflect it in
-  // the tab title manually — matching the layout's `%s — siteName` template.
+  // the tab title manually - matching the layout's `%s - siteName` template.
   useEffect(() => {
     const title = phase === "checkout" ? tCheckout("title") : t("title");
-    document.title = `${title} — ${tMeta("siteName")}`;
+    document.title = `${title} - ${tMeta("siteName")}`;
   }, [phase, t, tCheckout, tMeta]);
 
   if (lines.length === 0) {
@@ -135,7 +135,7 @@ export function CartView() {
 
       {/* BOTH phase trees stay mounted; `hidden` swaps them. Unmounting the
           checkout tree would wipe every typed field on an Edit-cart / Back
-          round-trip — CheckoutSection keeps collapsed sections mounted for
+          round-trip - CheckoutSection keeps collapsed sections mounted for
           exactly the same reason. The `hidden` attribute sits on a wrapper
           with NO display utility (a Tailwind `grid` class would override
           [hidden]'s display:none). */}

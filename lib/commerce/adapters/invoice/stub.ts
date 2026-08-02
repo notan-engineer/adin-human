@@ -1,5 +1,5 @@
 /**
- * Invoice provider — STUB adapter.
+ * Invoice provider - STUB adapter.
  *
  * In PRODUCTION with HYP, this is usually unnecessary: HYP issues the Israeli
  * tax document (חשבונית מס/קבלה) natively as part of the payment, so the payment
@@ -13,7 +13,7 @@
 
 import type { InvoiceProvider, IssueInvoiceInput } from "../../ports/invoice";
 
-/** Module-level counter — deterministic per process (resets on restart). */
+/** Module-level counter - deterministic per process (resets on restart). */
 let invoiceCounter = 0;
 
 export class StubInvoiceProvider implements InvoiceProvider {
@@ -29,7 +29,7 @@ export class StubInvoiceProvider implements InvoiceProvider {
 }
 
 /**
- * HYP native invoicing — passthrough stub. Selected when INVOICE_PROVIDER=hyp.
+ * HYP native invoicing - passthrough stub. Selected when INVOICE_PROVIDER=hyp.
  * In production HYP returns the real document number/URL from the payment; here
  * we mirror the shape so the order can carry an invoice reference. Its number is
  * derived from the orderId (deterministic) rather than a counter.

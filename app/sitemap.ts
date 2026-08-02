@@ -6,7 +6,7 @@ import { absoluteUrl } from "@/lib/seo";
 
 /**
  * Indexable routes only. `/cart`, `/checkout` and `/order/[id]` are per-visitor
- * and marked `noindex`, so they are deliberately absent — listing a noindex URL
+ * and marked `noindex`, so they are deliberately absent - listing a noindex URL
  * in a sitemap is a contradictory signal.
  */
 type Entry = {
@@ -37,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const all = [...STATIC_ROUTES, ...productRoutes];
 
-  // One <url> entry per locale, each carrying the full hreflang cluster — this
+  // One <url> entry per locale, each carrying the full hreflang cluster - this
   // is what Google expects for a bilingual site.
   return all.flatMap((entry) =>
     routing.locales.map((locale) => ({

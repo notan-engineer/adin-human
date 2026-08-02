@@ -1,5 +1,5 @@
 /**
- * POST /api/newsletter — newsletter signup.
+ * POST /api/newsletter - newsletter signup.
  *
  * ⚠️ STUB: validates the address and logs it server-side, then returns success.
  * No list subscription happens. A real ESP integration (Klaviyo / Mailchimp /

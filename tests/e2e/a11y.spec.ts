@@ -8,7 +8,7 @@ import { LOCALES, path, seedCart } from "./helpers";
  * Automated accessibility sweep over every meaningful page, in both locales.
  *
  * Policy: `serious` and `critical` violations FAIL the build. `moderate` and
- * `minor` are printed to the console as a standing to-do — they're real, but
+ * `minor` are printed to the console as a standing to-do - they're real, but
  * axe's severity model puts a lot of judgement calls in those buckets and we
  * don't want them blocking a deploy.
  */
@@ -24,7 +24,7 @@ const PAGES: PageCase[] = [
   { name: "home", url: (l) => path("/", l) },
   { name: "pdp", url: (l) => path("/product/bbq", l) },
   { name: "cart", url: (l) => path("/cart", l), needsCart: true },
-  // The real checkout URL — /cart in its ?checkout=1 phase (the /checkout
+  // The real checkout URL - /cart in its ?checkout=1 phase (the /checkout
   // route is now just a redirect here).
   { name: "checkout", url: (l) => path("/cart?checkout=1", l), needsCart: true },
   { name: "contact", url: (l) => path("/contact", l) },
@@ -76,7 +76,7 @@ for (const locale of LOCALES) {
 
       if (advisory.length > 0) {
         console.log(
-          `\nℹ️  ${pageCase.name} (${locale.code}) — ${advisory.length} moderate/minor violation(s), not failing:\n${summarize(advisory)}\n`,
+          `\nℹ️  ${pageCase.name} (${locale.code}) - ${advisory.length} moderate/minor violation(s), not failing:\n${summarize(advisory)}\n`,
         );
       }
 

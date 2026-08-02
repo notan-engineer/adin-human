@@ -15,7 +15,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "cart" });
   return {
     title: t("title"),
-    // The cart is a per-visitor, stateful page — keep it out of search indexes.
+    // The cart is a per-visitor, stateful page - keep it out of search indexes.
     robots: { index: false, follow: false },
   };
 }

@@ -79,7 +79,7 @@ describe("StubDeliveryProvider.quoteRates", () => {
   });
 
   it("judges the threshold on the DISCOUNTED subtotal (bundle pricing)", async () => {
-    // 11 × ₪40 bags list at ₪440, but bundle-price to ₪405 (5+3+3) — still
+    // 11 × ₪40 bags list at ₪440, but bundle-price to ₪405 (5+3+3) - still
     // over ₪400, so courier is free.
     const elevenBags: OrderItem[] = [
       { slug: "bbq", name: "Smoked BBQ", unitPriceAgorot: 4000, qty: 11 },
@@ -90,7 +90,7 @@ describe("StubDeliveryProvider.quoteRates", () => {
     });
     expect(freeRates.find((r) => r.method === "courier")?.priceAgorot).toBe(0);
 
-    // 10 bags list at ₪400 — naively at the threshold — but bundle-price to
+    // 10 bags list at ₪400 - naively at the threshold - but bundle-price to
     // ₪370 (5+5), UNDER ₪400, so courier is still charged. This is the case
     // that catches a list-subtotal implementation.
     const tenBags: OrderItem[] = [

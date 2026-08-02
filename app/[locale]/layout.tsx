@@ -78,7 +78,7 @@ export async function generateMetadata({
 
 /**
  * Brand charcoal, so mobile browser chrome matches the dark site. This lives in
- * the `viewport` export (not `metadata`) — Next 15 warns if `themeColor` is set
+ * the `viewport` export (not `metadata`) - Next 15 warns if `themeColor` is set
  * on `metadata`.
  */
 export const viewport: Viewport = {

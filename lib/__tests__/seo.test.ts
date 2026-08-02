@@ -62,7 +62,7 @@ describe("localizedAlternates", () => {
     expect(localizedAlternates("/", "en").canonical).toBe(`${SITE_URL}/en`);
   });
 
-  it("is reciprocal — each alternate lists the same cluster", () => {
+  it("is reciprocal - each alternate lists the same cluster", () => {
     const he = localizedAlternates("/product/bbq", "he");
     const en = localizedAlternates("/product/bbq", "en");
     expect(he.languages).toEqual(en.languages);

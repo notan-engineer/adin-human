@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Accessible combobox (ARIA 1.2 pattern): a text input backed by an async
- * suggestion list. Free text is allowed — the field is NOT restricted to the
+ * suggestion list. Free text is allowed - the field is NOT restricted to the
  * list, so an unlisted city/street can still be entered. Suggestions are fetched
  * on a ~200ms debounce; stale responses are dropped via a request token.
  *
@@ -143,7 +143,7 @@ export function Autocomplete({
 
   function handleBlur() {
     // Option clicks preventDefault on mousedown, so focus never leaves for them;
-    // reaching here means focus really left — close and report for validation.
+    // reaching here means focus really left - close and report for validation.
     setOpen(false);
     setActiveIndex(-1);
     onBlur?.();

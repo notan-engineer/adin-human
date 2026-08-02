@@ -2,7 +2,7 @@
 //
 // Source: public/brand/emblem.png (512x392, transparent bull-head-and-cleavers
 // mark). The emblem is designed for dark surfaces, so every icon is flattened
-// onto the brand charcoal (#0b0b0d) — otherwise it disappears into light
+// onto the brand charcoal (#0b0b0d) - otherwise it disappears into light
 // browser chrome and light-mode OS launchers.
 //
 // The full emblem (crossed cleavers spanning the full width) turns to mush
@@ -19,7 +19,7 @@ import sharp from "sharp";
 const SRC = "public/brand/emblem.png";
 const OUT_DIR = "public";
 
-/** Brand charcoal — the background every icon is flattened onto. */
+/** Brand charcoal - the background every icon is flattened onto. */
 const BG = { r: 0x0b, g: 0x0b, b: 0x0d, alpha: 1 };
 
 /**

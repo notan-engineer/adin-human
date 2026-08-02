@@ -1,13 +1,13 @@
 {
   "home": {
     "title": "The Heuman Chef",
-    "tagline": "Smoked, small-batch beef jerky — born of fire, not a factory line",
+    "tagline": "Smoked, small-batch beef jerky - born of fire, not a factory line",
     "cta": "Explore the flavors"
   },
   "hero": {
     "eyebrow": "Adin Human",
     "title": "The Heuman Chef",
-    "tagline": "Hand-crafted beef jerky, smoked rubs and more — quality speaks for itself.",
+    "tagline": "Hand-crafted beef jerky, smoked rubs and more - quality speaks for itself.",
     "cta": "Explore the flavors",
     "scrollCue": "Scroll to open"
   },
@@ -21,7 +21,7 @@
     "openMenu": "Open menu"
   },
   "footer": {
-    "tagline": "Hand-crafted beef jerky, smoked rubs and more — quality speaks for itself.",
+    "tagline": "Hand-crafted beef jerky, smoked rubs and more - quality speaks for itself.",
     "shopHeading": "Shop",
     "companyHeading": "Company",
     "legalHeading": "Legal",
@@ -46,11 +46,11 @@
   "bundles": {
     "kicker": "Bundles",
     "heading": "Mix flavors, save more",
-    "intro": "Pick any combination of flavors — the best discount applies itself in the cart.",
+    "intro": "Pick any combination of flavors - the best discount applies itself in the cart.",
     "bags": "{count, plural, one {One bag} other {# bags}}",
     "bestValue": "Best value",
     "save": "Save {amount}",
-    "mixNote": "Mix any bundle — BBQ, Maple Chili, Honey Peppercorn, Garlic or Za'atar.",
+    "mixNote": "Mix any bundle - BBQ, Maple Chili, Honey Peppercorn, Garlic or Za'atar.",
     "shippingNote": "{fee} shipping nationwide · free over {threshold} · free self-pickup",
     "cta": "Pick your flavors"
   },
@@ -143,7 +143,7 @@
       },
       "self_pickup": {
         "title": "Self pickup",
-        "desc": "Collect from us — no delivery fee"
+        "desc": "Collect from us - no delivery fee"
       }
     },
     "address": {
@@ -223,7 +223,7 @@
   "order": {
     "title": "Order confirmation",
     "thankYou": "Thank you, {name}!",
-    "subtitle": "Your order is in — we're already packing it.",
+    "subtitle": "Your order is in - we're already packing it.",
     "orderNumber": "Order number",
     "paymentHeading": "Payment",
     "statusHeading": "Status",
@@ -257,10 +257,10 @@
   },
   "story": {
     "kicker": "Behind the smoke",
-    "heading": "Where there's smoke, there's fire — the story",
-    "p1": "It started with one backyard smoker and the patience of someone who refuses to rush. Adin Human, a chef by trade, found that smoke isn't a seasoning — it's time. Hours in which meat, wood and heat learn to talk to each other.",
+    "heading": "Where there's smoke, there's fire - the story",
+    "p1": "It started with one backyard smoker and the patience of someone who refuses to rush. Adin Human, a chef by trade, found that smoke isn't a seasoning - it's time. Hours in which meat, wood and heat learn to talk to each other.",
     "p2": "He worked through a lot of woods before settling on cherry: sweet enough to soften, clean enough never to take over. From there came the hand-cut strips, a spice build laid down layer over layer, and a flat refusal to use preservatives.",
-    "p3": "Every 65 g pouch still leaves that same smoker and that same stubbornness — small batches, no shortcuts, no factory line.",
+    "p3": "Every 65 g pouch still leaves that same smoker and that same stubbornness - small batches, no shortcuts, no factory line.",
     "quote": "Real beef. Handcrafted. No preservatives. No shortcuts. Just incredible flavor.",
     "quoteAttribution": "",
     "imageAlt": "Five pouches of The Heuman Chef smoked beef jerky, each on its flavor's color"
@@ -292,11 +292,11 @@
       },
       "cure": {
         "title": "Building the flavor",
-        "body": "A 24-hour marinade in unique, precise house spice blends, layer over layer and without preservatives — until the flavor sits inside the meat rather than on it."
+        "body": "A 24-hour marinade in unique, precise house spice blends, layer over layer and without preservatives - until the flavor sits inside the meat rather than on it."
       },
       "smoke": {
         "title": "Choosing the wood",
-        "body": "Cherry-wood smoke adds a distinctive, subtly fruity aroma during the slow smoke, letting the beef develop a unique depth of flavor throughout drying — without overpowering the natural taste of the meat or the seasoning."
+        "body": "Cherry-wood smoke adds a distinctive, subtly fruity aroma during the slow smoke, letting the beef develop a unique depth of flavor throughout drying - without overpowering the natural taste of the meat or the seasoning."
       },
       "pack": {
         "title": "Packaging",
@@ -311,15 +311,15 @@
     "items": {
       "yael": {
         "name": "Refael M.",
-        "quote": "Bro, your honey-pepper is insane — I saved the rest to eat on reserve duty."
+        "quote": "Bro, your honey-pepper is insane - I saved the rest to eat on reserve duty."
       },
       "noam": {
         "name": "Yaniv H.",
-        "quote": "Some of the best I've had. The BBQ and the garlic — a 10 out of 10."
+        "quote": "Some of the best I've had. The BBQ and the garlic - a 10 out of 10."
       },
       "tamar": {
         "name": "Michael A.",
-        "quote": "Started with one bag and got hooked. There's always some in the fridge now — the za'atar's my favorite."
+        "quote": "Started with one bag and got hooked. There's always some in the fridge now - the za'atar's my favorite."
       }
     }
   },
@@ -338,7 +338,7 @@
   "contact": {
     "kicker": "Talk to us",
     "heading": "Get in touch",
-    "body": "Questions about flavors, large orders, or partnerships — write to us and we'll get back to you.",
+    "body": "Questions about flavors, large orders, or partnerships - write to us and we'll get back to you.",
     "nameLabel": "Full name",
     "emailLabel": "Email",
     "phoneLabel": "Phone",
@@ -358,7 +358,7 @@
       "generic": "Something went wrong. Please try again in a moment."
     },
     "metaTitle": "Contact",
-    "metaDescription": "Get in touch with The Heuman Chef — questions, large orders and partnerships."
+    "metaDescription": "Get in touch with The Heuman Chef - questions, large orders and partnerships."
   },
   "legal": {
     "lastUpdatedLabel": "Last updated: {date}",
@@ -366,30 +366,30 @@
       "kicker": "Legal",
       "heading": "Terms of Use",
       "metaTitle": "Terms of Use",
-      "metaDescription": "The Heuman Chef terms of use — orders, payment, cancellations, liability and intellectual property."
+      "metaDescription": "The Heuman Chef terms of use - orders, payment, cancellations, liability and intellectual property."
     },
     "privacy": {
       "kicker": "Legal",
       "heading": "Privacy Policy",
       "metaTitle": "Privacy Policy",
-      "metaDescription": "The Heuman Chef privacy policy — what information is collected, for which purposes, and your rights."
+      "metaDescription": "The Heuman Chef privacy policy - what information is collected, for which purposes, and your rights."
     },
     "shipping": {
       "kicker": "Legal",
       "heading": "Shipping & Returns",
       "metaTitle": "Shipping & Returns",
-      "metaDescription": "The Heuman Chef shipping and returns policy — costs, delivery times, cancellations and defective items."
+      "metaDescription": "The Heuman Chef shipping and returns policy - costs, delivery times, cancellations and defective items."
     }
   },
   "meta": {
     "siteName": "The Heuman Chef",
-    "titleDefault": "The Heuman Chef — Hand-crafted Smoked Beef Jerky",
-    "titleTemplate": "%s — The Heuman Chef",
-    "description": "Hand-crafted beef jerky, smoked over cherry wood — because not all snacks are created equal. Kosher. Five flavors, delivered across Israel.",
+    "titleDefault": "The Heuman Chef - Hand-crafted Smoked Beef Jerky",
+    "titleTemplate": "%s - The Heuman Chef",
+    "description": "Hand-crafted beef jerky, smoked over cherry wood - because not all snacks are created equal. Kosher. Five flavors, delivered across Israel.",
     "tagline": "Not all snacks are created equal",
-    "ogAlt": "The Heuman Chef — hand-crafted smoked beef jerky",
+    "ogAlt": "The Heuman Chef - hand-crafted smoked beef jerky",
     "home": {
-      "title": "The Heuman Chef — Hand-crafted Smoked Beef Jerky",
+      "title": "The Heuman Chef - Hand-crafted Smoked Beef Jerky",
       "description": "Five flavors of hand-crafted beef jerky, smoked over cherry wood. Order online with delivery across Israel."
     },
     "notFound": {

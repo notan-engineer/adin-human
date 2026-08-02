@@ -8,7 +8,7 @@ import type { LegalDoc } from "./types";
  * Drafted to standard Israeli small-shop practice: the mandatory
  * distance-selling disclosures (חוק הגנת הצרכן, התשמ"א-1981, ס' 14ג) plus the
  * customary hedges (התמונות להמחשה, ט.ל.ח, עדכון מעת לעת), kept deliberately
- * general. Consumer-law rights are cogent (ס' 36) — nothing here waives them,
+ * general. Consumer-law rights are cogent (ס' 36) - nothing here waives them,
  * and the text says so explicitly. NOT reviewed by a lawyer; placeholders in
  * [brackets] MUST be filled before go-live.
  */
@@ -20,8 +20,8 @@ export const termsDoc: LegalDoc = {
       title: { he: "כללי", en: "General" },
       body: [
         {
-          he: 'אתר The Heuman Chef (להלן: "האתר") מופעל על ידי [שם העסק הרשמי], מס\' עוסק/ח.פ [מספר עוסק/ח.פ], שכתובתו [כתובת העסק] (להלן: "העסק"). השימוש באתר — לרבות גלישה, יצירת קשר וביצוע הזמנות — מהווה הסכמה מלאה לתנאי שימוש אלה ולמדיניות הפרטיות של האתר. אם אינכם מסכימים לתנאים, אנא הימנעו משימוש באתר.',
-          en: 'The Heuman Chef website (the "Site") is operated by [Business legal name], business no. [Business/company number], of [Business address] (the "Business"). Using the Site — including browsing, contacting us and placing orders — constitutes full acceptance of these Terms of Use and of the Site\'s Privacy Policy. If you do not agree to these terms, please refrain from using the Site.',
+          he: 'אתר The Heuman Chef (להלן: "האתר") מופעל על ידי [שם העסק הרשמי], מס\' עוסק/ח.פ [מספר עוסק/ח.פ], שכתובתו [כתובת העסק] (להלן: "העסק"). השימוש באתר - לרבות גלישה, יצירת קשר וביצוע הזמנות - מהווה הסכמה מלאה לתנאי שימוש אלה ולמדיניות הפרטיות של האתר. אם אינכם מסכימים לתנאים, אנא הימנעו משימוש באתר.',
+          en: 'The Heuman Chef website (the "Site") is operated by [Business legal name], business no. [Business/company number], of [Business address] (the "Business"). Using the Site - including browsing, contacting us and placing orders - constitutes full acceptance of these Terms of Use and of the Site\'s Privacy Policy. If you do not agree to these terms, please refrain from using the Site.',
         },
         {
           he: "התנאים מנוסחים בלשון רבים מטעמי נוחות בלבד ופונים לכל המגדרים.",
@@ -44,8 +44,8 @@ export const termsDoc: LegalDoc = {
       title: { he: "המוצרים", en: "The Products" },
       body: [
         {
-          he: "האתר מציע מוצרי מזון בעבודת יד. התמונות באתר נועדו להמחשה בלבד; ייתכנו הבדלים קלים במראה, בגוון ובמרקם בין אצווה לאצווה — כמקובל במוצרים המיוצרים בעבודת יד.",
-          en: "The Site offers handcrafted food products. Product images are for illustration only; slight variations in appearance, shade and texture may occur between batches — as is customary for handmade products.",
+          he: "האתר מציע מוצרי מזון בעבודת יד. התמונות באתר נועדו להמחשה בלבד; ייתכנו הבדלים קלים במראה, בגוון ובמרקם בין אצווה לאצווה - כמקובל במוצרים המיוצרים בעבודת יד.",
+          en: "The Site offers handcrafted food products. Product images are for illustration only; slight variations in appearance, shade and texture may occur between batches - as is customary for handmade products.",
         },
         {
           he: "מידע על רכיבים, אלרגנים, ערכים תזונתיים והוראות אחסון מופיע על גבי אריזת המוצר. יש לעיין במידע שעל האריזה לפני הצריכה ולאחסן את המוצרים בהתאם להנחיות.",
@@ -72,8 +72,8 @@ export const termsDoc: LegalDoc = {
           en: "An order is considered complete upon payment approval and the sending of an order confirmation to the email address provided. Orders are subject to product availability.",
         },
         {
-          he: "העסק רשאי שלא לאשר הזמנה או לבטלה — בין היתר בשל חוסר במלאי, טעות סופר במחיר או בתיאור, או חשש סביר לשימוש לרעה — ובמקרה כזה יוחזר ללקוח מלוא הסכום ששולם, וזה יהיה הסעד היחיד בגין אי-אישור ההזמנה.",
-          en: "The Business may decline or cancel an order — including due to stock shortage, a clerical error in price or description, or a reasonable suspicion of misuse — in which case the customer will receive a full refund of the amount paid, which shall be the sole remedy for such non-acceptance.",
+          he: "העסק רשאי שלא לאשר הזמנה או לבטלה - בין היתר בשל חוסר במלאי, טעות סופר במחיר או בתיאור, או חשש סביר לשימוש לרעה - ובמקרה כזה יוחזר ללקוח מלוא הסכום ששולם, וזה יהיה הסעד היחיד בגין אי-אישור ההזמנה.",
+          en: "The Business may decline or cancel an order - including due to stock shortage, a clerical error in price or description, or a reasonable suspicion of misuse - in which case the customer will receive a full refund of the amount paid, which shall be the sole remedy for such non-acceptance.",
         },
       ],
     },
@@ -130,8 +130,8 @@ export const termsDoc: LegalDoc = {
       title: { he: "קניין רוחני", en: "Intellectual Property" },
       body: [
         {
-          he: "כל זכויות הקניין הרוחני באתר — לרבות השם המסחרי, הלוגו, הצילומים, העיצוב והטקסטים — שייכות לעסק או לבעלי הזכויות מטעמו. אין להעתיק, לפרסם או לעשות שימוש מסחרי בתכני האתר ללא הסכמת העסק מראש ובכתב.",
-          en: "All intellectual-property rights in the Site — including the trade name, logo, photographs, design and texts — belong to the Business or its licensors. Site content may not be copied, published or used commercially without the Business's prior written consent.",
+          he: "כל זכויות הקניין הרוחני באתר - לרבות השם המסחרי, הלוגו, הצילומים, העיצוב והטקסטים - שייכות לעסק או לבעלי הזכויות מטעמו. אין להעתיק, לפרסם או לעשות שימוש מסחרי בתכני האתר ללא הסכמת העסק מראש ובכתב.",
+          en: "All intellectual-property rights in the Site - including the trade name, logo, photographs, design and texts - belong to the Business or its licensors. Site content may not be copied, published or used commercially without the Business's prior written consent.",
         },
       ],
     },

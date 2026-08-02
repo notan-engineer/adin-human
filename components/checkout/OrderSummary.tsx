@@ -17,7 +17,7 @@ import { splitGross } from "@/lib/vat";
  * (discounted) subtotal already contains VAT; we surface the VAT portion (via
  * `splitGross`) as an informational "includes VAT" line rather than adding it
  * on top. Shipping is a flat nationwide courier fee (free over the threshold,
- * free for self-pickup — chosen at checkout), so the row shows the real fee
+ * free for self-pickup - chosen at checkout), so the row shows the real fee
  * but the total here stays merchandise-only.
  *
  * `subtotalAgorot` / `bagCount` are supplied by the parent in integer agorot /
@@ -30,7 +30,7 @@ export function OrderSummary({
 }: {
   subtotalAgorot: number;
   bagCount: number;
-  /** Enters the same-page checkout phase (no navigation — see CartView). */
+  /** Enters the same-page checkout phase (no navigation - see CartView). */
   onCheckout: () => void;
 }) {
   const locale = useLocale() as "he" | "en";

@@ -1,9 +1,9 @@
 /**
- * Order repository — in-memory STUB adapter.
+ * Order repository - in-memory STUB adapter.
  *
  * Backed by a `Map<orderId, Order>` plus a `Map<providerRef, orderId>` reverse
  * index. State is instance-local (so tests can `new MemoryOrderRepository()` for
- * isolation) and RESETS on server restart — fine for the stub; swap for a real
+ * isolation) and RESETS on server restart - fine for the stub; swap for a real
  * DB-backed repository in production.
  *
  * `markPaid` is idempotent: replaying a webhook / VERIFY never double-mutates.
@@ -15,7 +15,7 @@
  * (`ord_1`, `ord_2`, …) an attacker could enumerate and forge "order N is paid"
  * for every order on the site. A 122-bit random id makes the order id itself an
  * unguessable capability, so a forged notify has nothing to aim at. Keep this
- * property in any real DB-backed repository that replaces this stub — do NOT use
+ * property in any real DB-backed repository that replaces this stub - do NOT use
  * an auto-increment primary key as the public order id.
  */
 
@@ -29,7 +29,7 @@ export class MemoryOrderRepository implements OrderRepository {
   private readonly refIndex = new Map<string, string>();
 
   async create(o: NewOrder): Promise<Order> {
-    // Node-only (`node:crypto`) — repositories run server-side only.
+    // Node-only (`node:crypto`) - repositories run server-side only.
     const id = `ord_${randomUUID()}`;
     const order: Order = {
       ...o,

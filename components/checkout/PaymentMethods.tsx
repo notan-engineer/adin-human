@@ -10,7 +10,7 @@ import type { PaymentMethod } from "@/lib/commerce/types";
 
 /**
  * Selectable payment instruments. Purely presentational: the HYP stub ignores
- * the choice and offers every instrument on its own hosted page — this is the UI
+ * the choice and offers every instrument on its own hosted page - this is the UI
  * affordance plus the "you'll be redirected to HYP" reassurance. RTL-safe.
  */
 const OPTIONS: { method: PaymentMethod; Icon: LucideIcon; labelKey: string }[] = [

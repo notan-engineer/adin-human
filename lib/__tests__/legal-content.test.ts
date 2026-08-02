@@ -6,13 +6,13 @@ import { shippingDoc } from "@/content/legal/shipping";
 import type { LegalDoc } from "@/content/legal/types";
 
 /**
- * Structural validation for the legal documents — the content-file analog of
+ * Structural validation for the legal documents - the content-file analog of
  * the messages-parity test. Locale coverage itself is a COMPILE-time guarantee
  * (LocalizedText = Record<Locale, string>); this guards the runtime facts:
  * nothing empty, ids unique/anchor-safe, dates valid.
  *
  * TODO(go-live): once the owner supplies the real business facts, add an
- * assertion that no "[" placeholder remains in any paragraph — publishing
+ * assertion that no "[" placeholder remains in any paragraph - publishing
  * bracketed placeholders in the identity sections would itself violate the
  * distance-selling disclosure duty (ס' 14ג(א) לחוק הגנת הצרכן).
  */
@@ -54,7 +54,7 @@ describe.each(DOCS)("legal doc: %s", (_name, doc) => {
 describe("shipping doc money facts", () => {
   it("quotes the live fee and threshold (imported, not hard-coded)", () => {
     const cost = shippingDoc.sections.find((s) => s.id === "cost");
-    // ₪40 / ₪400 as digits — formatted per locale upstream, so just assert
+    // ₪40 / ₪400 as digits - formatted per locale upstream, so just assert
     // the digits made it into the prose.
     expect(cost?.body[0].he).toContain("40");
     expect(cost?.body[0].he).toContain("400");

@@ -2,7 +2,7 @@
 #
 #   docker compose up -d --build
 #
-# Secrets come from `.env.local` (git-ignored) — never from the image. Note that
+# Secrets come from `.env.local` (git-ignored) - never from the image. Note that
 # NEXT_PUBLIC_SITE_URL is ALSO a build arg: `NEXT_PUBLIC_*` values are inlined
 # into the client bundle at build time, so setting it only in `environment`
 # would leave the browser bundle pointing at localhost.
@@ -21,7 +21,7 @@ services:
       - "${APP_PORT:-4000}:4000"
     environment:
       NODE_ENV: production
-      # Public base URL. Used for canonicals, OG images, and — critically — the
+      # Public base URL. Used for canonicals, OG images, and - critically - the
       # absolute redirect/callback URLs the payment flow builds via getSiteUrl().
       NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:4000}
 
@@ -32,7 +32,7 @@ services:
       ORDER_REPOSITORY: ${ORDER_REPOSITORY:-memory}
 
       # YeshInvoice. With SECRET/USERKEY unset the adapter runs in stub mode and
-      # completes payments offline — fine for a demo, NOT for production.
+      # completes payments offline - fine for a demo, NOT for production.
       YESHINVOICE_SECRET: ${YESHINVOICE_SECRET:-}
       YESHINVOICE_USERKEY: ${YESHINVOICE_USERKEY:-}
       YESHINVOICE_CURRENCY_ID_ILS: ${YESHINVOICE_CURRENCY_ID_ILS:-1}

@@ -16,7 +16,7 @@ const QUERY = "(prefers-reduced-motion: reduce)";
  * until `initPrefersReducedMotion()` has run. Because a `useState` initial value
  * is read exactly once and that hook never updates it (their source carries a
  * standing TODO about this), any component that renders before the ref is
- * populated captures `null` — falsy — and is stuck on the ANIMATED branch for
+ * populated captures `null` - falsy - and is stuck on the ANIMATED branch for
  * the rest of the page's life. For a `whileInView` reveal that means content
  * pinned at `opacity: 0` until the user scrolls it into view, which is precisely
  * the thing reduced motion is supposed to protect them from. Which components

@@ -1,5 +1,5 @@
 /**
- * HYP (hyp.co.il / "Hyp Pay", the YaadPay protocol) — STUB adapter. Default.
+ * HYP (hyp.co.il / "Hyp Pay", the YaadPay protocol) - STUB adapter. Default.
  *
  * This stub returns deterministic mock results so the whole checkout flow runs
  * with NO real keys. It is written to MIRROR the real HYP integration so that,
@@ -40,7 +40,7 @@ import type { PaymentStatus } from "../../types";
 /**
  * Map a HYP `CCode` (returned by the VERIFY re-query) to our normalized status.
  * The stub never calls HYP, but this is the exact mapping the real adapter uses
- * — kept here so real wiring is a drop-in.
+ * - kept here so real wiring is a drop-in.
  *   0   → paid       (transaction approved & captured)
  *   700 → authorized (J5 authorization hold, not yet captured)
  *   800 → pending    (awaiting async confirmation, e.g. bank transfer/Bit)
@@ -80,7 +80,7 @@ export class HypStubPaymentProvider implements PaymentProvider {
     // hosted page then bounces the browser to callbackUrl (which VERIFYs and
     // marks the order paid) before landing the shopper on successUrl.
     //
-    // Stub: MIRROR that hop — instead of skipping straight to successUrl (which
+    // Stub: MIRROR that hop - instead of skipping straight to successUrl (which
     // would never mark the order paid), route the browser through our own
     // callbackUrl carrying a mock-paid ref and the intended successUrl as
     // `return`, so the callback runs markPaid + fulfilment exactly like real HYP.
@@ -96,7 +96,7 @@ export class HypStubPaymentProvider implements PaymentProvider {
   async parseAndVerifyCallback(
     req: PaymentCallbackRequest,
   ): Promise<NormalizedPayment> {
-    // Real life: extract fields, then re-query What=VERIFY and trust CCode — the
+    // Real life: extract fields, then re-query What=VERIFY and trust CCode - the
     // browser redirect is UNTRUSTED. Stub: derive the ref from the query if
     // present and report the mock CCode 0 (paid).
     const providerRef =

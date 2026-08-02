@@ -13,12 +13,12 @@ import {
 } from "./helpers";
 
 /**
- * The money path — now a same-page morph.
+ * The money path - now a same-page morph.
  *
  * Seed a cart, click "מעבר לתשלום" on /cart and stay there (?checkout=1 via
  * pushState): the cart contracts into the sticky summary bar and the forms
  * appear below. Shipping is a flat ₪40 (free over ₪400 on the bundle-priced
- * subtotal), knowable instantly — no quote round-trip. Fill contact + a
+ * subtotal), knowable instantly - no quote round-trip. Fill contact + a
  * Tel Aviv address, pay, and land on a paid order with an invoice number.
  * The stub payment provider completes offline by bouncing the browser
  * through our own `/api/payment/callback`.
@@ -132,7 +132,7 @@ for (const locale of LOCALES) {
       await expect(page).toHaveURL(/\/cart\?checkout=1$/);
       await expect(page.getByTestId("checkout-summary-bar")).toBeVisible();
 
-      // Type something, leave, come back — the form must NOT be wiped (the
+      // Type something, leave, come back - the form must NOT be wiped (the
       // checkout tree stays mounted and hidden, like collapsed sections).
       await page.locator("#contact-name").fill("שם לשימור");
 
@@ -176,7 +176,7 @@ for (const locale of LOCALES) {
     test("bundle discount + free shipping flow end to end (11 bags)", async ({
       page,
     }) => {
-      // 11 × ₪40 lists at ₪440, bundle-prices to ₪405 (5+3+3) — over the ₪400
+      // 11 × ₪40 lists at ₪440, bundle-prices to ₪405 (5+3+3) - over the ₪400
       // threshold, so courier ships free and the total IS the bundle price.
       const bundleTotal = bestBundleTotalAgorot(11); // 40_500
       await seedCart(page, [{ slug: SLUG, qty: 11 }]);

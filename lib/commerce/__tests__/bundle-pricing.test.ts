@@ -16,7 +16,7 @@ import { getAllProducts } from "@/lib/catalog";
 describe("bestBundleTotalAgorot", () => {
   it("prices every count at the cheapest tier combination", () => {
     // Hand-checked table. The greedy-killers are 6 (2×3-pack ₪220 beats
-    // 5-pack+single ₪225) and 15 (5×3-pack ₪550 beats 3×5-pack ₪555) —
+    // 5-pack+single ₪225) and 15 (5×3-pack ₪550 beats 3×5-pack ₪555) -
     // the 3-pack is cheaper PER BAG than the 5-pack.
     const expected: Record<number, number> = {
       1: 4_000,
@@ -59,7 +59,7 @@ describe("bestBundleTotalAgorot", () => {
   it("is periodic in the cheapest-per-bag tier (the huge-count fast path's assumption)", () => {
     // Above the DP ceiling, counts are priced as best(n − k·3) + k·₪110.
     // That's exact only if adding a 3-pack is always optimal past a small
-    // threshold — assert it directly so a future tier change that breaks the
+    // threshold - assert it directly so a future tier change that breaks the
     // assumption fails here, not in production pricing.
     for (let n = 6; n <= 60; n++) {
       expect(
@@ -105,7 +105,7 @@ describe("bundleDiscountAgorot", () => {
 describe("catalog coupling", () => {
   it("every product lists at BAG_LIST_PRICE_AGOROT (the bundle model's core assumption)", () => {
     // Bundle pricing works off bag COUNT alone. If a future SKU ships at a
-    // different price, this model silently mis-discounts — fail loudly here
+    // different price, this model silently mis-discounts - fail loudly here
     // instead.
     for (const product of getAllProducts()) {
       expect(product.priceAgorot, product.slug).toBe(BAG_LIST_PRICE_AGOROT);

@@ -1,5 +1,5 @@
 /**
- * POST /api/payment/create — open a hosted checkout session for an order.
+ * POST /api/payment/create - open a hosted checkout session for an order.
  *
  * Loads the (server-priced) order, opens a hosted redirect with the payment
  * provider keyed by `orderId` (so a retry never double-charges), records the

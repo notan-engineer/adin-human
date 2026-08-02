@@ -6,7 +6,7 @@ import he from "@/messages/he.json";
 /**
  * A missing key in one locale is a runtime `next-intl` error on that page, and
  * a missing `meta.*` key silently degrades SEO (empty title / description). So
- * the two catalogs must stay key-for-key identical — value text differs, shape
+ * the two catalogs must stay key-for-key identical - value text differs, shape
  * never does.
  */
 function flattenKeys(value: unknown, prefix = ""): string[] {

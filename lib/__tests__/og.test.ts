@@ -5,7 +5,7 @@ import { ogMeta, toVisualOrder } from "@/lib/og";
 /**
  * satori renders glyphs in the order it is given, so Hebrew has to be flipped
  * to visual order before it reaches an ImageResponse. These tests pin that
- * behaviour — a regression here silently ships backwards Hebrew on every social
+ * behaviour - a regression here silently ships backwards Hebrew on every social
  * card, which no build step would catch.
  */
 describe("toVisualOrder", () => {

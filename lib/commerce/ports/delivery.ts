@@ -1,5 +1,5 @@
 /**
- * Delivery port — the provider-agnostic contract for shipping/fulfilment
+ * Delivery port - the provider-agnostic contract for shipping/fulfilment
  * carriers (courier, pickup points, lockers, self-pickup). The stub adapter is
  * driven by the Israel zone table in `adapters/delivery/zones.ts`; real carrier
  * adapters (HFD, Israel Post, Wolt Drive, …) slot in behind the same interface.

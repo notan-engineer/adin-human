@@ -7,7 +7,7 @@ import type { LegalDoc } from "@/content/legal/types";
  * Shared layout for the three legal pages: a char header band (kicker + the
  * page's single h1 + last-updated line), then numbered prose sections.
  *
- * Server component. Only the header is wrapped in `Reveal` — 30+ animated
+ * Server component. Only the header is wrapped in `Reveal` - 30+ animated
  * prose sections would be motion noise, and legal text should simply be
  * there. RTL-safe: logical utilities only, `text-start` prose (the section
  * header is centered, the body reads as a document).

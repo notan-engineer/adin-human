@@ -1,12 +1,12 @@
 /**
- * Order service — shared, provider-agnostic checkout logic that the HTTP route
+ * Order service - shared, provider-agnostic checkout logic that the HTTP route
  * handlers (`app/api/*`) delegate to. Keeping the money math and fulfilment here
  * (instead of inline in each route) means the create flow and the payment
  * callback flow compute totals / fulfil the same way and can never drift.
  *
  * TRUST MODEL: the browser is never trusted for prices. `computeTotals` resolves
  * every line from the catalog server-side and recomputes the subtotal, shipping,
- * VAT and total from scratch — the client only ever supplies `{ slug, qty }`.
+ * VAT and total from scratch - the client only ever supplies `{ slug, qty }`.
  *
  * MONEY: every `*Agorot` value is an INTEGER count of agorot (₪1 = 100 agorot).
  */
@@ -35,7 +35,7 @@ export type { CommerceErrorCode } from "./errors";
 
 /**
  * A placeholder destination used only to price a delivery method when the caller
- * has not (yet) supplied a real address — e.g. an early quote or `self_pickup`.
+ * has not (yet) supplied a real address - e.g. an early quote or `self_pickup`.
  * `cityToZone("")` resolves this to the "other" fallback zone in the stub.
  */
 const MINIMAL_ADDRESS: Address = {
@@ -55,7 +55,7 @@ export function getSiteUrl(): string {
 /**
  * Resolve untrusted `{ slug, qty }` lines into priced {@link OrderItem}s using
  * the server-side catalog price (VAT-inclusive). Throws {@link CommerceError} on
- * an empty cart or an unknown slug — NEVER trusts a client-supplied price.
+ * an empty cart or an unknown slug - NEVER trusts a client-supplied price.
  */
 export function resolveOrderItems(
   items: { slug: string; qty: number }[],
@@ -152,7 +152,7 @@ export async function computeTotals(
  * the shipment, persisting the invoice/tracking references onto the order.
  *
  * IDEMPOTENT: guarded by `invoiceNumber`. If the order already carries one (or a
- * concurrent call fulfilled it first), the current order is returned untouched —
+ * concurrent call fulfilled it first), the current order is returned untouched -
  * so a webhook retry, a browser-return VERIFY, and a manual invoice request can
  * all call this without double-issuing an invoice or double-booking a shipment.
  */
@@ -168,7 +168,7 @@ export async function fulfillPaidOrder(order: Order): Promise<Order> {
 
   const invoice = await getInvoiceProvider().issue({
     orderId: current.id,
-    type: "invoice_receipt", // חשבונית מס/קבלה — the paid B2C document.
+    type: "invoice_receipt", // חשבונית מס/קבלה - the paid B2C document.
     customer: current.contact,
     lines: current.items,
     discountAgorot: current.discountAgorot,

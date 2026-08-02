@@ -17,7 +17,7 @@ type Status = "idle" | "submitting" | "success" | "error";
  * Email capture (client leaf) posting to `/api/newsletter`.
  *
  * The result is rendered into a permanently-mounted `aria-live="polite"` region
- * — mounting the region together with its text is unreliable across screen
+ * - mounting the region together with its text is unreliable across screen
  * readers, so the container is always present and only its contents change.
  */
 export function Newsletter({ className }: { className?: string }) {

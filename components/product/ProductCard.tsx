@@ -17,8 +17,8 @@ const POUCH_MASK =
  * localized name, heat meter, price, and a quick "Add".
  *
  * Interaction model (no nested interactive elements): the whole card is made
- * clickable by a "stretched link" — the title's <Link> owns a full-card ::after
- * overlay — while the Add button sits on its own raised layer above it. The
+ * clickable by a "stretched link" - the title's <Link> owns a full-card ::after
+ * overlay - while the Add button sits on its own raised layer above it. The
  * pouch has explicit width/height, so the card reserves its space (no CLS).
  *
  * Server-safe (next-intl `useTranslations` / `useLocale`).
@@ -89,7 +89,7 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
 
         {/* Price + Add. STACKED below sm: a two-column grid card at 390px
-            leaves ~135px of content width — price beside the button clipped
+            leaves ~135px of content width - price beside the button clipped
             the button at the card edge. Stacking also yields a full-width,
             taller (h-10) tap target on touch screens. */}
         <div className="mt-auto flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">

@@ -1,7 +1,7 @@
 /**
  * Money utilities.
  *
- * Money is stored EVERYWHERE as INTEGER AGOROT (₪1 = 100 agorot) — never as a
+ * Money is stored EVERYWHERE as INTEGER AGOROT (₪1 = 100 agorot) - never as a
  * float shekel value. This avoids binary-float rounding drift through the cart,
  * checkout, and payment provider. Batch 8 extends this module with VAT helpers;
  * keep it small until then.

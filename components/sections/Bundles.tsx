@@ -19,9 +19,9 @@ import { cn } from "@/lib/utils";
 /**
  * The מארזים (bundles) section (scroll target `#bundles`): the three mix &
  * match tiers, driven by BUNDLE_TIERS so the section can never advertise a
- * price the cart doesn't honor — prices and savings are computed, never
+ * price the cart doesn't honor - prices and savings are computed, never
  * hard-coded in copy. The 5-pack is ringed gold as "הכי משתלם" (client
- * decision — biggest absolute saving, ₪15). Dark char band between the
+ * decision - biggest absolute saving, ₪15). Dark char band between the
  * flavor grid and TrustStats; both bands are hairline-framed so the
  * adjacency reads intentional.
  *

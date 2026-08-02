@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
  * Gold "Add to cart" button. Adds `qty` of `slug` to the cart, flashes an
  * "Added" confirmation for ~1.6s at the pointer, and raises the global cart
  * toast. The screen-reader announcement lives on the toast's live region (it
- * carries the product name) — deliberately NOT also on this button, which
+ * carries the product name) - deliberately NOT also on this button, which
  * would double-announce.
  */
 export function AddToCartButton({

@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # ─────────────────────────────────────────────────────────────────────────────
-# The Heuman Chef — self-hosted Node SSR image.
+# The Heuman Chef - self-hosted Node SSR image.
 #
 # Three stages so the runtime layer carries no npm cache, no source, and no dev
 # dependencies: deps (npm ci) → builder (next build) → runner (standalone only).
@@ -53,7 +53,7 @@ ENV PORT=4000
 RUN addgroup --system --gid 1001 nodejs \
  && adduser --system --uid 1001 nextjs
 
-# public/ is NOT included in the standalone output — it has to be copied
+# public/ is NOT included in the standalone output - it has to be copied
 # explicitly, or every image, font and icon 404s.
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 # The standalone server plus its traced node_modules (includes the assets named

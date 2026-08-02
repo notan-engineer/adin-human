@@ -14,7 +14,7 @@ import type { LegalDoc, LocalizedText } from "./types";
  * formatted per locale, so this page can never advertise a fee or threshold
  * the checkout doesn't charge. The returns stance is the client's decision:
  * cancellable until shipment (full refund), NO returns on food once supplied
- * (טובין פסידים — ס' 14ג(ד) לחוק הגנת הצרכן), defective goods replaced or
+ * (טובין פסידים - ס' 14ג(ד) לחוק הגנת הצרכן), defective goods replaced or
  * refunded per law. Placeholders in [brackets] MUST be confirmed before
  * go-live (delivery ETA, pickup address, defect-report window).
  */
@@ -46,7 +46,7 @@ export const shippingDoc: LegalDoc = {
       title: { he: "שיטות משלוח", en: "Delivery Methods" },
       body: [
         {
-          he: "משלוח עם שליח עד הבית מוצע לכל חלקי הארץ. בנוסף ניתן לבחור באיסוף עצמי, ללא עלות, מ[כתובת נקודת האיסוף] — בתיאום מראש. ייתכן שיוצעו מעת לעת אפשרויות מסירה נוספות, כפי שיוצג בקופה בעת ההזמנה.",
+          he: "משלוח עם שליח עד הבית מוצע לכל חלקי הארץ. בנוסף ניתן לבחור באיסוף עצמי, ללא עלות, מ[כתובת נקודת האיסוף] - בתיאום מראש. ייתכן שיוצעו מעת לעת אפשרויות מסירה נוספות, כפי שיוצג בקופה בעת ההזמנה.",
           en: "Home courier delivery is offered throughout Israel. You may also choose free self-pickup from [pickup address], by prior arrangement. Additional delivery options may be offered from time to time, as shown at checkout when ordering.",
         },
       ],
@@ -56,7 +56,7 @@ export const shippingDoc: LegalDoc = {
       title: { he: "עלות משלוח", en: "Delivery Cost" },
       body: [
         {
-          he: `משלוח עם שליח עולה ${fee.he} לכל הארץ, ובהזמנה בסך ${threshold.he} ומעלה (לאחר הנחות) — המשלוח חינם. איסוף עצמי — ללא עלות.`,
+          he: `משלוח עם שליח עולה ${fee.he} לכל הארץ, ובהזמנה בסך ${threshold.he} ומעלה (לאחר הנחות) - המשלוח חינם. איסוף עצמי - ללא עלות.`,
           en: `Courier delivery costs ${fee.en} nationwide, and orders of ${threshold.en} or more (after discounts) ship free. Self-pickup is free of charge.`,
         },
       ],
@@ -76,7 +76,7 @@ export const shippingDoc: LegalDoc = {
       title: { he: "קבלת המשלוח", en: "Receiving Your Order" },
       body: [
         {
-          he: "באחריות הלקוח למסור כתובת ומספר טלפון מדויקים וזמינים. השאיר השליח את החבילה לפי הנחיית הנמען (למשל ליד הדלת) — האחריות לחבילה מרגע ההשארה היא על הנמען. עם קבלת המשלוח יש לאחסן את המוצרים בהתאם להנחיות שעל האריזה.",
+          he: "באחריות הלקוח למסור כתובת ומספר טלפון מדויקים וזמינים. השאיר השליח את החבילה לפי הנחיית הנמען (למשל ליד הדלת) - האחריות לחבילה מרגע ההשארה היא על הנמען. עם קבלת המשלוח יש לאחסן את המוצרים בהתאם להנחיות שעל האריזה.",
           en: "It is the customer's responsibility to provide an accurate address and a reachable phone number. If the courier leaves the package per the recipient's instruction (for example, by the door), responsibility for the package passes to the recipient at that point. Upon receipt, store the products according to the on-pack instructions.",
         },
       ],

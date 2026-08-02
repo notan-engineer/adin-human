@@ -5,13 +5,13 @@ import type { Locale } from "@/lib/catalog";
  * the full message catalog ships to the client on every page (layout passes
  * `getMessages()` into NextIntlClientProvider), while these files are imported
  * only by the three server-rendered legal routes and tree-shaken everywhere
- * else. `Record<Locale, string>` makes a missing translation a COMPILE error —
- * stronger than the runtime messages-parity test — and being TS lets
+ * else. `Record<Locale, string>` makes a missing translation a COMPILE error -
+ * stronger than the runtime messages-parity test - and being TS lets
  * `shipping.ts` import the live fee/threshold constants so the legal page can
  * never drift from what checkout charges.
  *
  * Bracketed placeholders like [שם העסק הרשמי] are facts the owner must supply
- * before go-live — see `lib/__tests__/legal-content.test.ts` for the list.
+ * before go-live - see `lib/__tests__/legal-content.test.ts` for the list.
  */
 
 export type LocalizedText = Record<Locale, string>;

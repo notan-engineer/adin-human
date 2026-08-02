@@ -1,10 +1,10 @@
 /**
- * POST /api/contact — inbound message from the site contact form.
+ * POST /api/contact - inbound message from the site contact form.
  *
  * ⚠️ STUB: this handler validates the payload and logs it server-side, then
  * returns success. Nothing is persisted and no mail is sent. A real
  * CRM/helpdesk/transactional-mail integration (e.g. an ESP send, a ticket
- * create, or a row insert) wires in at the marked point below — the validated
+ * create, or a row insert) wires in at the marked point below - the validated
  * `parsed.data` is the payload to hand it.
  *
  * Note the deliberate lack of an anti-abuse layer: before this goes live it

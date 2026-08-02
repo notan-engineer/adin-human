@@ -1,5 +1,5 @@
 /**
- * PayPlus — STUB adapter. Thin, same-interface stub so switching the payment
+ * PayPlus - STUB adapter. Thin, same-interface stub so switching the payment
  * provider is a one-line change in `registry.ts`. PayPlus offers a hosted
  * payment page + Bit; in the configuration modelled here it does NOT issue the
  * tax document itself (`issuesTaxDocument: false`), so it would be paired with a

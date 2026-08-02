@@ -1,5 +1,5 @@
 /**
- * Delivery provider — STUB adapter, driven by the Israel zone table in
+ * Delivery provider - STUB adapter, driven by the Israel zone table in
  * `zones.ts`. Deterministic (no Math.random): quotes come straight from the
  * rate card, and pickup points / shipments / tracking are fixed fakes derived
  * from the input. Real carrier adapters (HFD, Israel Post, Wolt Drive, …) will

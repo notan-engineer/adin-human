@@ -1,5 +1,5 @@
 /**
- * /api/payment/callback — the two ways a hosted payment reports back.
+ * /api/payment/callback - the two ways a hosted payment reports back.
  *
  * GET  = the customer's browser returning from the hosted page. The query string
  *        is UNTRUSTED, so we re-query the provider (`getStatus`) as the source of
@@ -7,16 +7,16 @@
  *        order page (or back to the cart with `?payment=failed`).
  *
  * POST = the server-to-server webhook / IPN. We read the RAW body first (as TEXT,
- *        never `request.json()` — YeshInvoice's notify is
+ *        never `request.json()` - YeshInvoice's notify is
  *        `application/x-www-form-urlencoded`, not JSON), hand it to
  *        `parseAndVerifyCallback`, mark paid + fulfil, and ALWAYS answer 200
- *        `{received:true}` so the gateway stops retrying — even for an
+ *        `{received:true}` so the gateway stops retrying - even for an
  *        already-processed event. We never throw back at the gateway.
  *
  * ⚠️ NEVER FULFIL ON THE SuccessUrl REDIRECT ALONE.
  * The GET here is the shopper's browser coming back from the hosted page. It is
  * user-controllable (anyone can type that URL with any params) and it RACES the
- * server-to-server notify — the browser frequently arrives first. Both branches
+ * server-to-server notify - the browser frequently arrives first. Both branches
  * below therefore re-confirm with the provider before touching order state, and
  * neither derives "paid" from the query string. YeshInvoice compounds this: its
  * notify carries NO signature either, so the webhook is only a wake-up hint and
@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
   const orderIdParam =
     params.get("orderId") ?? params.get("UniqueID") ?? undefined;
   // Optional landing URL the hosted page wants us to return the shopper to after
-  // a successful VERIFY (mirrors real HYP's successUrl hop). UNTRUSTED — guarded
+  // a successful VERIFY (mirrors real HYP's successUrl hop). UNTRUSTED - guarded
   // below so it can only ever point back at our own site (no open redirect).
   const returnParam = params.get("return") ?? undefined;
   // Order has no persisted locale; honor an explicit hint, else default Hebrew.
@@ -67,7 +67,7 @@ export async function GET(request: NextRequest) {
     if (!order && orderIdParam) order = await repo.get(orderIdParam);
 
     if (!order) {
-      // Can't resolve the order — send the shopper back to the cart.
+      // Can't resolve the order - send the shopper back to the cart.
       return NextResponse.redirect(localePath("/cart?payment=failed", locale));
     }
 
@@ -132,7 +132,7 @@ export async function POST(request: NextRequest) {
       }
     }
   } catch (err) {
-    // Log, but still acknowledge — a 5xx would make the gateway retry forever.
+    // Log, but still acknowledge - a 5xx would make the gateway retry forever.
     console.error("[api/payment/callback POST] error", err);
   }
 

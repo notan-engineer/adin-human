@@ -107,7 +107,7 @@ describe("parseYeshInvoiceCallback", () => {
 
     expect(parsed.orderId).toBe("ord_abc123");
     expect(parsed.transactionId).toBe("99887766");
-    // The status field name is ACQUIRER-specific — we detect it, not assume it.
+    // The status field name is ACQUIRER-specific - we detect it, not assume it.
     expect(parsed.statusField).toBe("PelecardStatusCode");
     expect(parsed.statusCode).toBe("000");
     expect(parsed.fields.TotalPrice).toBe("119.00");
@@ -184,7 +184,7 @@ describe("YeshInvoicePaymentProvider (stub mode)", () => {
     expect(status.providerRef).toBe("some-guid");
   });
 
-  it("refund rejects as unsupported — YeshInvoice has no refund API", async () => {
+  it("refund rejects as unsupported - YeshInvoice has no refund API", async () => {
     await expect(
       provider.refund({
         providerRef: "some-guid",
@@ -257,7 +257,7 @@ describe("YeshInvoicePaymentProvider (configured/real mode) fails closed", () =>
 
       // YeshInvoice signs nothing, so this body is forgeable by anyone who can
       // reach NotifyUrl. The callback route fulfills only on "paid"/"authorized"
-      // — an unsigned notify must never reach either, or we reproduce the
+      // - an unsigned notify must never reach either, or we reproduce the
       // unverified payment_complete() bug in YeshInvoice's own WooCommerce plugin.
       expect(["paid", "authorized"]).not.toContain(result.status);
       expect(result.status).toBe("pending");

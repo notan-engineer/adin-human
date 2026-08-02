@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Small tinted pill badges for the brand's product claims. Driven by the
- * product's `badges` array — only the known trust claims are rendered here
+ * product's `badges` array - only the known trust claims are rendered here
  * (other tags like "bestseller" are surfaced elsewhere), preserving this fixed
  * display order. "kosher" leads (generic Kosher claim; certifying body/teudah
  * still TBD).

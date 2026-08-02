@@ -25,7 +25,7 @@ type CartState = {
  * SSR-safe: `createJSONStorage(() => localStorage)` swallows the server-side
  * `localStorage is not defined` throw and hydration no-ops until the client
  * mounts (zustand guards `hydrate()` on a missing storage). Only `items` is
- * persisted — action functions are recreated on each load.
+ * persisted - action functions are recreated on each load.
  */
 export const useCart = create<CartState>()(
   persist(

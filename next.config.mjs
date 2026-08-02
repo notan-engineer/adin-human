@@ -7,7 +7,7 @@ const withNextIntl = createNextIntlPlugin("./lib/i18n/request.ts");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Node SSR (NOT static export) — checkout + HYP callback route handlers need a server runtime.
+  // Node SSR (NOT static export) - checkout + HYP callback route handlers need a server runtime.
   //
   // "standalone" emits `.next/standalone/server.js` with only the traced
   // production dependencies, which is what the Dockerfile copies. It relies on

@@ -1,5 +1,5 @@
 /**
- * POST /api/order/create — create a `pending` order from an untrusted cart.
+ * POST /api/order/create - create a `pending` order from an untrusted cart.
  *
  * The body carries only `{ slug, qty }` per line plus contact/delivery choices;
  * ALL money is recomputed server-side in `computeTotals` (the client price is

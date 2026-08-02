@@ -13,7 +13,7 @@ type ParallaxProps = {
 
 /**
  * Subtly translates its child on the Y axis as the element scrolls through the
- * viewport. Only `transform` is animated — no layout shift.
+ * viewport. Only `transform` is animated - no layout shift.
  */
 export function Parallax({
   children,

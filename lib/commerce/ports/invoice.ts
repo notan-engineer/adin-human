@@ -1,5 +1,5 @@
 /**
- * Invoice port — issues the Israeli tax document for an order.
+ * Invoice port - issues the Israeli tax document for an order.
  *
  * In production this can be satisfied by HYP itself: HYP (Hyp Pay / YaadPay)
  * natively issues the חשבונית מס/קבלה as part of the payment, so the payment
@@ -15,16 +15,16 @@ import type { ContactInfo, OrderItem } from "../types";
 export interface IssueInvoiceInput {
   orderId: string;
   /**
-   * - `invoice_receipt` — חשבונית מס/קבלה (paid, most common for B2C).
-   * - `receipt`         — קבלה only.
-   * - `tax_invoice`     — חשבונית מס (unpaid, for business terms).
+   * - `invoice_receipt` - חשבונית מס/קבלה (paid, most common for B2C).
+   * - `receipt`         - קבלה only.
+   * - `tax_invoice`     - חשבונית מס (unpaid, for business terms).
    */
   type: "invoice_receipt" | "receipt" | "tax_invoice";
   customer: ContactInfo;
   lines: OrderItem[];
   /**
    * Mix&match bundle discount, integer agorot (0/omitted = none). A real
-   * adapter MUST render this as a negative document line ("הנחת מארזים") —
+   * adapter MUST render this as a negative document line ("הנחת מארזים") -
    * the stub ignores it.
    */
   discountAgorot?: number;

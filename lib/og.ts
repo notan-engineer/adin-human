@@ -4,7 +4,7 @@
  * `next/og` (satori) cannot use `next/font`: it needs raw font BYTES, and the
  * self-hosted `next/font` output is woff2, which satori does not parse. So the
  * OG routes load TTFs vendored under `assets/fonts/`. Rubik ships Hebrew AND
- * Latin glyphs — the bundled fallback (Noto Sans, Latin-only) would render the
+ * Latin glyphs - the bundled fallback (Noto Sans, Latin-only) would render the
  * Hebrew copy as tofu boxes.
  *
  * Every route that imports this must run on the Node runtime (`fs` access), and
@@ -36,7 +36,7 @@ export function ogMeta(locale: Locale) {
 
 const RTL_CHAR = /[֐-׿יִ-ﭏ]/;
 const LTR_CHAR = /[A-Za-z0-9À-ɏ]/;
-/** Bidi control characters — meaningless to satori, stripped before layout. */
+/** Bidi control characters - meaningless to satori, stripped before layout. */
 const BIDI_CONTROLS = /[‎‏‪-‮⁦-⁩]/g;
 const MIRRORED: Record<string, string> = {
   "(": ")", ")": "(", "[": "]", "]": "[",
@@ -58,7 +58,7 @@ const MIRRORED: Record<string, string> = {
  * RTL characters are returned untouched, so it is safe to call for both locales.
  *
  * NOTE: only ever apply this to text being RENDERED INTO AN IMAGE. Alt text,
- * metadata and page copy must stay in logical order — that is what screen
+ * metadata and page copy must stay in logical order - that is what screen
  * readers and search engines consume.
  */
 export function toVisualOrder(input: string): string {

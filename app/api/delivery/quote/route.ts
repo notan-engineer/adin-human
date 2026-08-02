@@ -1,5 +1,5 @@
 /**
- * POST /api/delivery/quote — price the available shipping options for a cart +
+ * POST /api/delivery/quote - price the available shipping options for a cart +
  * destination. Items are resolved to server-side prices so the free-shipping
  * threshold is computed from the true subtotal, never a client figure.
  *
@@ -21,7 +21,7 @@ export const runtime = "nodejs";
 const deliveryMethodSchema = z.enum(["self_pickup", "courier"]);
 
 const bodySchema = z.object({
-  // Same DoS caps as order/create — the quote path reaches the same DP.
+  // Same DoS caps as order/create - the quote path reaches the same DP.
   items: z
     .array(
       z.object({

@@ -1,5 +1,5 @@
 /**
- * Cardcom — STUB adapter. Thin, same-interface stub. Cardcom issues the tax
+ * Cardcom - STUB adapter. Thin, same-interface stub. Cardcom issues the tax
  * document natively (`issuesTaxDocument: true`, like HYP), so it can satisfy the
  * InvoiceProvider role on its own. Switching to it is a one-line change in
  * `registry.ts`. Fill in the real API when keys arrive.

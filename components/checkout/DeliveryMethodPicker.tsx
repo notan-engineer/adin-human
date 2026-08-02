@@ -12,8 +12,8 @@ import { formatAgorot } from "@/lib/money";
 
 /**
  * Two-option delivery choice, as radio cards (modeled on PaymentMethods).
- * With exactly two flat-priced options there is nothing to quote: the descs —
- * which carry the free-over-threshold promise — stay always visible, and it's
+ * With exactly two flat-priced options there is nothing to quote: the descs -
+ * which carry the free-over-threshold promise - stay always visible, and it's
  * one less tap than a dropdown on mobile. `courierFeeAgorot` is the fee for
  * THIS cart (0 once the discounted subtotal clears the threshold).
  */

@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 /**
  * The flavor lineup section (scroll target `#products`). A localized kicker +
  * heading over a responsive grid of product cards, revealed with the shared
- * Stagger primitives (reduced-motion safe — Stagger degrades to a plain wrapper).
+ * Stagger primitives (reduced-motion safe - Stagger degrades to a plain wrapper).
  *
  * Server-safe (next-intl `useTranslations`); the ProductCards render on the
  * server and are handed to the client Stagger as children.

@@ -1,13 +1,13 @@
 /**
  * Shared domain types for the provider-agnostic commerce layer.
  *
- * Pure TypeScript — no React, no UI, no i18n message files. Everything here is
+ * Pure TypeScript - no React, no UI, no i18n message files. Everything here is
  * consumed by the ports (`ports/*`), the stub adapters (`adapters/*`), and the
  * registry (`registry.ts`).
  *
  * MONEY: every monetary field is an INTEGER count of AGOROT (₪1 = 100 agorot).
  * We reuse the canonical `Money` alias and helpers from `@/lib/money` and the
- * VAT split from `@/lib/vat` — those are NOT reimplemented here.
+ * VAT split from `@/lib/vat` - those are NOT reimplemented here.
  */
 
 // Re-export the canonical Money alias so commerce code can import it from a
@@ -51,11 +51,11 @@ export interface ContactInfo {
 
 /**
  * How the order reaches the customer.
- * - `self_pickup`   — customer collects from the kitchen/store.
- * - `pickup_point`  — staffed collection point (e.g. חברת שליחויות סניף).
- * - `locker`        — automated parcel locker.
- * - `courier`       — home delivery, standard.
- * - `same_day`      — home delivery, same/next day (Gush Dan only).
+ * - `self_pickup`   - customer collects from the kitchen/store.
+ * - `pickup_point`  - staffed collection point (e.g. חברת שליחויות סניף).
+ * - `locker`        - automated parcel locker.
+ * - `courier`       - home delivery, standard.
+ * - `same_day`      - home delivery, same/next day (Gush Dan only).
  */
 export type DeliveryMethod =
   | "self_pickup"
@@ -128,8 +128,8 @@ export type NewOrder = Omit<
 /**
  * Normalized payment lifecycle, mapped from each provider's native codes (see
  * HYP `CCode` mapping in `adapters/payment/hyp-stub.ts`).
- * - `requires_action` — customer must be redirected / complete 3-D Secure.
- * - `authorized`      — funds held but not captured (HYP CCode 700).
+ * - `requires_action` - customer must be redirected / complete 3-D Secure.
+ * - `authorized`      - funds held but not captured (HYP CCode 700).
  */
 export type PaymentStatus =
   | "pending"

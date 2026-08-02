@@ -60,7 +60,7 @@ export function Hero() {
         aria-hidden
       />
 
-      {/* Brand copy — visible immediately on load */}
+      {/* Brand copy - visible immediately on load */}
       <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center gap-5 px-6 pt-28 text-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <motion.img
@@ -87,7 +87,7 @@ export function Hero() {
         </Button>
       </div>
 
-      {/* Flavor shelf — the products, lit and glowing, on the smoky floor */}
+      {/* Flavor shelf - the products, lit and glowing, on the smoky floor */}
       <div className="relative z-10 mx-auto flex w-full max-w-5xl items-end justify-center gap-1 px-4 pb-8 sm:gap-3">
         {FLAVORS.map((slug, i) => (
           <motion.div

@@ -28,13 +28,13 @@
     --accent-foreground: 24 35% 10%;
 
     /* Error text on the near-black surfaces. The old 0 62% 45% reached only
-       2.97:1 on `--card` and 2.80:1 inside the 10%-tinted error banner — a fail
+       2.97:1 on `--card` and 2.80:1 inside the 10%-tinted error banner - a fail
        for the smallest, highest-stakes text on the site (checkout validation
        messages, all `text-xs`). Lightened to clear 4.5:1 with headroom:
        6.60:1 on card, 7.06:1 on background, 5.70:1 on the tinted banner.
        The token is only ever used as text / border / 10% tint (no solid
        `variant="destructive"` fill exists), but `--destructive-foreground` is
-       flipped dark anyway so a future solid fill stays legible — the same
+       flipped dark anyway so a future solid fill stays legible - the same
        light-surface + dark-ink pairing as `--gold` / `--primary-foreground`. */
     --destructive: 0 65% 70%;
     --destructive-foreground: 24 30% 10%;
@@ -44,7 +44,7 @@
        UI-component boundaries, so WCAG 1.4.11's 3:1 does not bind here. */
     --border: 30 12% 26%;
     /* FORM CONTROL boundaries, which 1.4.11 *does* bind at 3:1. At 20% the
-       input outline sat at 1.53:1 against the page — fields were effectively
+       input outline sat at 1.53:1 against the page - fields were effectively
        invisible. 39% gives 3.28:1 on `--background` and 3.07:1 on `--card`. */
     --input: 30 12% 39%;
     --ring: 33 70% 75%;
@@ -124,9 +124,9 @@
      the hook resolving correctly. This rule makes the guarantee unconditional:
      `!important` outranks the inline `opacity: 0; transform: …` that the motion
      library writes into the server-rendered markup, so the content is visible
-     on the FIRST PAINT — before hydration, and even if hydration never happens.
+     on the FIRST PAINT - before hydration, and even if hydration never happens.
      Without it, a reduced-motion user whose JS is slow or broken sees a page of
-     invisible sections that only appear on scroll — the exact harm the
+     invisible sections that only appear on scroll - the exact harm the
      preference exists to prevent. */
   .reveal-item {
     opacity: 1 !important;

@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
  * The query matters: the checkout phase lives at /cart?checkout=1, so a
  * pathname-only replace would silently kick a mid-checkout shopper back to
  * the cart view. next-intl's usePathname excludes the search string, so the
- * query is read from window.location at CLICK time — an event handler, not
+ * query is read from window.location at CLICK time - an event handler, not
  * render, which also avoids the useSearchParams/Suspense requirement in a
  * header that renders on every page.
  */

@@ -1,5 +1,5 @@
 /**
- * Payment port — the provider-agnostic contract every payment adapter (HYP,
+ * Payment port - the provider-agnostic contract every payment adapter (HYP,
  * PayPlus, Cardcom, …) implements. Swapping providers is a one-line change in
  * `registry.ts`; nothing in the app depends on a provider's SDK directly.
  *
@@ -32,7 +32,7 @@ export interface NormalizedPayment {
   raw: unknown;
 }
 
-/** What a provider can do — lets the UI/registry reason about capabilities. */
+/** What a provider can do - lets the UI/registry reason about capabilities. */
 export interface PaymentProviderCapabilities {
   hostedRedirect: boolean;
   inlineTokenized: boolean;

@@ -13,7 +13,7 @@ import { defineConfig, devices } from "@playwright/test";
  * checkout test off to :4000 mid-flow.
  */
 // This project lives in the 4000 family: dev/start on :4000, E2E here on
-// :4100. Other local projects own the 3000 range — never bind (or kill!)
+// :4100. Other local projects own the 3000 range - never bind (or kill!)
 // anything there.
 const PORT = Number(process.env.E2E_PORT ?? 4100);
 const BASE_URL = `http://127.0.0.1:${PORT}`;
@@ -50,7 +50,7 @@ export default defineConfig({
   ],
 
   webServer: {
-    // `next start` directly, NOT `npm run start` — the start script pins the
+    // `next start` directly, NOT `npm run start` - the start script pins the
     // dev-facing :4000, and stacking a second -p on top of it is undefined.
     command: `npm run build && npx next start -p ${PORT}`,
     url: BASE_URL,

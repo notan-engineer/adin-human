@@ -1,5 +1,5 @@
 /**
- * Provider registry — the single place the app resolves which adapter backs each
+ * Provider registry - the single place the app resolves which adapter backs each
  * port. Selection is env-driven; everything else in the app depends only on the
  * PORT interfaces, so switching providers is a one-line env / registry change.
  *
@@ -83,7 +83,7 @@ export function getInvoiceProvider(): InvoiceProvider {
  * Cached on `globalThis` rather than in a plain module variable: Next.js gives
  * each route handler its own module instance (and HMR re-evaluates modules in
  * dev), so a module-level singleton would hand `/api/order/create` and
- * `/api/payment/create` two *different* in-memory stores — the order would be
+ * `/api/payment/create` two *different* in-memory stores - the order would be
  * written to one Map and looked up in another, 404-ing every payment. A global
  * cache keeps one store per server process. (A real DB-backed repository makes
  * this moot; the in-memory stub still resets on restart.)

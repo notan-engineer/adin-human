@@ -66,7 +66,7 @@ export default async function OpengraphImage({
           position: "relative",
         }}
       >
-        {/* Warm ember glow behind the mark — the site's smoke-radial motif. */}
+        {/* Warm ember glow behind the mark - the site's smoke-radial motif. */}
         <div
           style={{
             position: "absolute",

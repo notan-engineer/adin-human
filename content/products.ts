@@ -1,7 +1,7 @@
 import type { Product } from "@/lib/catalog";
 
 /**
- * ⚠️ PLACEHOLDER DATA — FOR REVIEW.
+ * ⚠️ PLACEHOLDER DATA - FOR REVIEW.
  * Prices (agorot), nutrition numbers, and marketing copy below are provisional
  * and MUST be confirmed by the brand before launch. Product facts drawn from
  * the real packaging (65g cherry-wood-smoked pouches, no preservatives,
@@ -30,8 +30,8 @@ export const products: Product[] = [
       en: "Texas-style BBQ",
     },
     description: {
-      he: "נתחי סינטה חתוכים ומנוקים ביד, מתובלים בתערובת תבלינים בסגנון ברביקיו טקסני, מעושנים ומיובשים במשך שעות בשבבי עץ דובדבן. כל ביס נושא את טעם המעשנה ואיזון תערובת התבלינים הביתית — מלוח, מתקתק ועשיר בתבלינים וטעמים.",
-      en: "Hand-trimmed sirloin, seasoned with our signature Texas-style BBQ spice blend, then slowly smoked and dried for hours over cherry wood. Every bite delivers rich, smoky flavor balanced by our handcrafted seasoning — savory, subtly sweet, and packed with bold, authentic taste.",
+      he: "נתחי סינטה חתוכים ומנוקים ביד, מתובלים בתערובת תבלינים בסגנון ברביקיו טקסני, מעושנים ומיובשים במשך שעות בשבבי עץ דובדבן. כל ביס נושא את טעם המעשנה ואיזון תערובת התבלינים הביתית - מלוח, מתקתק ועשיר בתבלינים וטעמים.",
+      en: "Hand-trimmed sirloin, seasoned with our signature Texas-style BBQ spice blend, then slowly smoked and dried for hours over cherry wood. Every bite delivers rich, smoky flavor balanced by our handcrafted seasoning - savory, subtly sweet, and packed with bold, authentic taste.",
     },
     flavor: "barbecue",
     heatLevel: 0,
@@ -52,8 +52,8 @@ export const products: Product[] = [
       en: "Maple sweetness with a slow-building fire.",
     },
     description: {
-      he: "מייפל טהור פוגש תערובת פלפלים חריפים ועשן שבבי עץ דובדבן. המתיקות מגיעה קודם, ואז החום עולה ונשאר — טעם חם וממכר, לאוהבים קצת אש בתוך העשן.",
-      en: "Pure maple meets a bold blend of hot peppers and the delicate smoke of cherry wood. The sweetness comes first, then a slow-building heat rises and lingers — warm, addictive, and crafted for those who like a little fire in their smoke.",
+      he: "מייפל טהור פוגש תערובת פלפלים חריפים ועשן שבבי עץ דובדבן. המתיקות מגיעה קודם, ואז החום עולה ונשאר - טעם חם וממכר, לאוהבים קצת אש בתוך העשן.",
+      en: "Pure maple meets a bold blend of hot peppers and the delicate smoke of cherry wood. The sweetness comes first, then a slow-building heat rises and lingers - warm, addictive, and crafted for those who like a little fire in their smoke.",
     },
     flavor: "maple-chili",
     heatLevel: 2,
@@ -96,8 +96,8 @@ export const products: Product[] = [
       en: "Roasted garlic, black garlic, herbs and cherry-wood smoke",
     },
     description: {
-      he: "תערובת שומים ועשבי תיבול משתלבת בנתחי בקר חתוכים ביד ומיובשים בעשן שבבי עץ דובדבן. עשיר, מלוח וארומטי, מעט פיקנטי — ומשאיר טעם של עוד ועוד.",
-      en: "A bold blend of garlic and herbs coats hand-cut beef, slowly smoked and dried over cherry wood. Rich, savory, and aromatic with a gentle kick of heat — every bite leaves you craving more.",
+      he: "תערובת שומים ועשבי תיבול משתלבת בנתחי בקר חתוכים ביד ומיובשים בעשן שבבי עץ דובדבן. עשיר, מלוח וארומטי, מעט פיקנטי - ומשאיר טעם של עוד ועוד.",
+      en: "A bold blend of garlic and herbs coats hand-cut beef, slowly smoked and dried over cherry wood. Rich, savory, and aromatic with a gentle kick of heat - every bite leaves you craving more.",
     },
     flavor: "garlic",
     heatLevel: 1,
@@ -118,8 +118,8 @@ export const products: Product[] = [
       en: "Wild za'atar, herbaceous and smoky.",
     },
     description: {
-      he: "מחווה למדרונות של ישראל — זעתר ריחני, טימין, רוזמרין ועוד עשבים מקומיים על בקר מעושן בעדינות. אדמתי, עשבוני ורך, בלי חריפות בכלל: עשן טהור וארומטי.",
-      en: "A tribute to the hills of Israel — fragrant za'atar, thyme, rosemary, and other local herbs over gently smoked beef. Earthy, herbaceous, and perfectly smooth with no heat at all, finished with pure, aromatic cherry-wood smoke.",
+      he: "מחווה למדרונות של ישראל - זעתר ריחני, טימין, רוזמרין ועוד עשבים מקומיים על בקר מעושן בעדינות. אדמתי, עשבוני ורך, בלי חריפות בכלל: עשן טהור וארומטי.",
+      en: "A tribute to the hills of Israel - fragrant za'atar, thyme, rosemary, and other local herbs over gently smoked beef. Earthy, herbaceous, and perfectly smooth with no heat at all, finished with pure, aromatic cherry-wood smoke.",
     },
     flavor: "zaatar",
     heatLevel: 0,
@@ -132,5 +132,5 @@ export const products: Product[] = [
     glow: "#4E5B2E",
     inStock: true,
   },
-  // "skewers" launching later — re-enable when ready.
+  // "skewers" launching later - re-enable when ready.
 ];

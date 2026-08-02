@@ -7,7 +7,7 @@ import { processSteps } from "@/content/processSteps";
 import { cn } from "@/lib/utils";
 
 /**
- * "How it's smoked" (scroll target `#process`) — four numbered steps over the
+ * "How it's smoked" (scroll target `#process`) - four numbered steps over the
  * smoker-interior texture.
  *
  * The photo is a decorative background layer: it drifts on a `Parallax` (which
@@ -28,7 +28,7 @@ export function ProcessSmoke({ className }: { className?: string }) {
         className,
       )}
     >
-      {/* Background texture — decorative, hidden from AT. */}
+      {/* Background texture - decorative, hidden from AT. */}
       <Parallax
         distance={36}
         className="pointer-events-none absolute inset-x-0 -top-16 -bottom-16 -z-10"

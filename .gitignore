@@ -43,7 +43,7 @@ yarn-error.log*
 # Claude Code local settings (personal, not team)
 .claude/settings.local.json
 
-# Raw brand design masters — heavy source assets (PSD/AI + 4000x5000 PNGs, ~0.7GB).
+# Raw brand design masters - heavy source assets (PSD/AI + 4000x5000 PNGs, ~0.7GB).
 # Web-optimized derivatives live in /public and ARE committed. Keep the source drop
 # out of git to keep the repo lean; back it up separately.
 /design-resources/

@@ -4,7 +4,7 @@ import type { Page } from "@playwright/test";
  * Shared fixtures for the E2E suite.
  *
  * Every spec runs against BOTH locales. Hebrew is served unprefixed (`/`),
- * English is prefixed (`/en`) — see `lib/i18n/routing.ts`.
+ * English is prefixed (`/en`) - see `lib/i18n/routing.ts`.
  */
 
 export type LocaleCase = {
@@ -43,14 +43,14 @@ export const PRICE_AGOROT: Record<string, number> = {
   zaatar: 4000,
 };
 
-/** Regular ("courier") delivery, in agorot — flat ₪40 nationwide. */
+/** Regular ("courier") delivery, in agorot - flat ₪40 nationwide. */
 export const COURIER_AGOROT = 4000;
 
 /**
  * Seed the persisted cart BEFORE any page script runs.
  *
  * The store is zustand `persist` under the "hc-cart" localStorage key, so the
- * shape has to match `{ state: { items }, version }` exactly — writing it via an
+ * shape has to match `{ state: { items }, version }` exactly - writing it via an
  * init script means the very first client render already sees a full cart, with
  * no add-to-cart round trip in tests that aren't about adding to the cart.
  */
@@ -79,7 +79,7 @@ export function stripBidi(s: string): string {
 /**
  * Collect console errors and uncaught page errors for the life of the page.
  *
- * Returns a live array — read it after the navigation and interactions you care
+ * Returns a live array - read it after the navigation and interactions you care
  * about. Nothing is filtered: a clean page should produce an empty array.
  */
 export function collectConsoleErrors(page: Page): string[] {
@@ -99,7 +99,7 @@ export function collectConsoleErrors(page: Page): string[] {
  * This is the reduced-motion assertion that actually bites: Playwright's
  * `toBeVisible()` treats `opacity: 0` as visible, so a scroll-reveal that never
  * fires would sail past it. Walking up the tree also catches the real failure
- * mode, where the *wrapper* — not the text — is the thing stuck at 0.
+ * mode, where the *wrapper* - not the text - is the thing stuck at 0.
  */
 export async function effectiveOpacity(
   page: Page,

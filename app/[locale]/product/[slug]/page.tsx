@@ -34,13 +34,13 @@ export async function generateMetadata({
   const product = getProduct(slug);
   if (!product) return {};
 
-  // Bare title — the layout template appends " — The Heuman Chef".
+  // Bare title - the layout template appends " - The Heuman Chef".
   // No `images` override: the sibling opengraph-image.tsx renders a proper
   // 1200x630 card (pouch + name + price), which beats the portrait 900x1125
   // pouch render that social platforms would letterbox.
   //
   // `openGraph.type` stays "website" (set by pageMetadata) rather than
-  // "product" — the OG product vertical needs og:product:* namespace fields to
+  // "product" - the OG product vertical needs og:product:* namespace fields to
   // validate, and the commerce facts live in the Product JSON-LD below instead.
   return pageMetadata({
     locale,
@@ -71,7 +71,7 @@ export default async function ProductPage({
     <div className="bg-background">
       {/* Offer price/availability come straight from the catalog, so the
           structured data can never drift from what the page renders. No
-          rating/review nodes — the on-site testimonials are placeholder copy. */}
+          rating/review nodes - the on-site testimonials are placeholder copy. */}
       <JsonLd data={productJsonLd(product, locale)} />
       <div className="container py-10 sm:py-16">
         {/* Back to shop */}
@@ -84,7 +84,7 @@ export default async function ProductPage({
         </Link>
 
         <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-14">
-          {/* Gallery — priority pouch on flavor-glow */}
+          {/* Gallery - priority pouch on flavor-glow */}
           <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-2xl border border-border bg-card p-8 sm:p-12">
             <div
               aria-hidden

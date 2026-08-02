@@ -15,11 +15,11 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 /**
  * Add-to-cart confirmation toast. Mounted once in the locale layout.
  *
- * The viewport is a permanently-mounted polite live region — a live region has
+ * The viewport is a permanently-mounted polite live region - a live region has
  * to exist BEFORE content is injected for screen readers to announce it
  * reliably (same reason Newsletter keeps its status node mounted). Bottom
  * center on mobile, bottom-start on desktop (logical start: right in RTL
- * Hebrew, left in English). Deliberately no ₪ amounts here — money renders in
+ * Hebrew, left in English). Deliberately no ₪ amounts here - money renders in
  * the cart, not in a transient card.
  *
  * The countdown pauses while the pointer is over the card or focus is inside

@@ -2,7 +2,7 @@
  * JSON-LD structured data builders.
  *
  * GROUND RULE: every value emitted here must be independently true of the real
- * business. We deliberately do NOT emit `aggregateRating` or `review` — the
+ * business. We deliberately do NOT emit `aggregateRating` or `review` - the
  * testimonials rendered on the site are placeholder copy, so publishing them as
  * review schema would be fabricated structured data (and a Google structured-
  * data policy violation). Same for kosher/certification claims: unverified, so

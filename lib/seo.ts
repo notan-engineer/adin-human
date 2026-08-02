@@ -4,7 +4,7 @@
  * The he/en URL shape is decided in EXACTLY one place: `localePath()`. Hebrew is
  * the default locale and is served unprefixed (`/about`); English is prefixed
  * (`/en/about`). This mirrors `routing.localePrefix: "as-needed"` in
- * `lib/i18n/routing.ts` — if that ever changes, change `localePath()` and every
+ * `lib/i18n/routing.ts` - if that ever changes, change `localePath()` and every
  * canonical, alternate, sitemap entry and JSON-LD `url` follows automatically.
  */
 import type { Metadata } from "next";
@@ -110,7 +110,7 @@ type OpenGraphImages = NonNullable<
  * Build a complete, indexable page's metadata.
  *
  * Next does NOT deep-merge `openGraph` / `twitter` between a layout and its
- * pages — a page that sets either one REPLACES the layout's object wholesale.
+ * pages - a page that sets either one REPLACES the layout's object wholesale.
  * Setting them ad-hoc per page therefore silently drops `og:type`,
  * `og:site_name`, `og:locale` and downgrades the Twitter card to `summary`.
  * Every indexable page goes through this helper so those can't be lost again.
@@ -123,7 +123,7 @@ export function pageMetadata(opts: {
   description: string;
   /**
    * Use the title verbatim instead of feeding it through the layout's
-   * "%s — The Heuman Chef" template (for titles that already carry the brand).
+   * "%s - The Heuman Chef" template (for titles that already carry the brand).
    */
   absoluteTitle?: boolean;
   /**

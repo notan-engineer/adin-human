@@ -232,7 +232,7 @@ export function ContactSection({
               </Button>
             </div>
 
-            {/* Persistent live region — only its contents change. */}
+            {/* Persistent live region - only its contents change. */}
             <p
               role="status"
               aria-live="polite"
@@ -245,7 +245,7 @@ export function ContactSection({
             </p>
           </form>
 
-          {/* Direct contact details — must match the footer (both read content/site.ts). */}
+          {/* Direct contact details - must match the footer (both read content/site.ts). */}
           <aside className="flex flex-col gap-6">
             <SubHeading className="font-display text-lg font-bold text-foreground">
               {t("detailsHeading")}

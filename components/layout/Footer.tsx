@@ -170,7 +170,7 @@ export async function Footer() {
                         </Link>
                       ) : (
                         // "#" placeholders stay plain anchors until their
-                        // routes exist — next-intl's Link has nothing useful
+                        // routes exist - next-intl's Link has nothing useful
                         // to do with a bare hash.
                         <a href={link.href} className={className}>
                           {link.label}

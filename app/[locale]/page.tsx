@@ -28,7 +28,7 @@ export async function generateMetadata({
     title: t("home.title"),
     description: t("home.description"),
     // The home title already carries the brand name, so skip the layout's
-    // "%s — The Heuman Chef" template.
+    // "%s - The Heuman Chef" template.
     absoluteTitle: true,
   });
 }

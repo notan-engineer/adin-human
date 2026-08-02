@@ -46,7 +46,7 @@ for (const locale of LOCALES) {
     });
 
     test("shows the heat meter only for spicy flavors", async ({ page }) => {
-      // maple is heatLevel 2 — the meter renders beside the price as one
+      // maple is heatLevel 2 - the meter renders beside the price as one
       // labelled image (a11y contract: "Heat level N of 3").
       await page.goto(path("/product/maple", locale));
       const heat = page.getByTestId("pdp-heat");
@@ -56,7 +56,7 @@ for (const locale of LOCALES) {
         /(רמת חריפות|Heat level)/,
       );
 
-      // bbq is heatLevel 0 — the meter must be absent entirely, not ghosted.
+      // bbq is heatLevel 0 - the meter must be absent entirely, not ghosted.
       await page.goto(path("/product/bbq", locale));
       await expect(page.getByTestId("pdp-heat")).toHaveCount(0);
     });
@@ -97,7 +97,7 @@ for (const locale of LOCALES) {
 
       // And the cart page agrees on the money: 4 bags bundle-price as
       // 3-pack + single (₪110 + ₪40 = ₪150), not 4 × list. Target the
-      // summary total directly — "last ₪ on the page" would now read the
+      // summary total directly - "last ₪ on the page" would now read the
       // HIDDEN checkout tree (both phase trees stay mounted).
       await page.goto(path("/cart", locale));
       const total = stripBidi(

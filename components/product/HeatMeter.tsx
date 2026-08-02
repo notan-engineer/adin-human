@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 /**
  * 1–3 flame icons showing a product's heat. Filled flames = heat; empty ones
  * are dim outlines. The whole meter is a single labelled image for screen
- * readers ("Heat level N of 3"). Renders nothing at level 0 — absence of the
+ * readers ("Heat level N of 3"). Renders nothing at level 0 - absence of the
  * meter is the "not spicy" signal.
  *
  * Server-safe: uses next-intl's `useTranslations`, which resolves in both

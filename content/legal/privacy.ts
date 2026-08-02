@@ -10,7 +10,7 @@ import type { LegalDoc } from "./types";
  * consequence of refusal, the purposes, the recipients, the controller's
  * identity and contact details, and the עיון/תיקון rights (ס' 13–14). The
  * facts below mirror the codebase deliberately: order/contact/newsletter data
- * only, payment fully external, a localStorage cart, and NO analytics — if
+ * only, payment fully external, a localStorage cart, and NO analytics - if
  * tracking is ever added, section "cookies" must be updated. Placeholders in
  * [brackets] MUST be filled before go-live.
  */
@@ -46,8 +46,8 @@ export const privacyDoc: LegalDoc = {
       title: { he: "מטרות השימוש במידע", en: "How We Use the Information" },
       body: [
         {
-          he: "המידע משמש לטיפול בהזמנות ולאספקתן, למתן שירות לקוחות ומענה לפניות, להפקת חשבוניות ולעמידה בדרישות הדין, ולשליחת דיוור — למי שנרשם לכך בלבד. העסק אינו מוכר מידע אישי ואינו עושה בו שימוש לפרופיילינג.",
-          en: "The information is used to process and deliver orders, provide customer service and respond to inquiries, issue invoices and comply with legal requirements, and send mailings — only to those who subscribed. The Business does not sell personal information and does not use it for profiling.",
+          he: "המידע משמש לטיפול בהזמנות ולאספקתן, למתן שירות לקוחות ומענה לפניות, להפקת חשבוניות ולעמידה בדרישות הדין, ולשליחת דיוור - למי שנרשם לכך בלבד. העסק אינו מוכר מידע אישי ואינו עושה בו שימוש לפרופיילינג.",
+          en: "The information is used to process and deliver orders, provide customer service and respond to inquiries, issue invoices and comply with legal requirements, and send mailings - only to those who subscribed. The Business does not sell personal information and does not use it for profiling.",
         },
       ],
     },
@@ -83,8 +83,8 @@ export const privacyDoc: LegalDoc = {
       title: { he: "עוגיות ואחסון מקומי", en: "Cookies and Local Storage" },
       body: [
         {
-          he: "האתר עושה שימוש באחסון מקומי חיוני בלבד — שמירת תוכן עגלת הקניות בדפדפן שלכם. נכון למועד עדכון מדיניות זו, האתר אינו עושה שימוש בעוגיות פרסום, מעקב או ניתוח סטטיסטי. ככל שהדבר ישתנה, מדיניות זו תעודכן בהתאם.",
-          en: "The Site uses essential local storage only — keeping your shopping-cart contents in your browser. As of the date of this policy, the Site does not use advertising, tracking or analytics cookies. Should this change, this policy will be updated accordingly.",
+          he: "האתר עושה שימוש באחסון מקומי חיוני בלבד - שמירת תוכן עגלת הקניות בדפדפן שלכם. נכון למועד עדכון מדיניות זו, האתר אינו עושה שימוש בעוגיות פרסום, מעקב או ניתוח סטטיסטי. ככל שהדבר ישתנה, מדיניות זו תעודכן בהתאם.",
+          en: "The Site uses essential local storage only - keeping your shopping-cart contents in your browser. As of the date of this policy, the Site does not use advertising, tracking or analytics cookies. Should this change, this policy will be updated accordingly.",
         },
       ],
     },
@@ -93,8 +93,8 @@ export const privacyDoc: LegalDoc = {
       title: { he: "דיוור ורשימת תפוצה", en: "Mailings and Newsletter" },
       body: [
         {
-          he: "ההרשמה לרשימת התפוצה נעשית מרצון בלבד. כל דיוור כולל אפשרות הסרה מיידית, וניתן לבקש הסרה בכל עת גם בפנייה בדוא\"ל — בהתאם להוראות סעיף 30א לחוק התקשורת (בזק ושידורים), התשמ\"ב-1982, והוראות הדיוור הישיר בחוק הגנת הפרטיות.",
-          en: "Subscribing to the mailing list is entirely voluntary. Every mailing includes an immediate unsubscribe option, and you may request removal at any time by email — in accordance with section 30A of the Israeli Communications Law, 5742-1982, and the direct-mailing provisions of the Privacy Protection Law.",
+          he: "ההרשמה לרשימת התפוצה נעשית מרצון בלבד. כל דיוור כולל אפשרות הסרה מיידית, וניתן לבקש הסרה בכל עת גם בפנייה בדוא\"ל - בהתאם להוראות סעיף 30א לחוק התקשורת (בזק ושידורים), התשמ\"ב-1982, והוראות הדיוור הישיר בחוק הגנת הפרטיות.",
+          en: "Subscribing to the mailing list is entirely voluntary. Every mailing includes an immediate unsubscribe option, and you may request removal at any time by email - in accordance with section 30A of the Israeli Communications Law, 5742-1982, and the direct-mailing provisions of the Privacy Protection Law.",
         },
       ],
     },
@@ -123,8 +123,8 @@ export const privacyDoc: LegalDoc = {
       title: { he: "שמירת מידע", en: "Data Retention" },
       body: [
         {
-          he: "מידע אישי נשמר כל עוד הוא דרוש למטרות שלשמן נאסף, וכן כנדרש על פי דין — למשל שמירת רשומות חשבונאיות ומס לתקופות הקבועות בדין.",
-          en: "Personal information is retained for as long as needed for the purposes for which it was collected, and as required by law — for example, keeping accounting and tax records for the statutory periods.",
+          he: "מידע אישי נשמר כל עוד הוא דרוש למטרות שלשמן נאסף, וכן כנדרש על פי דין - למשל שמירת רשומות חשבונאיות ומס לתקופות הקבועות בדין.",
+          en: "Personal information is retained for as long as needed for the purposes for which it was collected, and as required by law - for example, keeping accounting and tax records for the statutory periods.",
         },
       ],
     },

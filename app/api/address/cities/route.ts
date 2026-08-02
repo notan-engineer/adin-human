@@ -1,10 +1,10 @@
 /**
- * GET /api/address/cities?q= — Israeli city typeahead for the checkout address
+ * GET /api/address/cities?q= - Israeli city typeahead for the checkout address
  * form. Filters the sample city list (`data/il-cities.sample.json`) by a
  * case-insensitive substring match on either the Hebrew or English name and
  * returns up to ~8 `{ he, en }` pairs.
  *
- * PLACEHOLDER data — swap the sample file for a real data.gov.il cities feed
+ * PLACEHOLDER data - swap the sample file for a real data.gov.il cities feed
  * before go-live. `nodejs` runtime so we can read the bundled JSON.
  */
 

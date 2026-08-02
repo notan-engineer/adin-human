@@ -1,11 +1,11 @@
 /**
- * GET /api/address/streets?city=&q= — street typeahead scoped to a city. Looks
+ * GET /api/address/streets?city=&q= - street typeahead scoped to a city. Looks
  * up the street list for the given Hebrew city name in
  * `data/il-streets.sample.json`, falling back to `_default` for any city without
  * an explicit list, then filters by a case-insensitive substring on `q` and caps
  * the result at ~8.
  *
- * PLACEHOLDER data — swap the sample file for a real data.gov.il streets lookup
+ * PLACEHOLDER data - swap the sample file for a real data.gov.il streets lookup
  * before go-live. `nodejs` runtime so we can read the bundled JSON.
  */
 

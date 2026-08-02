@@ -3,7 +3,7 @@
  *
  * Catalog prices are treated as VAT-INCLUSIVE (the Israeli B2C convention: the
  * shelf price a consumer pays already contains VAT). These helpers therefore
- * decompose a gross, VAT-inclusive amount into its net and VAT parts — they do
+ * decompose a gross, VAT-inclusive amount into its net and VAT parts - they do
  * NOT add VAT on top.
  *
  * All amounts are INTEGER AGOROT (see `lib/money.ts`). VAT is computed with
@@ -11,8 +11,8 @@
  * always reconciles exactly to `gross` (no off-by-one agora drift).
  *
  * ⚠️ VERIFY BEFORE GO-LIVE: the statutory Israeli VAT rate changes by law
- * (it was raised to 18% on 2025-01-01). Confirm the current rate — and whether
- * prices should be shown VAT-inclusive — with the brand/accountant before
+ * (it was raised to 18% on 2025-01-01). Confirm the current rate - and whether
+ * prices should be shown VAT-inclusive - with the brand/accountant before
  * launch.
  */
 

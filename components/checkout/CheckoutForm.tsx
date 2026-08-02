@@ -35,7 +35,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const POSTAL_RE = /^\d{7}$/;
 const normalizePhone = (p: string) => p.replace(/\D/g, "");
 
-/** Address fields that BLOCK submit (postalCode is soft — shown, not gating). */
+/** Address fields that BLOCK submit (postalCode is soft - shown, not gating). */
 const ADDRESS_REQUIRED: (keyof Address)[] = [
   "recipientName",
   "phone",
@@ -66,11 +66,11 @@ type SectionKey = "contact" | "delivery" | "payment";
  * `?checkout=1` phase.
  *
  * Everything is visible at once: the contracted sticky summary bar on top
- * (2–3 lines — the forms are the focus), then three collapsible sections —
- * contact, delivery & address, payment — and one submit. No steps, no
+ * (2–3 lines - the forms are the focus), then three collapsible sections -
+ * contact, delivery & address, payment - and one submit. No steps, no
  * next/back. Delivery is two flat-fee radio cards (courier, default, or free
- * self-pickup); shipping is knowable INSTANTLY from the shared constants — no
- * quote round-trip — with the server quote at order-create remaining the
+ * self-pickup); shipping is knowable INSTANTLY from the shared constants - no
+ * quote round-trip - with the server quote at order-create remaining the
  * authority. `onEditCart` expands the cart back (pops the ?checkout phase).
  *
  * Money shown here is display-only (integer agorot, formatted at render); the
@@ -122,7 +122,7 @@ export function CheckoutForm({ onEditCart }: { onEditCart: () => void }) {
 
   // ── Totals (display-only; the server recomputes identically) ─────────────
   // Shipping is a flat nationwide fee (free over the threshold, judged on the
-  // discounted subtotal), so everything is knowable synchronously — no quote.
+  // discounted subtotal), so everything is knowable synchronously - no quote.
   const subtotal = lines.reduce(
     (sum, l) => sum + l.product.priceAgorot * l.qty,
     0,
@@ -289,7 +289,7 @@ export function CheckoutForm({ onEditCart }: { onEditCart: () => void }) {
       }
       const { redirectUrl } = (await payRes.json()) as { redirectUrl: string };
 
-      // Leaving the app for the hosted payment page — hold the submitting state.
+      // Leaving the app for the hosted payment page - hold the submitting state.
       window.location.href = redirectUrl;
     } catch {
       setBanner(t("validation.networkError"));
@@ -433,8 +433,8 @@ export function CheckoutForm({ onEditCart }: { onEditCart: () => void }) {
                 onBlurField={handleAddressBlur}
               />
             ) : (
-              // self_pickup — no address inputs, just where to collect.
-              // PLACEHOLDER address — confirm the real location before go-live.
+              // self_pickup - no address inputs, just where to collect.
+              // PLACEHOLDER address - confirm the real location before go-live.
               <div className="flex items-start gap-3 rounded-xl border border-border bg-background/30 p-4">
                 <Store aria-hidden className="mt-0.5 size-5 shrink-0 text-gold" />
                 <div className="flex flex-col gap-1">

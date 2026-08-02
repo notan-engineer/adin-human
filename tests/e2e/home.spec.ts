@@ -40,7 +40,7 @@ for (const locale of LOCALES) {
       const cards = page.locator("#products article");
       await expect(cards).toHaveCount(5);
 
-      // Each card must carry a real, navigable product link — an empty grid of
+      // Each card must carry a real, navigable product link - an empty grid of
       // five skeletons would otherwise satisfy the count above.
       for (let i = 0; i < 5; i += 1) {
         const link = cards.nth(i).getByRole("link").first();

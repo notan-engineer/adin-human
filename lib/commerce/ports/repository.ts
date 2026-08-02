@@ -1,5 +1,5 @@
 /**
- * Order repository port — persistence for orders, independent of the backing
+ * Order repository port - persistence for orders, independent of the backing
  * store (in-memory Map for the stub; Postgres/Prisma/etc. later).
  */
 

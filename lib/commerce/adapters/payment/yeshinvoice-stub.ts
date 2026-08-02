@@ -1,11 +1,11 @@
 /**
- * YeshInvoice (https://yeshinvoice.co.il/) — hosted payment page + invoicing.
+ * YeshInvoice (https://yeshinvoice.co.il/) - hosted payment page + invoicing.
  * DEFAULT payment provider. Ships as a STUB: with no credentials configured it
  * never touches the network, so the whole checkout flow runs with zero keys.
  *
  * ─── What YeshInvoice actually is ───────────────────────────────────────────
  * YeshInvoice is NOT an acquirer. It is an invoicing platform that ORCHESTRATES
- * over a real clearing provider that the merchant contracts separately —
+ * over a real clearing provider that the merchant contracts separately -
  * Grow/Meshulam, Pelecard, Cardcom, Tranzila, Z-Credit, Upay, EasyCard, … So a
  * live integration needs BOTH a YeshInvoice account AND a merchant clearing
  * agreement. Which acquirer sits underneath is observable in the webhook (see
@@ -16,7 +16,7 @@
  * Auth:      the `Authorization` header is a JSON OBJECT LITERAL, not a Bearer
  *            token:  Authorization: {"secret":"<SECRET>","userkey":"<USER_KEY>"}
  * Envelope:  every response is { Success: boolean, ErrorMessage: string,
- *            ReturnValue: any } and — critically — `Success:false` STILL RETURNS
+ *            ReturnValue: any } and - critically - `Success:false` STILL RETURNS
  *            HTTP 200. Never branch on the status code; always read `Success`.
  *
  * ─── The flow we implement ──────────────────────────────────────────────────
@@ -33,7 +33,7 @@
  *
  * ─── Known gaps, encoded honestly below ─────────────────────────────────────
  * 🔴 NO signature/HMAC on the webhook. YeshInvoice's own WooCommerce plugin calls
- *    payment_complete() with zero verification — a real auth-bypass. We therefore
+ *    payment_complete() with zero verification - a real auth-bypass. We therefore
  *    treat the notify as an UNTRUSTED WAKE-UP HINT only, never as proof of payment.
  * 🔴 NO status-by-reference endpoint is documented. Status can only be
  *    APPROXIMATED via POST /api/v1/getInvoices. See `getStatus`.
@@ -54,13 +54,13 @@ import type {
 } from "../../ports/payment";
 import { CommerceError } from "../../errors";
 
-/** Documented base URL. NOTE: sandbox is NOT a separate host — see the doc note. */
+/** Documented base URL. NOTE: sandbox is NOT a separate host - see the doc note. */
 export const YESHINVOICE_BASE_URL = "https://api.yeshinvoice.co.il/api/v1";
 
 /**
  * ⚠️ ILS CurrencyID is AMBIGUOUS in YeshInvoice's own material: the API docs say
  * `2`, while their WooCommerce plugin sends `1`. We deliberately do NOT hardcode
- * a guess — it comes from env (default 1, matching the shipping plugin, which is
+ * a guess - it comes from env (default 1, matching the shipping plugin, which is
  * the more likely-to-be-correct real-world evidence).
  *
  * ✅ Resolve this definitively before go-live: `POST /api/v1/getAllCurrencies`
@@ -99,7 +99,7 @@ export function yeshInvoiceEnvConfigured(): boolean {
 }
 
 /**
- * The `Authorization` header value — a JSON object literal, NOT `Bearer …`.
+ * The `Authorization` header value - a JSON object literal, NOT `Bearer …`.
  * (Yes, really. This is what their API expects.)
  */
 export function yeshInvoiceAuthHeader(): string {
@@ -117,19 +117,19 @@ export interface YeshInvoiceCreatePaymentBody {
   ErrorUrl: string;
   /** Server-to-server webhook. Form-urlencoded POST, unsigned. */
   NotifyUrl: string;
-  /** ⚠️ DECIMAL SHEKELS (e.g. 119 for ₪119.00) — NOT agorot. */
+  /** ⚠️ DECIMAL SHEKELS (e.g. 119 for ₪119.00) - NOT agorot. */
   TotalPrice: number;
   /** Line description shown on the hosted page and the issued document. */
   InvoiceName: string;
   /** 359 = Hebrew, 139 = English. */
   InvoiceLangID: number;
-  /** Our order id — echoed back verbatim in the webhook. Our correlation key. */
+  /** Our order id - echoed back verbatim in the webhook. Our correlation key. */
   UniqueID: string;
   /** Human-facing order number (we reuse the order id). */
   OrderNumber: string;
   /** 9 = חשבונית מס/קבלה. */
   DocumentType: number;
-  /** See `ilsCurrencyId()` — 1 vs 2 must be confirmed before go-live. */
+  /** See `ilsCurrencyId()` - 1 vs 2 must be confirmed before go-live. */
   CurrencyID: number;
   /** false ⇒ DO create the tax document (double negative is theirs). */
   NoCreateInvoice: boolean;
@@ -167,7 +167,7 @@ export interface YeshInvoiceCreatePaymentBody {
  *   customer.email          → InvoiceEmailAddress
  *   customer.phone          → InvoicePhone
  *   customer.taxId          → InvoiceNumberID     (ת.ז / ח.פ on the document)
- *   idempotencyKey          → Fields1             (audit breadcrumb only — their
+ *   idempotencyKey          → Fields1             (audit breadcrumb only - their
  *                                                  API has no idempotency key)
  *   locale                  → InvoiceLangID       (359 he / 139 en)
  */
@@ -221,7 +221,7 @@ export interface ParsedYeshInvoiceCallback {
    * of known suffixes rather than assuming one name.
    */
   statusCode?: string;
-  /** Which key the status came from — useful for identifying the acquirer. */
+  /** Which key the status came from - useful for identifying the acquirer. */
   statusField?: string;
   /** Every field, flattened, for auditing. */
   fields: Record<string, string>;
@@ -234,7 +234,7 @@ export interface ParsedYeshInvoiceCallback {
  * the RAW text (`await request.text()`), never `await request.json()`.
  *
  * 🔴 There is NO signature to check. This function PARSES; it does not VERIFY.
- * The result is a hint that something happened for an order — the caller MUST
+ * The result is a hint that something happened for an order - the caller MUST
  * independently confirm the amount and payment state before fulfilling.
  */
 export function parseYeshInvoiceCallback(
@@ -290,7 +290,7 @@ export class YeshInvoicePaymentProvider implements PaymentProvider {
 
   readonly capabilities: PaymentProviderCapabilities = {
     hostedRedirect: true,
-    inlineTokenized: false, // No tokenized/inline card API — hosted page only.
+    inlineTokenized: false, // No tokenized/inline card API - hosted page only.
     bit: true,
     applePay: true,
     googlePay: true,
@@ -350,7 +350,7 @@ export class YeshInvoicePaymentProvider implements PaymentProvider {
   async parseAndVerifyCallback(
     req: PaymentCallbackRequest,
   ): Promise<NormalizedPayment> {
-    // ⚠️ Form-urlencoded, not JSON — the route hands us the raw text.
+    // ⚠️ Form-urlencoded, not JSON - the route hands us the raw text.
     const parsed = parseYeshInvoiceCallback(req.rawBody);
 
     // Fall back to the query string (the stub's browser-return hop carries the
@@ -359,12 +359,12 @@ export class YeshInvoicePaymentProvider implements PaymentProvider {
     const providerRef =
       parsed.transactionId ?? req.query?.transaction_id ?? orderId ?? "unknown";
 
-    // 🔴 THIS IS NOT VERIFICATION — and it deliberately FAILS CLOSED.
+    // 🔴 THIS IS NOT VERIFICATION - and it deliberately FAILS CLOSED.
     // YeshInvoice signs nothing, so anyone who can reach NotifyUrl can post this
     // exact body. In real mode we therefore report `pending`, which the callback
     // route does NOT treat as fulfillable: an unsigned notify can never, on its
     // own, release goods or mark an order paid. (Reporting `authorized` here
-    // would still trigger fulfillment — i.e. exactly the bug in YeshInvoice's
+    // would still trigger fulfillment - i.e. exactly the bug in YeshInvoice's
     // own WooCommerce plugin, which calls payment_complete() unverified.)
     //
     // To go live, a real confirmation step must be added before this can return
@@ -373,7 +373,7 @@ export class YeshInvoicePaymentProvider implements PaymentProvider {
     //   (b) the amount actually captured matches `order.totalAgorot`.
     // No status-by-ref endpoint exists (see `getStatus`), so that reconciliation
     // is currently manual/back-office. Blocker: capture one real notify payload
-    // for the merchant's actual acquirer — see docs/yeshinvoice-integration.md.
+    // for the merchant's actual acquirer - see docs/yeshinvoice-integration.md.
     //
     // Stub mode (no credentials) returns `paid` so local/demo flows complete.
     //
@@ -397,7 +397,7 @@ export class YeshInvoicePaymentProvider implements PaymentProvider {
   async getStatus(providerRef: string): Promise<NormalizedPayment> {
     if (yeshInvoiceEnvConfigured()) {
       // 🔴 UNSUPPORTED. YeshInvoice documents no "get payment by reference"
-      // endpoint — the paymentPage GUID cannot be queried. The only approximation
+      // endpoint - the paymentPage GUID cannot be queried. The only approximation
       // is `POST /api/v1/getInvoices` (list documents, then match on our UniqueID
       // / OrderNumber / amount), which is a different question ("was a document
       // issued?") from the one we are asking ("was this charge captured?").
@@ -422,7 +422,7 @@ export class YeshInvoicePaymentProvider implements PaymentProvider {
 
   async refund(i: RefundInput): Promise<NormalizedPayment> {
     // 🔴 YeshInvoice exposes NO refund API. `cancelDocument` issues a credit note
-    // (חשבונית זיכוי) — an accounting document — which does NOT reverse the
+    // (חשבונית זיכוי) - an accounting document - which does NOT reverse the
     // charge at the acquirer. An actual money-back has to be done in the clearing
     // provider's back office (Pelecard/Cardcom/Grow/…), by whoever holds the
     // merchant agreement. Surfacing this as a hard error is the honest behavior;

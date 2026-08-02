@@ -1,4 +1,4 @@
-# The Heuman Chef — delivery report
+# The Heuman Chef - delivery report
 
 Build of the bilingual (Hebrew-first) storefront for **The Heuman Chef by Adin Human**,
 delivered in 17 independently-revertable commits.
@@ -13,12 +13,12 @@ delivered in 17 independently-revertable commits.
 | Code | 0 | ~11,300 LOC TS/TSX (app + lib + components + content + tests) |
 | Pages | 0 | 36 prerendered routes (9 pages × 2 locales + PDPs + dynamic order page) |
 | API | 0 | 10 Node route handlers (order, payment ×2, delivery ×2, invoice, address ×2, contact, newsletter) |
-| Languages | — | Hebrew (default, RTL, unprefixed `/`) + English (`/en`), **259 keys each, parity enforced by a test** |
+| Languages | - | Hebrew (default, RTL, unprefixed `/`) + English (`/en`), **259 keys each, parity enforced by a test** |
 | Tests | 0 | **68 unit** (vitest) + **80 E2E** (Playwright: mobile 390 + desktop 1280 × he/en) |
-| Accessibility | — | **0 axe violations at any severity** across 6 pages × 2 locales |
-| Perf | — | First Load JS 102 kB shared · home 184 kB · checkout 151 kB · cart 136 kB. No CLS/LCP issues |
-| Assets | 0.7 GB raw masters | 38 committed web assets (11 MB) — AVIF/WebP derivatives + sourced smoke video |
-| Deploy | — | Docker image **built and verified serving** (369 MB, non-root, healthcheck) |
+| Accessibility | - | **0 axe violations at any severity** across 6 pages × 2 locales |
+| Perf | - | First Load JS 102 kB shared · home 184 kB · checkout 151 kB · cart 136 kB. No CLS/LCP issues |
+| Assets | 0.7 GB raw masters | 38 committed web assets (11 MB) - AVIF/WebP derivatives + sourced smoke video |
+| Deploy | - | Docker image **built and verified serving** (369 MB, non-root, healthcheck) |
 
 **What works end-to-end today:** cinematic hero → flavor grid → product pages → cart →
 single-page checkout (zone-aware delivery, Israeli address autocomplete) → payment →
@@ -27,7 +27,7 @@ test that completes a real purchase.
 
 ---
 
-## 2. Batch ledger — every change, with its restore command
+## 2. Batch ledger - every change, with its restore command
 
 Each batch is one commit and reverts cleanly on its own.
 
@@ -53,7 +53,7 @@ Each batch is one commit and reverts cleanly on its own.
 
 ---
 
-## 3. Decision log — calls made on your behalf
+## 3. Decision log - calls made on your behalf
 
 **Direction changes you made mid-build (all honoured):**
 1. **Smoker concept dropped.** Built it, you judged it not good enough, removed it entirely.
@@ -68,7 +68,7 @@ Each batch is one commit and reverts cleanly on its own.
    collapsible sections, delivery **dropdown defaulting to regular delivery ₪35**.
 
 **Technical calls (tagged for your review, all cheaply reversible):**
-- **Node SSR, not static export** — checkout and the payment callback need a server.
+- **Node SSR, not static export** - checkout and the payment callback need a server.
 - **Provider-agnostic ports** (`lib/commerce/ports/*`) so provider churn is an adapter swap. This
   is why switching PayPlus→HYP→YeshInvoice cost hours, not days.
 - **Money as integer agorot** everywhere; formatted only at render. VAT 18%, prices VAT-inclusive
@@ -76,12 +76,12 @@ Each batch is one commit and reverts cleanly on its own.
 - **Flat ₪35 regular delivery** across zones (your instruction), zone machinery retained so
   per-region pricing can be switched back on.
 - **`design-resources/` gitignored** (0.7 GB masters); only optimized derivatives committed.
-- **Pouch renders soft-masked** — they ship with baked-in bright backgrounds; a radial mask melts
+- **Pouch renders soft-masked** - they ship with baked-in bright backgrounds; a radial mask melts
   those into a flavor glow so they read dark/on-brand.
-- **UUID order IDs** instead of sequential — see security note below.
-- **No `aggregateRating`/`review` structured data** — the testimonials are placeholders, so review
+- **UUID order IDs** instead of sequential - see security note below.
+- **No `aggregateRating`/`review` structured data** - the testimonials are placeholders, so review
   schema would be fabricated (and a search-policy violation).
-- **No kosher claim anywhere** — not confirmed by the brand.
+- **No kosher claim anywhere** - not confirmed by the brand.
 
 **Bugs found by testing that a build alone would never have caught:**
 - In-memory order store wasn't shared between API routes → every payment 404'd.
@@ -90,11 +90,11 @@ Each batch is one commit and reverts cleanly on its own.
 - `npm ci` couldn't install on Linux (optional peer-dep lockfile mismatch) → Docker build was broken.
 - `NEXT_PUBLIC_SITE_URL` is inlined at **build** time even server-side → setting it only at runtime
   silently sends shoppers off-domain after paying.
-- Salt was being published as schema.org `sodiumContent` (~2.5× off) — a materially false nutrition claim.
+- Salt was being published as schema.org `sodiumContent` (~2.5× off) - a materially false nutrition claim.
 
 ---
 
-## 4. Parked — needs a decision or real data before launch
+## 4. Parked - needs a decision or real data before launch
 
 **Blocking for go-live:**
 1. **Hebrew spelling of "Human"** (הומן / יומן?). Deliberately left in Latin script inside Hebrew
@@ -104,20 +104,20 @@ Each batch is one commit and reverts cleanly on its own.
    remove the section.
 3. **Prices and product copy are placeholders** (₪42/₪44/₪34, weights, descriptions). Real numbers needed.
 4. **Stats "12 hours" and "100% natural" are invented.** `34g` protein and `6` flavors are real.
-5. **YeshInvoice pre-launch checklist** — `docs/yeshinvoice-integration.md`. Headlines:
-   - They are **not an acquirer** — a separate clearing agreement is required (Grow/Pelecard/Cardcom/…).
+5. **YeshInvoice pre-launch checklist** - `docs/yeshinvoice-integration.md`. Headlines:
+   - They are **not an acquirer** - a separate clearing agreement is required (Grow/Pelecard/Cardcom/…).
    - **No refund endpoint** and **no payment-status-by-reference endpoint** in their documented API.
    - **Their webhook is unsigned.** We fail closed: in configured mode the callback returns `pending`
      and never fulfils, until a real reconciliation step exists. Capture one live webhook payload for
-     the merchant's actual acquirer — that unblocks everything else.
-   - ILS `CurrencyID` is ambiguous (`1` vs `2`) — confirm via `getAllCurrencies`.
+     the merchant's actual acquirer - that unblocks everything else.
+   - ILS `CurrencyID` is ambiguous (`1` vs `2`) - confirm via `getAllCurrencies`.
    - Allocation number (מספר הקצאה) is not automatic and its grant expires.
 
 **Before real traffic:**
-6. **Orders are in-memory** (`ORDER_REPOSITORY=memory`) — lost on restart. Swap for a real DB.
+6. **Orders are in-memory** (`ORDER_REPOSITORY=memory`) - lost on restart. Swap for a real DB.
    The `OrderRepository` port exists precisely for this.
-7. **`/api/contact` and `/api/newsletter` are unauthenticated stubs** — need rate limiting, and
+7. **`/api/contact` and `/api/newsletter` are unauthenticated stubs** - need rate limiting, and
    newsletter needs double opt-in.
-8. **Delivery is a zone-table stub** — no real carrier is wired. `DeliveryProvider` port is ready.
+8. **Delivery is a zone-table stub** - no real carrier is wired. `DeliveryProvider` port is ready.
 9. Legal pages (terms, privacy, shipping/returns) are placeholder links.
 10. Kosher certification badge is built but **off**; enable only once certified.

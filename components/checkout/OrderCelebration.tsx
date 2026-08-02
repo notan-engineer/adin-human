@@ -8,8 +8,8 @@ import { useCart } from "@/lib/store/cart";
 
 /**
  * Peak-end flourish for the order-confirmation page: a gold check that draws in
- * once (≤2s, transform/opacity only) and — as a side effect of a successful
- * order landing here — clears the persisted cart on mount. Reduced-motion users
+ * once (≤2s, transform/opacity only) and - as a side effect of a successful
+ * order landing here - clears the persisted cart on mount. Reduced-motion users
  * get the final, static check with no animation. The cart clear still runs.
  */
 export function OrderCelebration() {

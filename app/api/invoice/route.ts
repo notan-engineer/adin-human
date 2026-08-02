@@ -1,5 +1,5 @@
 /**
- * POST /api/invoice — ensure the tax document exists for a PAID order and return
+ * POST /api/invoice - ensure the tax document exists for a PAID order and return
  * its `{ number, url }`. Delegates to `fulfillPaidOrder`, which is idempotent, so
  * calling this repeatedly never issues a second invoice. A not-yet-paid order is
  * rejected with 409.
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
 
     const fulfilled = await fulfillPaidOrder(order);
     if (!fulfilled.invoiceNumber || !fulfilled.invoiceUrl) {
-      // Fulfilment ran but produced no document — treat as a server fault.
+      // Fulfilment ran but produced no document - treat as a server fault.
       return NextResponse.json({ error: "internal_error" }, { status: 500 });
     }
 

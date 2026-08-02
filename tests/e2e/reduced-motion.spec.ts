@@ -7,7 +7,7 @@ import { LOCALES, effectiveOpacity, path } from "./helpers";
  *
  * The failure this guards against is subtle: a `whileInView` reveal that only
  * animates to `opacity: 1` on scroll leaves everything below the fold at
- * `opacity: 0` forever for users who never scroll — and Playwright's
+ * `opacity: 0` forever for users who never scroll - and Playwright's
  * `toBeVisible()` happily passes on a fully transparent element. So we assert
  * the *computed* opacity of the element and every ancestor, WITHOUT scrolling.
  */

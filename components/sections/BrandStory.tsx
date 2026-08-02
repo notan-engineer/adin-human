@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * The founder/origin section (scroll target `#story`). Two columns on desktop
- * — the full flavor lineup on one side, the Adin Human story on the other —
+ * - the full flavor lineup on one side, the Adin Human story on the other -
  * stacked on mobile with the image first.
  *
  * Server component: `useTranslations` renders on the server and the copy is
@@ -27,7 +27,7 @@ export function BrandStory({ className }: { className?: string }) {
     >
       <div className="container">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Visual — the full lineup on its color panels. */}
+          {/* Visual - the full lineup on its color panels. */}
           <Reveal y={28} className="order-1">
             <div className="relative">
               {/* Warm bloom behind the pouches so they sit in light, not on a flat slab. */}
@@ -62,7 +62,7 @@ export function BrandStory({ className }: { className?: string }) {
               <h2 className="mt-3 font-display text-3xl font-black text-gold sm:text-4xl">
                 {t("heading")}
               </h2>
-              {/* Gold hairline accent — logical inset so it hugs the start edge in RTL too. */}
+              {/* Gold hairline accent - logical inset so it hugs the start edge in RTL too. */}
               <div className="mt-5 h-px w-24 bg-ember-line" aria-hidden />
             </Reveal>
 

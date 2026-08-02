@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Kosher claim plus the three pack claims printed on the real packaging.
- * Kosher leads and stays a bare claim — certifying body/teudah still TBD,
+ * Kosher leads and stays a bare claim - certifying body/teudah still TBD,
  * matching the PDP's TrustBadges.
  */
 const BADGES = [
@@ -23,7 +23,7 @@ const BADGES = [
  * A band of animated headline numbers plus the kosher + pack claims.
  *
  * Server component; `CountUp` and `Stagger` are the client leaves. Both are
- * reduced-motion safe — CountUp jumps straight to its final value and Stagger
+ * reduced-motion safe - CountUp jumps straight to its final value and Stagger
  * degrades to a plain wrapper, so every figure is readable without animation.
  */
 export function TrustStats({ className }: { className?: string }) {

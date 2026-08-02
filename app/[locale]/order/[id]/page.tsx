@@ -222,7 +222,7 @@ export default async function OrderConfirmationPage({
             </p>
           ) : (
             <p className="mt-1 text-sm text-muted-foreground">
-              {tc("selfPickup.storeName")} — {tc("selfPickup.storeAddress")}
+              {tc("selfPickup.storeName")} - {tc("selfPickup.storeAddress")}
             </p>
           )}
           {order.trackingUrl ? (

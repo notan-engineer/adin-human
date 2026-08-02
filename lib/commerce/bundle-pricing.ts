@@ -2,7 +2,7 @@
  * Mix & match bundle pricing.
  *
  * Every bag lists at ₪40; any 3 bags price at ₪110 and any 5 at ₪185, across
- * flavors. The cart's bag COUNT is the only input — the model assumes a flat
+ * flavors. The cart's bag COUNT is the only input - the model assumes a flat
  * per-bag list price, which a test in `__tests__/bundle-pricing.test.ts`
  * asserts against the live catalog so a differently-priced future SKU fails
  * loudly instead of silently over-discounting.
@@ -26,7 +26,7 @@ export const BUNDLE_TIERS = [
 
 /**
  * DP ceiling. The array the DP allocates is sized by bagCount, which
- * ultimately comes from CLIENT-supplied quantities — unbounded, that's a
+ * ultimately comes from CLIENT-supplied quantities - unbounded, that's a
  * one-request OOM on the order/quote APIs (a fatal V8 abort no try/catch can
  * intercept). The API schemas cap qty/lines as the first line of defense;
  * this bound makes the function itself safe for ANY input. Counts above it
@@ -35,7 +35,7 @@ export const BUNDLE_TIERS = [
  */
 const MAX_DP_BAGS = 10_000;
 
-/** The tier with the best per-bag rate — the tail of any large optimum. */
+/** The tier with the best per-bag rate - the tail of any large optimum. */
 const CHEAPEST_PER_BAG = BUNDLE_TIERS.reduce((best, t) =>
   t.priceAgorot * best.bags < best.priceAgorot * t.bags ? t : best,
 );
