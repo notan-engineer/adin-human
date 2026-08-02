@@ -1,4 +1,4 @@
-import { ShieldCheck, WheatOff, Dumbbell } from "lucide-react";
+import { BadgeCheck, ShieldCheck, WheatOff, Dumbbell } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { CountUp } from "@/components/motion/CountUp";
@@ -7,15 +7,20 @@ import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { trustStats } from "@/content/trustStats";
 import { cn } from "@/lib/utils";
 
-/** The three pack claims, printed on the real packaging. */
+/**
+ * Kosher claim plus the three pack claims printed on the real packaging.
+ * Kosher leads and stays a bare claim — certifying body/teudah still TBD,
+ * matching the PDP's TrustBadges.
+ */
 const BADGES = [
+  { key: "kosher", Icon: BadgeCheck },
   { key: "highProtein", Icon: Dumbbell },
   { key: "noPreservatives", Icon: ShieldCheck },
   { key: "glutenFree", Icon: WheatOff },
 ] as const;
 
 /**
- * A band of animated headline numbers plus the three pack claims.
+ * A band of animated headline numbers plus the kosher + pack claims.
  *
  * Server component; `CountUp` and `Stagger` are the client leaves. Both are
  * reduced-motion safe — CountUp jumps straight to its final value and Stagger
