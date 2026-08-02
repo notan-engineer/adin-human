@@ -20,8 +20,8 @@ import {
  */
 
 const SLUG = "bbq";
-const SUBTOTAL = PRICE_AGOROT[SLUG]; // 4200 agorot = ₪42
-const TOTAL = SUBTOTAL + COURIER_AGOROT; // 7700 agorot = ₪77
+const SUBTOTAL = PRICE_AGOROT[SLUG]; // 4000 agorot = ₪40
+const TOTAL = SUBTOTAL + COURIER_AGOROT; // 7500 agorot = ₪75
 
 const COPY = {
   he: {

@@ -36,11 +36,11 @@ export const PRODUCT_SLUGS = [
 
 /** Catalog prices in integer agorot, mirrored for total assertions. */
 export const PRICE_AGOROT: Record<string, number> = {
-  bbq: 4200,
-  maple: 4400,
-  honey: 4400,
-  garlic: 4200,
-  zaatar: 4200,
+  bbq: 4000,
+  maple: 4000,
+  honey: 4000,
+  garlic: 4000,
+  zaatar: 4000,
 };
 
 /** Regular ("courier") delivery, in agorot — ₪35. */
