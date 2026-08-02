@@ -7,8 +7,8 @@
  * `og:image` at all — the parent's card is not merged in. `/cart` and
  * `/checkout` keep the inherited card only because they never set `openGraph`.
  *
- * `/about` sidesteps this by supplying its own image; `/contact` wants the
- * branded emblem card, so it re-declares the same route here.
+ * `/contact` wants the branded emblem card, so it re-declares the same
+ * route here.
  */
 export {
   default,

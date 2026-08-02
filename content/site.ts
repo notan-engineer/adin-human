@@ -17,6 +17,5 @@ export const site = {
   social: {
     instagram: "https://instagram.com/theheumanchef",
     facebook: "https://facebook.com/theheumanchef",
-    tiktok: "https://tiktok.com/@theheumanchef",
   },
 } as const;

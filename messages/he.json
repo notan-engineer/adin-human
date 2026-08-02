@@ -26,7 +26,6 @@
     "legalHeading": "תקנון ומידע",
     "flavors": "טעמים",
     "bundles": "מארזים",
-    "gifts": "מבצעים מיוחדים",
     "story": "הסיפור",
     "process": "התהליך",
     "contact": "צור קשר",
@@ -336,13 +335,6 @@
     },
     "metaTitle": "צור קשר",
     "metaDescription": "יצירת קשר עם The Heuman Chef — שאלות, הזמנות גדולות ושיתופי פעולה."
-  },
-  "about": {
-    "kicker": "המותג",
-    "heading": "Eat Like a Chef",
-    "intro": "ביף ג'רקי בעבודת יד. בלי פשרות. בלי חומרים משמרים. עם טעם שלא תשכחו. זה הסיפור, המספרים והתהליך שמאחורי כל שקית.",
-    "metaTitle": "הסיפור שלנו",
-    "metaDescription": "הסיפור, המספרים ותהליך העישון בעצי דובדבן שמאחורי נתחי הבקר המעושנים של The Heuman Chef."
   },
   "meta": {
     "siteName": "The Heuman Chef",

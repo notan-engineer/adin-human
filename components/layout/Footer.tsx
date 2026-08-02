@@ -1,11 +1,11 @@
-import { Music2 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 import { site } from "@/content/site";
+import { Link } from "@/lib/i18n/navigation";
 
 // Brand glyphs aren't shipped in this lucide build, so they're inlined in the
-// same 24px line style (currentColor stroke) to sit flush with the Music2 mark.
+// same 24px lucide line style (currentColor stroke, 2px, round caps).
 function InstagramIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -46,22 +46,22 @@ export async function Footer() {
   const t = await getTranslations("footer");
   const year = new Date().getFullYear();
 
+  // Absolute targets, not bare hashes: the footer renders on every page, and
+  // these sections live on the home page (same targets as the header Nav).
   const columns = [
     {
       heading: t("shopHeading"),
       links: [
-        { label: t("flavors"), href: "#products" },
+        { label: t("flavors"), href: "/#products" },
+        // TODO(bundles batch): repoint to /#bundles once the section lands.
         { label: t("bundles"), href: "#" },
-        { label: t("gifts"), href: "#" },
       ],
     },
     {
       heading: t("companyHeading"),
       links: [
-        // Absolute targets, not bare hashes: the footer renders on every page,
-        // and both sections exist on /about as well as the home page.
-        { label: t("story"), href: "/about#story" },
-        { label: t("process"), href: "/about#process" },
+        { label: t("story"), href: "/#story" },
+        { label: t("process"), href: "/#process" },
         { label: t("contact"), href: "/contact" },
       ],
     },
@@ -78,7 +78,6 @@ export async function Footer() {
   const socials = [
     { label: "Instagram", href: site.social.instagram, Icon: InstagramIcon },
     { label: "Facebook", href: site.social.facebook, Icon: FacebookIcon },
-    { label: "TikTok", href: site.social.tiktok, Icon: Music2 },
   ];
 
   return (
@@ -156,16 +155,29 @@ export async function Footer() {
                 {col.heading}
               </h2>
               <ul className="flex flex-col gap-3">
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-gold"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
+                {col.links.map((link) => {
+                  const className =
+                    "text-sm text-muted-foreground transition-colors hover:text-gold";
+                  return (
+                    <li key={link.label}>
+                      {link.href.startsWith("/") ? (
+                        // Locale-aware Link: a plain <a href="/…"> would drop
+                        // the /en prefix and silently switch the visitor to
+                        // Hebrew (localePrefix "as-needed").
+                        <Link href={link.href} className={className}>
+                          {link.label}
+                        </Link>
+                      ) : (
+                        // "#" placeholders stay plain anchors until their
+                        // routes exist — next-intl's Link has nothing useful
+                        // to do with a bare hash.
+                        <a href={link.href} className={className}>
+                          {link.label}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
           ))}

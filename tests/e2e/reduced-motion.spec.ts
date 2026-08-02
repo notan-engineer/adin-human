@@ -57,26 +57,4 @@ for (const locale of LOCALES) {
     }
   });
 
-  test(`about: revealed content is visible without scrolling (${locale.code})`, async ({
-    page,
-  }) => {
-    await page.goto(path("/about", locale));
-    await page.waitForLoadState("networkidle");
-
-    expect(
-      await effectiveOpacity(page, "#story blockquote"),
-      "about → brand story quote is trapped behind a scroll reveal",
-    ).toBe(1);
-
-    expect(
-      await effectiveOpacity(page, "#process ol li:last-of-type"),
-      "about → last process step is trapped behind a scroll reveal",
-    ).toBe(1);
-
-    // The page's own <Reveal>-wrapped header must be opaque too.
-    expect(
-      await effectiveOpacity(page, "h1"),
-      "about heading is trapped behind a scroll reveal",
-    ).toBe(1);
-  });
 }

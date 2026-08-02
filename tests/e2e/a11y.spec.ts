@@ -25,7 +25,6 @@ const PAGES: PageCase[] = [
   { name: "pdp", url: (l) => path("/product/bbq", l) },
   { name: "cart", url: (l) => path("/cart", l), needsCart: true },
   { name: "checkout", url: (l) => path("/checkout", l), needsCart: true },
-  { name: "about", url: (l) => path("/about", l) },
   { name: "contact", url: (l) => path("/contact", l) },
 ];
 
