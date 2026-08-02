@@ -6,7 +6,7 @@ import { formatAgorot } from "@/lib/money";
 
 /**
  * The contracted order summary shown while the /cart page is in its checkout
- * phase: 2–3 short lines instead of the itemized box, so the forms below stay
+ * phase: 2-3 short lines instead of the itemized box, so the forms below stay
  * the focus. Sticky on EVERY viewport (the only mobile-sticky element in the
  * app - that's the point: the total follows the shopper through the forms),
  * offset below the sticky header (h-16 / md:h-20, z-50) with breathing room,

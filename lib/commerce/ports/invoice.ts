@@ -31,7 +31,7 @@ export interface IssueInvoiceInput {
   /**
    * Shipping charged, integer agorot (0/omitted = none). A real adapter MUST
    * render this as a shipping line, so the document reconciles:
-   * Σ(lines) − discountAgorot + shippingAgorot === amountAgorot.
+   * Σ(lines) - discountAgorot + shippingAgorot === amountAgorot.
    */
   shippingAgorot?: number;
   /** Gross (VAT-inclusive) total, integer agorot. */

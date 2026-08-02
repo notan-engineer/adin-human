@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 /**
- * Controlled −/value/+ stepper. `value` is clamped to `min` on decrement; the
+ * Controlled -/value/+ stepper. `value` is clamped to `min` on decrement; the
  * live value is announced via `aria-live` so keyboard/AT users hear each change.
  */
 export function QuantityStepper({

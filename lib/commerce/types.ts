@@ -167,7 +167,7 @@ export interface PickupPoint {
   lat: number;
   lng: number;
   distanceMeters?: number;
-  /** Free-text opening hours, e.g. "א׳–ה׳ 09:00–19:00". */
+  /** Free-text opening hours, e.g. "א׳-ה׳ 09:00-19:00". */
   openingHours?: string;
 }
 

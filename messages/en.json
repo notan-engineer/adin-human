@@ -203,7 +203,7 @@
       "vatIncluded": "incl. VAT (18%)",
       "total": "Total",
       "eta": "Estimated delivery",
-      "etaDays": "{min}–{max} business days"
+      "etaDays": "{min}-{max} business days"
     },
     "validation": {
       "required": "This field is required",
@@ -244,7 +244,7 @@
     "deliveryHeading": "How you'll get it",
     "deliverTo": "Delivering to",
     "eta": "Estimated delivery",
-    "etaDays": "{min}–{max} business days",
+    "etaDays": "{min}-{max} business days",
     "trackingLink": "Track your shipment",
     "invoiceHeading": "Invoice",
     "invoiceLink": "View invoice",

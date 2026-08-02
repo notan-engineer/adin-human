@@ -8,7 +8,7 @@ import type { LegalDoc } from "./types";
  * Written to the amended notice duty of חוק הגנת הפרטיות, התשמ"א-1981 (תיקון
  * 13, in force 14.08.2025, ס' 11): whether providing data is voluntary and the
  * consequence of refusal, the purposes, the recipients, the controller's
- * identity and contact details, and the עיון/תיקון rights (ס' 13–14). The
+ * identity and contact details, and the עיון/תיקון rights (ס' 13-14). The
  * facts below mirror the codebase deliberately: order/contact/newsletter data
  * only, payment fully external, a localStorage cart, and NO analytics - if
  * tracking is ever added, section "cookies" must be updated. Placeholders in
@@ -113,8 +113,8 @@ export const privacyDoc: LegalDoc = {
       title: { he: "זכויותיכם", en: "Your Rights" },
       body: [
         {
-          he: "בהתאם לסעיפים 13–14 לחוק הגנת הפרטיות, התשמ\"א-1981, אתם זכאים לעיין במידע האישי המוחזק אודותיכם ולבקש לתקן או למחוק מידע שאינו נכון, שלם או מעודכן, וכן להסיר את עצמכם מרשימת התפוצה. לפניות בנושא ראו סעיף \"עדכונים ויצירת קשר\" להלן.",
-          en: "In accordance with sections 13–14 of the Privacy Protection Law, 5741-1981, you are entitled to review the personal information held about you, request correction or deletion of information that is inaccurate, incomplete or outdated, and remove yourself from the mailing list. See \"Updates and Contact\" below for how to reach us.",
+          he: "בהתאם לסעיפים 13-14 לחוק הגנת הפרטיות, התשמ\"א-1981, אתם זכאים לעיין במידע האישי המוחזק אודותיכם ולבקש לתקן או למחוק מידע שאינו נכון, שלם או מעודכן, וכן להסיר את עצמכם מרשימת התפוצה. לפניות בנושא ראו סעיף \"עדכונים ויצירת קשר\" להלן.",
+          en: "In accordance with sections 13-14 of the Privacy Protection Law, 5741-1981, you are entitled to review the personal information held about you, request correction or deletion of information that is inaccurate, incomplete or outdated, and remove yourself from the mailing list. See \"Updates and Contact\" below for how to reach us.",
         },
       ],
     },

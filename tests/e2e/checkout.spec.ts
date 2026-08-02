@@ -187,7 +187,7 @@ for (const locale of LOCALES) {
       const bar = page.getByTestId("checkout-summary-bar");
       await expect(bar).toBeVisible();
       const barText = stripBidi(await bar.innerText());
-      // Discount line: list − bundle = ₪35.
+      // Discount line: list - bundle = ₪35.
       expect(barText).toContain(String((PRICE_AGOROT[SLUG] * 11 - bundleTotal) / 100));
       // Total = bundle price, shipping free.
       expect(barText).toContain(String(bundleTotal / 100));

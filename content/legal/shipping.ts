@@ -66,8 +66,8 @@ export const shippingDoc: LegalDoc = {
       title: { he: "זמני אספקה", en: "Delivery Times" },
       body: [
         {
-          he: "זמן האספקה המשוער הוא [1–2 ימי עסקים] ממועד אישור ההזמנה. ליישובים מרוחקים ייתכן זמן אספקה ארוך יותר. זמני האספקה הם הערכה בלבד ואינם מהווים התחייבות; עיכובים אצל חברת השליחויות, בחגים ובמועדים מיוחדים אינם בשליטת העסק.",
-          en: "Estimated delivery time is [1–2 business days] from order confirmation. Remote areas may take longer. Delivery times are estimates only and are not a commitment; delays at the courier company or around holidays are beyond the Business's control.",
+          he: "זמן האספקה המשוער הוא [1-2 ימי עסקים] ממועד אישור ההזמנה. ליישובים מרוחקים ייתכן זמן אספקה ארוך יותר. זמני האספקה הם הערכה בלבד ואינם מהווים התחייבות; עיכובים אצל חברת השליחויות, בחגים ובמועדים מיוחדים אינם בשליטת העסק.",
+          en: "Estimated delivery time is [1-2 business days] from order confirmation. Remote areas may take longer. Delivery times are estimates only and are not a commitment; delays at the courier company or around holidays are beyond the Business's control.",
         },
       ],
     },

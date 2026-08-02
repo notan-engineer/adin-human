@@ -29,7 +29,7 @@ import { cn } from "@/lib/utils";
 import { splitGross } from "@/lib/vat";
 
 // ── Validation primitives ──────────────────────────────────────────────────
-// Israeli phone: 9–10 digits starting 0 (05x mobile / 0x landline).
+// Israeli phone: 9-10 digits starting 0 (05x mobile / 0x landline).
 const PHONE_RE = /^0\d{8,9}$/;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const POSTAL_RE = /^\d{7}$/;
@@ -66,7 +66,7 @@ type SectionKey = "contact" | "delivery" | "payment";
  * `?checkout=1` phase.
  *
  * Everything is visible at once: the contracted sticky summary bar on top
- * (2–3 lines - the forms are the focus), then three collapsible sections -
+ * (2-3 lines - the forms are the focus), then three collapsible sections -
  * contact, delivery & address, payment - and one submit. No steps, no
  * next/back. Delivery is two flat-fee radio cards (courier, default, or free
  * self-pickup); shipping is knowable INSTANTLY from the shared constants - no
@@ -316,7 +316,7 @@ export function CheckoutForm({ onEditCart }: { onEditCart: () => void }) {
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-4">
-      {/* ── Contracted, sticky order summary (2–3 lines) ─────────────────── */}
+      {/* ── Contracted, sticky order summary (2-3 lines) ─────────────────── */}
       <CheckoutSummaryBar
         count={bagCount}
         merchandiseAgorot={merchandise}

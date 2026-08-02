@@ -83,7 +83,7 @@ export class StubDeliveryProvider implements DeliveryProvider {
         lat: baseLat + 0.001,
         lng: baseLng + 0.001,
         distanceMeters: 350,
-        openingHours: "א׳–ה׳ 09:00–19:00, ו׳ 09:00–13:00",
+        openingHours: "א׳-ה׳ 09:00-19:00, ו׳ 09:00-13:00",
       },
       {
         id: `locker_${token}_1`,
@@ -103,7 +103,7 @@ export class StubDeliveryProvider implements DeliveryProvider {
         lat: baseLat + 0.004,
         lng: baseLng - 0.001,
         distanceMeters: 1250,
-        openingHours: "א׳–ה׳ 08:00–20:00",
+        openingHours: "א׳-ה׳ 08:00-20:00",
       },
     ];
 

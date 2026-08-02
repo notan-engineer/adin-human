@@ -21,7 +21,7 @@ export const VAT_RATE = 0.18;
 
 /**
  * The VAT portion contained in a VAT-inclusive (gross) amount, in integer
- * agorot. Derived as `gross − gross / (1 + rate)`, rounded to the nearest agora.
+ * agorot. Derived as `gross - gross / (1 + rate)`, rounded to the nearest agora.
  */
 export function vatFromGross(grossAgorot: number): number {
   return Math.round(grossAgorot - grossAgorot / (1 + VAT_RATE));
@@ -29,7 +29,7 @@ export function vatFromGross(grossAgorot: number): number {
 
 /**
  * The net (pre-VAT) portion of a VAT-inclusive amount, in integer agorot.
- * Defined as `gross − vat` so `net + vat === gross` exactly.
+ * Defined as `gross - vat` so `net + vat === gross` exactly.
  */
 export function netFromGross(grossAgorot: number): number {
   return grossAgorot - vatFromGross(grossAgorot);

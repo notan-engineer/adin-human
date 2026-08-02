@@ -46,7 +46,7 @@ const CHEAPEST_PER_BAG = BUNDLE_TIERS.reduce((best, t) =>
  *
  * Above MAX_DP_BAGS the optimum is periodic: past a small threshold, adding
  * one more copy of the cheapest-per-bag tier (the 3-pack here) is always
- * optimal, so best(n) = best(n − k·3) + k·11000. The unit tests assert this
+ * optimal, so best(n) = best(n - k·3) + k·11000. The unit tests assert this
  * periodicity against the DP, so a future tier change that breaks the
  * assumption fails loudly.
  */
