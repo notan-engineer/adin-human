@@ -88,13 +88,21 @@ export function ProductCard({ product }: { product: Product }) {
           <HeatMeter level={heatLevel} />
         </div>
 
-        <div className="mt-auto flex items-center justify-between gap-2">
+        {/* Price + Add. STACKED below sm: a two-column grid card at 390px
+            leaves ~135px of content width — price beside the button clipped
+            the button at the card edge. Stacking also yields a full-width,
+            taller (h-10) tap target on touch screens. */}
+        <div className="mt-auto flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <span className="font-display text-xl font-bold text-gold">
             {formatAgorot(priceAgorot, locale)}
           </span>
           {/* Raised above the stretched-link overlay so it stays independently
               clickable. */}
-          <AddToCartButton slug={slug} size="sm" className="relative z-10" />
+          <AddToCartButton
+            slug={slug}
+            size="sm"
+            className="relative z-10 h-10 w-full sm:h-9 sm:w-auto"
+          />
         </div>
       </div>
     </article>

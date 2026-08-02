@@ -155,8 +155,10 @@ export async function Footer() {
               </h2>
               <ul className="flex flex-col gap-3">
                 {col.links.map((link) => {
+                  // py-1.5/-my-1.5: a ~45px touch target for these ~21px text
+                  // links without shifting the column layout.
                   const className =
-                    "text-sm text-muted-foreground transition-colors hover:text-gold";
+                    "inline-block py-1.5 -my-1.5 text-sm text-muted-foreground transition-colors hover:text-gold";
                   return (
                     <li key={link.label}>
                       {link.href.startsWith("/") ? (

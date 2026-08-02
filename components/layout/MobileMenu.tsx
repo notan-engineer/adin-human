@@ -39,14 +39,16 @@ export function MobileMenu({ className }: { className?: string }) {
 
         <nav
           aria-label="Primary"
-          className="flex flex-col items-center gap-6 py-6"
+          className="flex flex-col items-center gap-1 py-6"
         >
+          {/* py-2.5 turns each ~32px text line into a ≥44px touch target;
+              the tighter gap keeps the previous visual rhythm. */}
           {navLinks.map(({ key, href }) => (
             <Link
               key={key}
               href={href}
               onClick={() => setOpen(false)}
-              className="font-display text-2xl font-semibold uppercase tracking-wide text-foreground transition-colors hover:text-gold"
+              className="px-6 py-2.5 font-display text-2xl font-semibold uppercase tracking-wide text-foreground transition-colors hover:text-gold"
             >
               {t(key)}
             </Link>

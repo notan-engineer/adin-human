@@ -85,7 +85,7 @@ export function CartLineItem({
             size="icon"
             onClick={() => remove(slug)}
             aria-label={t("remove")}
-            className="-me-2 -mt-2 size-9 shrink-0 text-muted-foreground hover:text-destructive"
+            className="-me-2 -mt-2 size-10 shrink-0 text-muted-foreground hover:text-destructive"
           >
             <Trash2 aria-hidden />
           </Button>
